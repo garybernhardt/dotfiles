@@ -143,19 +143,18 @@
   (split-window)
   (other-window 1)
   (eshell)
-  (viper-intercept-ESC-key)
-  (other-window -2))
-(progn
-  (interactive)
-  (split-window-vertically 90)
-  (split-window-horizontally))
+  (other-window -3))
+;(progn
+;  (interactive)
+;  (split-window-vertically 90)
+;  (split-window-horizontally))
 ;(progn
 ;  (interactive)
 ;  (split-window-horizontally 82)
 ;  (other-window 1)
 ;  (split-window-horizontally 82)
 ;  (other-window 1)
-  (other-window 1))
+;  (other-window 1))
 
 ; GRB: use C-o and M-o to switch windows
 (global-set-key "\C-o" 'other-window)
