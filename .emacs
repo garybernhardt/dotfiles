@@ -107,7 +107,8 @@
 (setq viper-ex-style-editing nil)  ; can backspace past start of insert / line
 (require 'viper)                   ; load Viper
 (require 'vimpulse)                ; load Vimpulse
-(require 'redo)
+(require 'redo)			   ; enable vim-style redo
+(require 'rect-mark)		   ; enable prettier rectangular selections
 
 ; GRB: don't go into insert mode for shells, because that trips me up
 ; when I expect to be able to use C-w to switch through all my windows
@@ -133,27 +134,27 @@
      (resize-frame)))
 
 ; GRB: split the windows
-;(progn
-  ;(interactive)
-  ;(split-window-horizontally 82)
-  ;(other-window 1)
-  ;(split-window-horizontally 82)
-  ;(other-window 1)
-  ;(split-window)
-  ;(other-window 1)
-  ;(eshell)
-  ;(viper-intercept-ESC-key)
-  ;(other-window -2))
-;(progn
-  ;(interactive)
-  ;(split-window-vertically 90)
-  ;(split-window-horizontally))
 (progn
   (interactive)
   (split-window-horizontally 82)
   (other-window 1)
   (split-window-horizontally 82)
   (other-window 1)
+  (split-window)
+  (other-window 1)
+  (eshell)
+  (viper-intercept-ESC-key)
+  (other-window -2))
+(progn
+  (interactive)
+  (split-window-vertically 90)
+  (split-window-horizontally))
+;(progn
+;  (interactive)
+;  (split-window-horizontally 82)
+;  (other-window 1)
+;  (split-window-horizontally 82)
+;  (other-window 1)
   (other-window 1))
 
 ; GRB: use C-o and M-o to switch windows
@@ -198,3 +199,7 @@
 
 ; Unset cmd-space
 (global-unset-key (quote [67108896]))
+
+; GRB: Don't show the startup screen
+(setq inhibit-startup-message t)
+
