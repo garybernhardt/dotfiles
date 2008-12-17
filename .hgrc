@@ -1,0 +1,12 @@
+[ui]
+username = Gary Bernhardt
+
+[extensions]
+#hgext.churn=~/lib/churn.py
+churn=
+hgk=
+mq=
+record=
+graphlog=
+color=
+rebase=
