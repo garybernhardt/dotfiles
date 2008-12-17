@@ -58,6 +58,8 @@
 .vimprojects
 .vimrc.backup
 .vimrc.old
+.eshell
+.viper
 
 \.elc$
 ~$
