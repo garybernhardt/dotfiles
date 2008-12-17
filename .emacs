@@ -202,3 +202,6 @@
 ; GRB: Don't show the startup screen
 (setq inhibit-startup-message t)
 
+; GRB: always fill at 78 characters
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
