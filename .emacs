@@ -8,6 +8,7 @@
  '(case-fold-search t)
  '(column-number-mode t)
  '(current-language-environment "English")
+ '(fringe-mode 0 nil (fringe))
  '(global-font-lock-mode t nil (font-lock))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil nil (tool-bar))
@@ -60,7 +61,7 @@
 ;  http://lists.sourceforge.jp/mailman/archives/macemacsjp-english/2007-January/000860.html
 (require 'carbon-font)
 (add-to-list 'default-frame-alist
- 	     '(font . "-*-*-medium-r-normal--12-*-*-*-*-*-fontset-osaka"))
+ 	     '(font . "-*-*-medium-r-normal--10-*-*-*-*-*-fontset-osaka"))
 
 (global-set-key "\C-cb" 'gary-insert-comment)
 
@@ -123,7 +124,8 @@
   ;(set-frame-size (selected-frame) 271 71))
   ;(set-frame-size (selected-frame) 237 62))
   ;(set-frame-size (selected-frame) 161 116))
-  (set-frame-size (selected-frame) 243 71))
+  ;(set-frame-size (selected-frame) 243 71))
+  (set-frame-size (selected-frame) 239 68))
 (defun move-frame ()
   "Move current frame"
   (interactive)
@@ -136,9 +138,9 @@
 ; GRB: split the windows
 (progn
   (interactive)
-  (split-window-horizontally 82)
+  (split-window-horizontally 80)
   (other-window 1)
-  (split-window-horizontally 82)
+  (split-window-horizontally 80)
   (other-window 1)
   (split-window)
   (other-window 1)
