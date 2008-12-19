@@ -207,10 +207,8 @@
 (setq inhibit-startup-message t)
 
 ; GRB: always fill at 78 characters
-(add-hook 'text-mode-hook
-          (lambda ()
-            (turn-on-auto-fill)
-            (set-fill-column 78)))
+(add-hook 'text-mode-hook #'turn-on-auto-fill)
+(setq-default fill-column 78)
 
 (require 'color-theme)
 ;(color-theme-pok-wog)
