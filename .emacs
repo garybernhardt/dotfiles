@@ -226,3 +226,6 @@
                 (set-window-hscroll
                  (selected-window) 0)))
 
+; by default, grep into compressed files if possible when using M-x
+; grep
+(setq-default grep-command "zgrep -nH -e ")
