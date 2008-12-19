@@ -39,6 +39,7 @@
 ; GRB: no tabs
 (setq-default indent-tabs-mode nil)
 (setq-default c-basic-offset 4)
+(setq-default default-tab-width 4)
 
 ; GRB: confirm exit
 (setq confirm-kill-emacs #'yes-or-no-p)
@@ -189,7 +190,8 @@
           "^\\*tumme-display-image\\*$"
           "^\\*SLIME Description\\*$"
           "^\\*.* output\\*$"           ; tex compilation buffer
-          "^\\*TeX Help\\*$"))
+          "^\\*TeX Help\\*$"
+          "^\\*Shell Command Output\\*$"))
 (setq grb-temporary-window (nth 2 (window-list)))
 (defun grb-special-display (buffer &optional data)
   (let ((window grb-temporary-window))
@@ -205,5 +207,22 @@
 (setq inhibit-startup-message t)
 
 ; GRB: always fill at 78 characters
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'text-mode-hook
+          (lambda ()
+            (turn-on-auto-fill)
+            (set-fill-column 78)))
+;(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+(require 'color-theme)
+;(color-theme-pok-wog)
+(color-theme-robin-hood)
+
+; map gw to fill region like it does in vim
+(define-key viper-vi-global-user-map "gw" 'fill-region)
+
+(setq-default auto-fill-function
+              (lambda ()
+                (do-auto-fill)
+                (set-window-hscroll
+                 (selected-window) 0)))
 
