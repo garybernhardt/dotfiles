@@ -211,7 +211,6 @@
           (lambda ()
             (turn-on-auto-fill)
             (set-fill-column 78)))
-;(add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 (require 'color-theme)
 ;(color-theme-pok-wog)
