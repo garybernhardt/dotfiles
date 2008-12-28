@@ -211,3 +211,6 @@ let mapleader=","
 " ,c = close split
 :map <leader>c <c-w>q
 
+" GRB: use fancy buffer closing that doesn't close the split
+cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
+
