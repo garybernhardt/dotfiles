@@ -20,6 +20,17 @@
   ;; If there is more than one, they won't work right.
  )
 
+; don't open new frames when opening files in aquamacs
+(setq one-buffer-one-frame-mode nil)
+
+; use cmd as meta in aquamacs
+(setq-default mac-command-modifier 'meta)
+(setq-default mac-option-modifier nil)
+
+; use a box cursor
+(setq cursor-type 'box)
+(setq default-cursor-type 'box)
+
 ; GRB: append my emacs lisp path to the load-path
 (setq load-path (cons "~/.emacs-lisp" load-path))
 
