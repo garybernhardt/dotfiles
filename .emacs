@@ -58,16 +58,6 @@
 ; GRB: C-style indentation in CSS mode
 (setq cssm-indent-function #'cssm-c-style-indenter)
 
-; GRB: unbold all font faces
-;(defun unbold-all-faces ()
-  ;"Clear the `bold' flag from all faces."
-  ;(interactive)
-  ;(dolist (f (face-list))
-    ;(if (face-bold-p f) (set-face-bold-p f nil))))
-;(add-hook 'font-lock-mode-hook
-          ;(lambda ()
-            ;(unbold-all-faces)))
-
 ; GRB: set the font.  See these messages:
 ;  http://lists.sourceforge.jp/mailman/archives/macemacsjp-english/2007-January/000858.html
 ;  http://lists.sourceforge.jp/mailman/archives/macemacsjp-english/2007-January/000860.html
@@ -76,12 +66,6 @@
  	     '(font . "-*-*-medium-r-normal--10-*-*-*-*-*-fontset-osaka"))
 
 (global-set-key "\C-cb" 'gary-insert-comment)
-
-;;; GRB: change the color for function names; the default (dark blue)
-;;; is hard to read on black
-(require 'font-lock)
-(copy-face 'bold 'font-lock-function-name-face)
-(set-face-foreground 'font-lock-function-name-face "magenta")
 
 ; GRB: keybindings
 (global-set-key (quote [?\e ?g]) (quote goto-line))
@@ -112,10 +96,6 @@
 
 (autoload 'psvn "psvn:w" "PSVN")
 
-;(setq viper-mode t)
-;(setq viper-auto-indent 1)
-;(require 'viper)
-
 (setq viper-mode t)                ; enable Viper at load time
 (setq viper-ex-style-editing nil)  ; can backspace past start of insert / line
 (require 'viper)                   ; load Viper
@@ -132,11 +112,6 @@
 (defun resize-frame ()
   "Resize current frame"
   (interactive)
-  ;(set-frame-size (selected-frame) 167 58))
-  ;(set-frame-size (selected-frame) 271 71))
-  ;(set-frame-size (selected-frame) 237 62))
-  ;(set-frame-size (selected-frame) 161 116))
-  ;(set-frame-size (selected-frame) 243 71))
   (set-frame-size (selected-frame) 239 68))
 (defun move-frame ()
   "Move current frame"
@@ -158,17 +133,6 @@
   (other-window 1)
   (eshell)
   (other-window -3))
-;(progn
-;  (interactive)
-;  (split-window-vertically 90)
-;  (split-window-horizontally))
-;(progn
-;  (interactive)
-;  (split-window-horizontally 82)
-;  (other-window 1)
-;  (split-window-horizontally 82)
-;  (other-window 1)
-;  (other-window 1))
 
 ; GRB: use C-o and M-o to switch windows
 (global-set-key "\C-o" 'other-window)
