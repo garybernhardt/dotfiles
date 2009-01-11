@@ -178,19 +178,37 @@ set wildmode=longest,list
 " GRB: clear the search buffer when hitting return
 :nnoremap <CR> :nohlsearch<CR>/<BS>
 
-" inoremap <tab> <c-p>
-
-" Remap the tab key to do autocompletion or indentation depending on the
-" context (from http://www.vim.org/tips/tip.php?tip_id=102)
-function InsertTabWrapper() 
+" Remap the tab key to do snippets, autocompletion or indentation depending on
+" the context (cobbled together by Gary Bernhardt; partly based on
+" http://www.vim.org/tips/tip.php?tip_id=102)
+"
+" Because this uses a private function in snippetsEmu, you'll need to edit
+" '/.vim/plugin/snippetsEmu.vim' to make it public. To do that, just replace
+" all occurrences of '<SID>Jumper' with just 'Jumper'. There were only two
+" occurrences in my copy.
+" 
+" The g:snippetsEmu_key variable must be defined, but not to a function key.
+" (I have no idea why function keys break it.) "  I recommend something on the
+" leader prefix that you don't use.
+let g:snippetsEmu_key = '<leader>]'
+function ContextualTabCompletion() 
+    " If we're at the beginning of a line or on whitespace, indent
     let col = col('.') - 1 
     if !col || getline('.')[col - 1] !~ '\k' 
         return "\<tab>" 
     else 
-        return "\<c-p>" 
+        " We're completing something. Try snippets first. If they don't do
+        " anything, try autocompletion
+        let jumper_result = Jumper()
+        let snippets_key = substitute(g:snippetsEmu_key, '^<', "\\<","")
+        let no_snippet_completed = (jumper_result == snippets_key)
+        if no_snippet_completed
+            return "\<c-p>" 
+        else
+            return jumper_result
     endif 
 endfunction 
-" inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <tab> <c-r>=ContextualTabCompletion()<cr>
 
 if version >= 700
     autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -199,17 +217,6 @@ endif
 
 "let $PYTHONPATH .= ":/Library/Python/2.5/site-packages/rope-0.8.4-py2.5.egg:/Users/grb/Downloads/ropevim-0.2c1:/Users/grb/Downloads/ropevim-0.2c1/ropemode"
 "source /Users/grb/Downloads/ropevim-0.2c1/ropevim.vim
-
-" GRB: bind stuff I use a lot to commands prefixed by the leader
-let mapleader=","
-" ,t = horizontal split
-:map <leader>t <c-w>s
-" ,h = vertical split
-:map <leader>h <c-w>v
-" ,, = next split
-:map <leader>, <c-w>w
-" ,c = close split
-:map <leader>c <c-w>q
 
 " GRB: use fancy buffer closing that doesn't close the split
 cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
