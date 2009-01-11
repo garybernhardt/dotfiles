@@ -190,7 +190,7 @@ function InsertTabWrapper()
         return "\<c-p>" 
     endif 
 endfunction 
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+" inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
 if version >= 700
     autocmd FileType python set omnifunc=pythoncomplete#Complete
