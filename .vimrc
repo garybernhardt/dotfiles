@@ -182,10 +182,10 @@ set wildmode=longest,list
 " the context (cobbled together by Gary Bernhardt; partly based on
 " http://www.vim.org/tips/tip.php?tip_id=102)
 "
-" Because this uses a private function in snippetsEmu, you'll need to edit
-" '/.vim/plugin/snippetsEmu.vim' to make it public. To do that, just replace
-" all occurrences of '<SID>Jumper' with just 'Jumper'. There were only two
-" occurrences in my copy.
+" Because this uses the private 'Jumper' function in snippetsEmu, you'll need
+" to edit '/.vim/plugin/snippetsEmu.vim' to make it public. To do that, just
+" replace all occurrences of '<SID>Jumper' with just 'Jumper'. There were only
+" two occurrences in my copy.
 " 
 " The g:snippetsEmu_key variable must be defined, but not to a function key.
 " (I have no idea why function keys break it.) "  I recommend something on the
