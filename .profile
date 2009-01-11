@@ -12,9 +12,10 @@ export PATH
 alias xterm='xterm -bg black -fg lightgray -fa monaco -fs 14 -geometry 157x42 -sl 1024'
 export TERM='xterm-color'
 
-#alias ls='ls -G'
+alias ls='ls -G'
 alias l='ls'
-alias ll='ls -l'
+alias ll='ls -lG'
+export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 export GREP_OPTIONS="--color"
 #alias vi='mvim --remote-tab'
 alias x='xargs'
