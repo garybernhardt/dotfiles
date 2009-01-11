@@ -103,7 +103,6 @@ else
 endif " has("autocmd")
 
 
-
 " GRB: sane editing configuration"
 set expandtab
 set tabstop=4
@@ -214,9 +213,6 @@ if version >= 700
     autocmd FileType python set omnifunc=pythoncomplete#Complete
     let Tlist_Ctags_Cmd='~/bin/ctags'
 endif
-
-"let $PYTHONPATH .= ":/Library/Python/2.5/site-packages/rope-0.8.4-py2.5.egg:/Users/grb/Downloads/ropevim-0.2c1:/Users/grb/Downloads/ropevim-0.2c1/ropemode"
-"source /Users/grb/Downloads/ropevim-0.2c1/ropevim.vim
 
 " GRB: use fancy buffer closing that doesn't close the split
 cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
