@@ -16,7 +16,6 @@
 ^desktop_temp$
 ^doc$
 ^geopy$
-^hgtest$
 ^id_rsa.pub$
 ^misc$
 ^mysql-5.1.30$
@@ -26,7 +25,6 @@
 ^purchases$
 ^reference$
 ^talks$
-^test$
 ^trac.db$
 ^virtualenv-1.3$
 ^virtualenv-1.3.2$
