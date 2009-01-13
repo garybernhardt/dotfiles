@@ -126,9 +126,16 @@ exec "Snippet set def set_".st."name".et."(self, ".st."value".et."):
 \<CR>".st.et
 
 " Functions and methods.
-exec "Snippet def def ".st."fname".et."(".st."args:PyCleanupArgs(@z)".et."):
+exec "Snippet d def ".st."fname".et."(".st."args:PyCleanupArgs(@z)".et."):
 \<CR>".st.et
-exec "Snippet cm ".st."class".et." = classmethod(".st."class".et.")<CR>".st.et
+exec "Snippet m def ".st."fname".et."(self, ".st."args:PyCleanupArgs(@z)".et."):
+\<CR>".st.et
+exec "Snippet cm @classmethod
+\<CR>def ".st."fname".et."(cls, ".st."args:PyCleanupArgs(@z)".et."):
+\<CR>".st.et
+exec "Snippet sm @staticmethod
+\<CR>def ".st."fname".et."(".st."args:PyCleanupArgs(@z)".et."):
+\<CR>".st.et
 
 " Class definition.
 exec "Snippet cl class ".st."ClassName".et."(".st."object".et."):
