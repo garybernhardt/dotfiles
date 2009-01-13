@@ -183,7 +183,7 @@ function! s:SnipMapKeys()
   if (!hasmapto( 'i<BS>'.g:snippetsEmu_key, 's'))
     exec 'smap <unique> '.g:snippetsEmu_key.' i<BS>'.g:snippetsEmu_key
   endif
-  imap <silent> <script> <Plug>Jumper <C-R>=Jumper()<CR>
+  imap <silent> <script> <Plug>Jumper <C-R>=<SID>Jumper()<CR>
 endfunction
 
 call s:SnipMapKeys()
@@ -645,7 +645,7 @@ endfunction
 " style tag then we need to replace all the occurrences with their command
 " modified values.
 " 
-function! Jumper()
+function! <SID>Jumper()
   if s:Disable == 1
     return substitute(g:snippetsEmu_key, '^<', "\\<",'')
   endif
