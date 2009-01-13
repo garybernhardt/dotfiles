@@ -65,11 +65,9 @@ function! PyGetVariableInitializationFromVars(text)
     let indent      = PyGetIndentString()
     let st          = g:snip_start_tag
     let et          = g:snip_end_tag
-    let assert_vars = map(split(text), '"assert ".v:val." ".st.et')
     let assign_vars = map(split(text), '"self._".v:val." = ".v:val')
-    let assertions  = join(assert_vars, '\n'.indent)
     let assignments = join(assign_vars, '\n'.indent)
-    return assertions.'\n'.indent.assignments.'\n'.indent
+    return assignments.'\n'.indent
 endfunction
 
 " Given a string containing a list of arguments (e.g. "one = 'test', *args,
@@ -134,14 +132,7 @@ exec "Snippet cm ".st."class".et." = classmethod(".st."class".et.")<CR>".st.et
 
 " Class definition.
 exec "Snippet cl class ".st."ClassName".et."(".st."object".et."):
-\<CR>\"\"\"
-\<CR>This class represents ".st.et."
-\<CR>\"\"\"
-\<CR>
 \<CR>def __init__(self, ".st."args:PyCleanupArgs(@z)".et."):
-\<CR>\"\"\"
-\<CR>Constructor.
-\<CR>".st."args:PyGetDocstringFromArgs(@z)".et."\"\"\"
 \<CR>".st."args:PyGetVariableInitializationFromVars(@z)".et.st.et
 
 " Keywords
