@@ -136,7 +136,7 @@ exec "Snippet cl class ".st."ClassName".et."(".st."object".et."):
 \<CR>".st."args:PyGetVariableInitializationFromVars(@z)".et.st.et
 
 " Keywords
-exec "Snippet for for ".st."variable".et." in ".st."ensemble".et.":<CR>".st."pass".et."<CR>".st.et
+exec "Snippet for for ".st."variable".et." in ".st."iterable".et.":<CR>".st.et
 exec "Snippet pf print '".st."s".et."'".st."s:PyHashArgList(Count(@z, '%[^%]'))".et."<CR>".st.et
 exec "Snippet im import ".st."module".et."<CR>".st.et
 exec "Snippet from from ".st."module".et." import ".st.'name:PyReplace(@z, "name", "*")'.et."<CR>".st.et
