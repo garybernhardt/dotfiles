@@ -177,37 +177,21 @@ set wildmode=longest,list
 " GRB: clear the search buffer when hitting return
 :nnoremap <CR> :nohlsearch<CR>/<BS>
 
-" Remap the tab key to do snippets, autocompletion or indentation depending on
-" the context (cobbled together by Gary Bernhardt; partly based on
-" http://www.vim.org/tips/tip.php?tip_id=102)
-"
-" Because this uses the private 'Jumper' function in snippetsEmu, you'll need
-" to edit '/.vim/plugin/snippetsEmu.vim' to make it public. To do that, just
-" replace all occurrences of '<SID>Jumper' with just 'Jumper'. There were only
-" two occurrences in my copy.
-" 
-" The g:snippetsEmu_key variable must be defined, but not to a function key.
-" (I have no idea why function keys break it.) "  I recommend something on the
-" leader prefix that you don't use.
-let g:snippetsEmu_key = '<leader>]'
-function ContextualTabCompletion() 
-    " If we're at the beginning of a line or on whitespace, indent
+" Remap the tab key to do autocompletion or indentation depending on the
+" context (from http://www.vim.org/tips/tip.php?tip_id=102)
+function InsertTabWrapper() 
     let col = col('.') - 1 
     if !col || getline('.')[col - 1] !~ '\k' 
         return "\<tab>" 
     else 
-        " We're completing something. Try snippets first. If they don't do
-        " anything, try autocompletion
-        let jumper_result = Jumper()
-        let snippets_key = substitute(g:snippetsEmu_key, '^<', "\\<","")
-        let no_snippet_completed = (jumper_result == snippets_key)
-        if no_snippet_completed
-            return "\<c-p>" 
-        else
-            return jumper_result
+        return "\<c-p>"
     endif 
 endfunction 
-inoremap <tab> <c-r>=ContextualTabCompletion()<cr>
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>
+
+" Use semicolon for snippets
+let g:snippetsEmu_key = ';'
 
 if version >= 700
     autocmd FileType python set omnifunc=pythoncomplete#Complete
