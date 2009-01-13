@@ -129,10 +129,6 @@ exec "Snippet set def set_".st."name".et."(self, ".st."value".et."):
 
 " Functions and methods.
 exec "Snippet def def ".st."fname".et."(".st."args:PyCleanupArgs(@z)".et."):
-\<CR>\"\"\"
-\<CR>".st.et."
-\<CR>".st."args:PyGetDocstringFromArgs(@z)".et."\"\"\"
-\<CR>".st."pass".et."
 \<CR>".st.et
 exec "Snippet cm ".st."class".et." = classmethod(".st."class".et.")<CR>".st.et
 
