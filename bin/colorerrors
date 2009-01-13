@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Color errors in make output (or make-like output)
+ccred=$(echo -e "\033[1;31m")
+ccend=$(echo -e "\033[0m")
+$@ 2>&1 | sed "s/error:/${ccred}error:${ccend}/"
+
