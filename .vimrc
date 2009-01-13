@@ -201,3 +201,6 @@ endif
 " GRB: use fancy buffer closing that doesn't close the split
 cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
 
+" GRB: use nose when doing 'make'
+set makeprg=nosetests\ --with-doctest\ --machine-out\ -x
+
