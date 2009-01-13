@@ -42,6 +42,14 @@ LGRAY="\[\033[0;37m\]"
 WHITE="\[\033[1;37m\]"
 NONE="\[\e[0m\]"
 
+# Color errors in make output (or make-like output)
+colorerrors()
+{
+    ccred=$(echo -e "\033[1;31m")
+    ccend=$(echo -e "\033[0m")
+    $@ 2>&1 | sed "s/error:/${ccred}error:${ccend}/"
+}
+
 #LINES=`expr ${COLUMNS} - 1`
 #BAR=""
 #for ((i=0;i<=${LINES};i+=1)); do
