@@ -206,5 +206,5 @@ set makeprg=scripts/tests\ --with-doctest\ --machine-out\ -x
 
 let mapleader=","
 nnoremap <leader>m :silent w\|silent make %\|redraw!<cr>
-nnoremap <leader>o <c-^>
+nnoremap <leader><leader> <c-^>
 
