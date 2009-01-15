@@ -228,3 +228,5 @@ nnoremap <leader>m :call TestsForFile()<cr>
 nnoremap <leader>M :call AllTests()<cr>
 nnoremap <leader><leader> <c-^>
 
+" highlight current line
+set cursorline
