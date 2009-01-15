@@ -205,6 +205,6 @@ cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
 set makeprg=scripts/tests\ --with-doctest\ --machine-out\ -x
 
 let mapleader=","
-nnoremap <leader>m :silent w\|silent make %\|redraw!<cr>
+nnoremap <leader>m :silent w\|silent make %\|redraw!\|cc!<cr>
 nnoremap <leader><leader> <c-^>
 
