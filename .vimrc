@@ -208,7 +208,11 @@ function! TestsForFile()
     silent w
     silent make %
     redraw!
-    cc!
+    if getqflist() != []
+        cc!
+    else
+        echo "All tests passed"
+    endif
 endfunction
 
 function! AllTests()
