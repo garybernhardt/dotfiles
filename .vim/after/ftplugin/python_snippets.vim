@@ -141,6 +141,10 @@ exec "Snippet sm @staticmethod
 exec "Snippet cl class ".st."ClassName".et."(".st."object".et."):
 \<CR>def __init__(self, ".st."args:PyCleanupArgs(@z)".et."):
 \<CR>".st."args:PyGetVariableInitializationFromVars(@z)".et.st.et
+exec "Snippet unit class ".st."ClassName".et."(".st."parent".et."):
+\<CR>def setup(self):
+\<CR>super(".st."ClassName".et.", self).setup()
+\<CR>".st.et
 
 " Keywords
 exec "Snippet for for ".st."variable".et." in ".st."iterable".et.":<CR>".st.et
