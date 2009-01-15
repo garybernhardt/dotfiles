@@ -201,10 +201,26 @@ endif
 " GRB: use fancy buffer closing that doesn't close the split
 cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
 
-" GRB: use nose when doing 'make'
-set makeprg=scripts/tests\ --with-doctest\ --machine-out\ -x
+function! TestsForFile()
+    silent ! echo
+    silent ! echo -e "\033[1;36mRunning tests for %\033[0m"
+    set makeprg=scripts/tests\ --with-doctest\ --machine-out\ -x
+    silent w
+    silent make %
+    redraw!
+    cc!
+endfunction
+
+function! AllTests()
+    silent ! echo
+    silent ! echo -e "\033[1;36mRunning all unit tests\033[0m"
+    set makeprg=scripts/tests\ --with-doctest\ -x\ -v
+    silent w
+    make %
+endfunction
 
 let mapleader=","
-nnoremap <leader>m :silent w\|silent make %\|redraw!\|cc!<cr>
+nnoremap <leader>m :call TestsForFile()<cr>
+nnoremap <leader>M :call AllTests()<cr>
 nnoremap <leader><leader> <c-^>
 
