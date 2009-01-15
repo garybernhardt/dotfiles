@@ -202,5 +202,8 @@ endif
 cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
 
 " GRB: use nose when doing 'make'
-set makeprg=nosetests\ --with-doctest\ --machine-out\ -x
+set makeprg=scripts/tests\ --with-doctest\ --machine-out\ -x
+
+nnoremap <leader>m :make %<cr>
+nnoremap <leader>o <c-^>
 
