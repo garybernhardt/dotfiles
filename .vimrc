@@ -220,7 +220,7 @@ function! AllTests()
     silent ! echo -e "\033[1;36mRunning all unit tests\033[0m"
     set makeprg=scripts/tests\ --with-doctest\ -x\ -v
     silent w
-    make %
+    make tests.unit
 endfunction
 
 let mapleader=","
