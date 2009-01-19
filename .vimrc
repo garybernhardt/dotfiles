@@ -232,3 +232,5 @@ nnoremap <leader><leader> <c-^>
 set cursorline
 hi CursorLine cterm=NONE ctermbg=black
 
+set cmdheight=2
+
