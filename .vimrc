@@ -230,3 +230,5 @@ nnoremap <leader><leader> <c-^>
 
 " highlight current line
 set cursorline
+hi CursorLine cterm=NONE ctermbg=black
+
