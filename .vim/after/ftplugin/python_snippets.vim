@@ -162,6 +162,7 @@ exec "Snippet sm @staticmethod
 exec "Snippet cl class ".st."ClassName".et."(".st."object".et."):
 \<CR>def __init__(self, ".st."args:PyCleanupArgs(@z)".et."):
 \<CR>".st."args:PyGetVariableInitializationFromVars(@z)".et.st.et
+exec "Snippet cc ".st."CamelCasedName:PyCleanupClassName(@z)".et.st.et
 exec "Snippet unit class ".st."ClassName:PyCleanupTestClassName(@z)".et."(".st."parent".et."):
 \<CR>def setup(self):
 \<CR>super(".st."ClassName:PyCleanupTestClassName(@z)".et.", self).setup()
