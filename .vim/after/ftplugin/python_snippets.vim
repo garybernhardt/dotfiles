@@ -18,7 +18,8 @@ function! PyCleanupClassName(text)
     if a:text == 'ClassName'
         return ''
     endif
-    let text = substitute(a:text, '\(\w\)\(\w*\)\s\(\w\)\(\w*\)', '\U\1\E\2\U\3\E\4', 'g')
+    let text = substitute(a:text, '\<\(.\)\([^ ]*\)\>', '\U\1\E\2', 'g')
+    " let text = substitute(a:text, '\([^ ]\)\([^ ]*\) \([^ ]\)\([^ ]*\)', '\U\1\E\2\U\3\E\4', 'g')
     let text = substitute(text, '\s', '', 'g')
     return text
 endfunction
@@ -163,7 +164,7 @@ exec "Snippet cl class ".st."ClassName".et."(".st."object".et."):
 \<CR>".st."args:PyGetVariableInitializationFromVars(@z)".et.st.et
 exec "Snippet unit class ".st."ClassName:PyCleanupTestClassName(@z)".et."(".st."parent".et."):
 \<CR>def setup(self):
-\<CR>super(".st."ClassName".et.", self).setup()
+\<CR>super(".st."ClassName:PyCleanupTestClassName(@z)".et.", self).setup()
 \<CR>".st.et
 
 " Keywords
