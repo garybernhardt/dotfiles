@@ -24,15 +24,6 @@ function! PyCleanupClassName(text)
     return text
 endfunction
 
-" Given a string containing a list of class name components (e.g. "one two
-" three"), this function returns WhenOneTwoThree.
-function! PyCleanupTestClassName(text)
-    if a:text == 'ClassName'
-        return ''
-    endif
-    return 'When' . PyCleanupClassName(a:text)
-endfunction
-
 " Given a string containing a list of arguments (e.g. "one = 'test', *args,
 " **kwargs"), this function returns a string containing only the variable
 " names, separated by spaces, e.g. "one two".
@@ -163,9 +154,9 @@ exec "Snippet cl class ".st."ClassName".et."(".st."object".et."):
 \<CR>def __init__(self, ".st."args:PyCleanupArgs(@z)".et."):
 \<CR>".st."args:PyGetVariableInitializationFromVars(@z)".et.st.et
 exec "Snippet cc ".st."CamelCasedName:PyCleanupClassName(@z)".et.st.et
-exec "Snippet unit class ".st."ClassName:PyCleanupTestClassName(@z)".et."(".st."parent".et."):
+exec "Snippet unit class ".st."ClassName:PyCleanupClassName(@z)".et."(".st."parent".et."):
 \<CR>def setup(self):
-\<CR>super(".st."ClassName:PyCleanupTestClassName(@z)".et.", self).setup()
+\<CR>super(".st."ClassName:PyCleanupClassName(@z)".et.", self).setup()
 \<CR>".st.et
 
 " Keywords
