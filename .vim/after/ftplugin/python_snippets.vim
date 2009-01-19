@@ -12,6 +12,26 @@ function! PyCleanupArgs(text)
     return join(split(text, '\s*,\s*'), ', ')
 endfunction
 
+" Given a string containing a list of class name components (e.g. "one two
+" three"), this function cleans it up by removing whitespace and camel casing.
+function! PyCleanupClassName(text)
+    if a:text == 'ClassName'
+        return ''
+    endif
+    let text = substitute(a:text, '\(\w\)\(\w*\)\s\(\w\)\(\w*\)', '\U\1\E\2\U\3\E\4', 'g')
+    let text = substitute(text, '\s', '', 'g')
+    return text
+endfunction
+
+" Given a string containing a list of class name components (e.g. "one two
+" three"), this function returns WhenOneTwoThree.
+function! PyCleanupTestClassName(text)
+    if a:text == 'ClassName'
+        return ''
+    endif
+    return 'When' . PyCleanupClassName(a:text)
+endfunction
+
 " Given a string containing a list of arguments (e.g. "one = 'test', *args,
 " **kwargs"), this function returns a string containing only the variable
 " names, separated by spaces, e.g. "one two".
@@ -141,7 +161,7 @@ exec "Snippet sm @staticmethod
 exec "Snippet cl class ".st."ClassName".et."(".st."object".et."):
 \<CR>def __init__(self, ".st."args:PyCleanupArgs(@z)".et."):
 \<CR>".st."args:PyGetVariableInitializationFromVars(@z)".et.st.et
-exec "Snippet unit class ".st."ClassName".et."(".st."parent".et."):
+exec "Snippet unit class ".st."ClassName:PyCleanupTestClassName(@z)".et."(".st."parent".et."):
 \<CR>def setup(self):
 \<CR>super(".st."ClassName".et.", self).setup()
 \<CR>".st.et
