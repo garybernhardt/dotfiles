@@ -134,7 +134,7 @@ endif
 
 " GRB: set the color scheme
 if !has("gui_running")
-    :color slate
+    :color grb2
 endif
 
 " GRB: add pydoc command
