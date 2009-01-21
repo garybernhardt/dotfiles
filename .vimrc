@@ -201,13 +201,54 @@ endif
 " GRB: use fancy buffer closing that doesn't close the split
 cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
 
-function! TestsForFile()
+function! RunTests(target)
     silent ! echo
-    silent ! echo -e "\033[1;36mRunning tests for %\033[0m"
+    exec 'silent ! echo -e "\033[1;36mRunning tests in ' . a:target . '\033[0m"'
     set makeprg=scripts/tests\ --with-doctest\ --machine-out\ -x
     silent w
-    silent make %
+    exec "silent make " . a:target
     redraw!
+endfunction
+
+function! ClassToFilename(class_name)
+    let understored_class_name = substitute(a:class_name, '\(.\)\(\u\)', '\1_\U\2', 'g')
+    let file_name = substitute(understored_class_name, '\(\u\)', '\L\1', 'g')
+    return file_name
+endfunction
+
+function! ModuleTestPath()
+    let file_path = @%
+    let components = split(file_path, '/')
+    let path_without_extension = substitute(file_path, '\.py$', '', '')
+    let path_without_bb_prefix = join(split(path_without_extension, '/')[1:], '/')
+    let test_path = 'tests/unit/' . path_without_bb_prefix
+    return test_path
+endfunction
+
+function! NameOfCurrentClass()
+    let save_cursor = getpos(".")
+    normal $<cr>
+    call PythonDec('class', -1)
+    let line = getline('.')
+    call setpos('.', save_cursor)
+    let match_result = matchlist(line, ' *class \+\(\w\+\)')
+    let class_name = ClassToFilename(match_result[1])
+    return class_name
+endfunction
+
+function! TestFileForCurrentFunction()
+    let class_name = NameOfCurrentClass()
+    let test_file_name = ModuleTestPath() . '/test_' . class_name . '.py'
+    return test_file_name
+endfunction
+
+function! TestsForFile()
+    if @% =~ 'test_'
+        call RunTests('%')
+    else
+        let test_file_name = TestFileForCurrentFunction()
+        call RunTests(test_file_name)
+    endif
     if getqflist() != []
         cc!
     else
