@@ -236,17 +236,17 @@ function! NameOfCurrentClass()
     return class_name
 endfunction
 
-function! TestFileForCurrentFunction()
+function! TestFileForCurrentClass()
     let class_name = NameOfCurrentClass()
     let test_file_name = ModuleTestPath() . '/test_' . class_name . '.py'
     return test_file_name
 endfunction
 
-function! TestsForFile()
+function! RunTestsForFile()
     if @% =~ 'test_'
         call RunTests('%')
     else
-        let test_file_name = TestFileForCurrentFunction()
+        let test_file_name = TestFileForCurrentClass()
         call RunTests(test_file_name)
     endif
     if getqflist() != []
@@ -256,7 +256,7 @@ function! TestsForFile()
     endif
 endfunction
 
-function! AllTests()
+function! RunAllTests()
     silent ! echo
     silent ! echo -e "\033[1;36mRunning all unit tests\033[0m"
     set makeprg=scripts/tests\ --with-doctest\ -x\ -v
@@ -264,9 +264,14 @@ function! AllTests()
     make tests.unit
 endfunction
 
+function! JumpToTestsForClass()
+    exec 'e ' . TestFileForCurrentClass()
+endfunction
+
 let mapleader=","
-nnoremap <leader>m :call TestsForFile()<cr>
-nnoremap <leader>M :call AllTests()<cr>
+nnoremap <leader>m :call RunTestsForFile()<cr>
+nnoremap <leader>M :call RunAllTests()<cr>
+nnoremap <leader>t :call JumpToTestsForClass()<cr>
 nnoremap <leader><leader> <c-^>
 
 " highlight current line
