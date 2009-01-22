@@ -242,11 +242,17 @@ function! TestFileForCurrentClass()
     return test_file_name
 endfunction
 
+function! TestModuleForCurrentFile()
+    let test_path = ModuleTestPath()
+    let test_module = substitute(test_path, '/', '.', 'g')
+    return test_module
+endfunction
+
 function! RunTestsForFile()
     if @% =~ 'test_'
         call RunTests('%')
     else
-        let test_file_name = TestFileForCurrentClass()
+        let test_file_name = TestModuleForCurrentFile()
         call RunTests(test_file_name)
     endif
     if getqflist() != []
