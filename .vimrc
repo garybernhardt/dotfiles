@@ -201,12 +201,12 @@ endif
 " GRB: use fancy buffer closing that doesn't close the split
 cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
 
-function! RunTests(target)
+function! RunTests(target, args)
     silent ! echo
     exec 'silent ! echo -e "\033[1;36mRunning tests in ' . a:target . '\033[0m"'
-    set makeprg=scripts/tests\ --with-doctest\ --machine-out\ -x
+    set makeprg=scripts/tests\ --with-doctest\ -x
     silent w
-    exec "silent make " . a:target
+    exec "make! " . a:target . " " . a:args
     redraw!
 endfunction
 
@@ -248,13 +248,24 @@ function! TestModuleForCurrentFile()
     return test_module
 endfunction
 
-function! RunTestsForFile()
+function! RunTestsForFile(args)
     if @% =~ 'test_'
-        call RunTests('%')
+        call RunTests('%', a:args)
     else
         let test_file_name = TestModuleForCurrentFile()
-        call RunTests(test_file_name)
+        call RunTests(test_file_name, a:args)
     endif
+endfunction
+
+function! RunAllTests(args)
+    silent ! echo
+    silent ! echo -e "\033[1;36mRunning all unit tests\033[0m"
+    set makeprg=scripts/tests\ --with-doctest\ -x\ -v
+    silent w
+    exec "make! tests.unit " . a:args
+endfunction
+
+function! JumpToError()
     if getqflist() != []
         cc!
     else
@@ -262,21 +273,15 @@ function! RunTestsForFile()
     endif
 endfunction
 
-function! RunAllTests()
-    silent ! echo
-    silent ! echo -e "\033[1;36mRunning all unit tests\033[0m"
-    set makeprg=scripts/tests\ --with-doctest\ -x\ -v
-    silent w
-    make tests.unit
-endfunction
-
 function! JumpToTestsForClass()
     exec 'e ' . TestFileForCurrentClass()
 endfunction
 
 let mapleader=","
-nnoremap <leader>m :call RunTestsForFile()<cr>
-nnoremap <leader>M :call RunAllTests()<cr>
+nnoremap <leader>m :call RunTestsForFile('--machine-out')<cr>:call JumpToError()<cr>
+nnoremap <leader>M :call RunTestsForFile('')<cr>
+nnoremap <leader>a :call RunAllTests('--machine-out')<cr>:call JumpToError()<cr>
+nnoremap <leader>A :call RunAllTests('')<cr>
 nnoremap <leader>t :call JumpToTestsForClass()<cr>
 nnoremap <leader><leader> <c-^>
 
