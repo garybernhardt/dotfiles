@@ -267,8 +267,21 @@ endfunction
 
 function! JumpToError()
     if getqflist() != []
-        cc!
+        for error in getqflist()
+            if error['valid']
+                break
+            endif
+        endfor
+        let error_message = substitute(error['text'], '^ *', '', 'g')
+        silent cc!
+        echohl TestsFail
+        echo "                                                                              "
+        echohl
+        echo error_message
     else
+        echohl TestsPass
+        echo "                                                                              "
+        echohl
         echo "All tests passed"
     endif
 endfunction
@@ -290,4 +303,7 @@ set cursorline
 hi CursorLine cterm=NONE ctermbg=black
 
 set cmdheight=2
+
+hi TestsPass ctermfg=white ctermbg=green
+hi TestsFail ctermfg=white ctermbg=red
 
