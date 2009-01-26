@@ -138,12 +138,12 @@ if !has("gui_running")
 endif
 
 " GRB: add pydoc command
-:command! -nargs=+ Pydoc :call ShowPydoc("<args>") 
-function! ShowPydoc(module, ...) 
-    let fPath = "/tmp/pyHelp_" . a:module . ".pydoc" 
-    :execute ":!pydoc " . a:module . " > " . fPath 
-    :execute ":sp ".fPath 
-endfunction 
+:command! -nargs=+ Pydoc :call ShowPydoc("<args>")
+function! ShowPydoc(module, ...)
+    let fPath = "/tmp/pyHelp_" . a:module . ".pydoc"
+    :execute ":!pydoc " . a:module . " > " . fPath
+    :execute ":sp ".fPath
+endfunction
 
 " GRB: Always source python.vim for Python files
 au FileType python source ~/.vim/scripts/python.vim
@@ -154,18 +154,18 @@ let python_highlight_all = 1
 let python_slow_sync = 1
 
 " GRB: Add to syntax/python.vim to highlight more errors
-syn match pythonError	 "^\s*def\s\+\w\+(.*)\s*$" display 
-syn match pythonError	 "^\s*class\s\+\w\+(.*)\s*$" display 
-syn match pythonError	 "^\s*for\s.*[^:]$" display 
-syn match pythonError	 "^\s*except\s*$" display 
-syn match pythonError	 "^\s*finally\s*$" display 
-syn match pythonError	 "^\s*try\s*$" display 
-syn match pythonError	 "^\s*else\s*$" display 
-syn match pythonError	 "^\s*else\s*[^:].*" display 
-syn match pythonError	 "^\s*if\s.*[^\:]$" display 
-syn match pythonError	 "^\s*except\s.*[^\:]$" display 
-syn match pythonError	 "[;]$" display 
-syn keyword pythonError         do 
+syn match pythonError	 "^\s*def\s\+\w\+(.*)\s*$" display
+syn match pythonError	 "^\s*class\s\+\w\+(.*)\s*$" display
+syn match pythonError	 "^\s*for\s.*[^:]$" display
+syn match pythonError	 "^\s*except\s*$" display
+syn match pythonError	 "^\s*finally\s*$" display
+syn match pythonError	 "^\s*try\s*$" display
+syn match pythonError	 "^\s*else\s*$" display
+syn match pythonError	 "^\s*else\s*[^:].*" display
+syn match pythonError	 "^\s*if\s.*[^\:]$" display
+syn match pythonError	 "^\s*except\s.*[^\:]$" display
+syn match pythonError	 "[;]$" display
+syn keyword pythonError         do
 
 " GRB: use emacs-style tab completion when selecting files, etc
 set wildmode=longest,list
@@ -179,14 +179,14 @@ set wildmode=longest,list
 
 " Remap the tab key to do autocompletion or indentation depending on the
 " context (from http://www.vim.org/tips/tip.php?tip_id=102)
-function! InsertTabWrapper() 
-    let col = col('.') - 1 
-    if !col || getline('.')[col - 1] !~ '\k' 
-        return "\<tab>" 
-    else 
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
         return "\<c-p>"
-    endif 
-endfunction 
+    endif
+endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
