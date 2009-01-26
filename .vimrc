@@ -138,8 +138,8 @@ if !has("gui_running")
 endif
 
 " GRB: add pydoc command
-:command -nargs=+ Pydoc :call ShowPydoc("<args>") 
-function ShowPydoc(module, ...) 
+:command! -nargs=+ Pydoc :call ShowPydoc("<args>") 
+function! ShowPydoc(module, ...) 
     let fPath = "/tmp/pyHelp_" . a:module . ".pydoc" 
     :execute ":!pydoc " . a:module . " > " . fPath 
     :execute ":sp ".fPath 
@@ -179,7 +179,7 @@ set wildmode=longest,list
 
 " Remap the tab key to do autocompletion or indentation depending on the
 " context (from http://www.vim.org/tips/tip.php?tip_id=102)
-function InsertTabWrapper() 
+function! InsertTabWrapper() 
     let col = col('.') - 1 
     if !col || getline('.')[col - 1] !~ '\k' 
         return "\<tab>" 
