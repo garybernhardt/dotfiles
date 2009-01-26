@@ -263,6 +263,7 @@ function! RunAllTests(args)
     set makeprg=scripts/tests\ --with-doctest\ -x\ -v
     silent w
     exec "make! tests.unit " . a:args
+    redraw!
 endfunction
 
 function! JumpToError()
