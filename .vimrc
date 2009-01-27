@@ -262,15 +262,17 @@ function! JumpToError()
         endfor
         let error_message = substitute(error['text'], '^ *', '', 'g')
         silent cc!
+        hi TestsFail ctermfg=white ctermbg=red guibg=red
         echohl TestsFail
-        echo "                                                                              "
+        echo "                                                                                                                                                             "
         echohl
-        echo error_message
+        echon error_message
     else
+        hi TestsPass ctermfg=white ctermbg=green guibg=green
         echohl TestsPass
-        echo "                                                                              "
+        echo "                                                                                                                                                             "
         echohl
-        echo "All tests passed"
+        echon "All tests passed"
     endif
 endfunction
 
@@ -291,7 +293,4 @@ set cursorline
 hi CursorLine cterm=NONE ctermbg=black
 
 set cmdheight=2
-
-hi TestsPass ctermfg=white ctermbg=green
-hi TestsFail ctermfg=white ctermbg=red
 
