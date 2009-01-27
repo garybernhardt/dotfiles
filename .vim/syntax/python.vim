@@ -313,7 +313,7 @@ syn match pythonError	 "^\s*else\s*[^:].*" display
 syn match pythonError	 "^\s*if\s.*[^\:]$" display
 syn match pythonError	 "^\s*except\s.*[^\:]$" display
 syn match pythonError	 "[;]$" display
-syn match pythonError    ".\%>78v" display
+syn match pythonError    ".\%>79v" display
 syn keyword pythonError         do
 " GRB END
 
