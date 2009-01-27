@@ -287,7 +287,7 @@ nnoremap <leader>t :call JumpToTestsForClass()<cr>
 nnoremap <leader><leader> <c-^>
 
 " highlight current line
-set cursorline cursorcolumn
+set cursorline
 hi CursorLine cterm=NONE ctermbg=black
 
 set cmdheight=2
