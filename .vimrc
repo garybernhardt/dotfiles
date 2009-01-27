@@ -193,8 +193,7 @@ function! RunTests(target, args)
     exec 'silent ! echo -e "\033[1;36mRunning tests in ' . a:target . '\033[0m"'
     set makeprg=scripts/tests\ --with-doctest\ -x
     silent w
-    exec "make! " . a:target . " " . a:args
-    redraw!
+    exec "make " . a:target . " " . a:args
 endfunction
 
 function! ClassToFilename(class_name)
@@ -250,7 +249,6 @@ function! RunAllTests(args)
     set makeprg=scripts/tests\ --with-doctest\ -x\ -v
     silent w
     exec "make! tests.unit " . a:args
-    redraw!
 endfunction
 
 function! JumpToError()
@@ -281,9 +279,9 @@ function! JumpToTestsForClass()
 endfunction
 
 let mapleader=","
-nnoremap <leader>m :call RunTestsForFile('--machine-out')<cr>:call JumpToError()<cr>
+nnoremap <leader>m :call RunTestsForFile('--machine-out')<cr>:redraw<cr>:call JumpToError()<cr>
 nnoremap <leader>M :call RunTestsForFile('')<cr>
-nnoremap <leader>a :call RunAllTests('--machine-out')<cr>:call JumpToError()<cr>
+nnoremap <leader>a :call RunAllTests('--machine-out')<cr>:redraw<cr>:call JumpToError()<cr>
 nnoremap <leader>A :call RunAllTests('')<cr>
 nnoremap <leader>t :call JumpToTestsForClass()<cr>
 nnoremap <leader><leader> <c-^>
