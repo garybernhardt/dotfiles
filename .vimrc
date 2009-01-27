@@ -262,15 +262,15 @@ function! JumpToError()
         silent cc!
         hi TestsFail ctermfg=white ctermbg=red guibg=red
         echohl TestsFail
-        echo "                                                                                                                                                             "
+        echo "                                                                                                                                                            "
         echohl
-        echon error_message
+        echo error_message
     else
         hi TestsPass ctermfg=white ctermbg=green guibg=green
         echohl TestsPass
-        echo "                                                                                                                                                             "
+        echo "                                                                                                                                                            "
         echohl
-        echon "All tests passed"
+        echo "All tests passed"
     endif
 endfunction
 
