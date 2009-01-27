@@ -308,3 +308,7 @@ set cmdheight=2
 hi TestsPass ctermfg=white ctermbg=green
 hi TestsFail ctermfg=white ctermbg=red
 
+" Highlight anything beyond column 78 as an error
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /.\%>78v/
+
