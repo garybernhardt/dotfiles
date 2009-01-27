@@ -153,20 +153,6 @@ au! Syntax python source ~/.vim/syntax/python.vim
 let python_highlight_all = 1
 let python_slow_sync = 1
 
-" GRB: Add to syntax/python.vim to highlight more errors
-syn match pythonError	 "^\s*def\s\+\w\+(.*)\s*$" display
-syn match pythonError	 "^\s*class\s\+\w\+(.*)\s*$" display
-syn match pythonError	 "^\s*for\s.*[^:]$" display
-syn match pythonError	 "^\s*except\s*$" display
-syn match pythonError	 "^\s*finally\s*$" display
-syn match pythonError	 "^\s*try\s*$" display
-syn match pythonError	 "^\s*else\s*$" display
-syn match pythonError	 "^\s*else\s*[^:].*" display
-syn match pythonError	 "^\s*if\s.*[^\:]$" display
-syn match pythonError	 "^\s*except\s.*[^\:]$" display
-syn match pythonError	 "[;]$" display
-syn keyword pythonError         do
-
 " GRB: use emacs-style tab completion when selecting files, etc
 set wildmode=longest,list
 
@@ -307,8 +293,4 @@ set cmdheight=2
 
 hi TestsPass ctermfg=white ctermbg=green
 hi TestsFail ctermfg=white ctermbg=red
-
-" Highlight anything beyond column 78 as an error
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /.\%>78v/
 
