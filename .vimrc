@@ -292,3 +292,7 @@ hi CursorLine cterm=NONE ctermbg=black
 
 set cmdheight=2
 
+" Don't show scroll bars in the GUI
+set guioptions-=L
+set guioptions-=r
+
