@@ -18,3 +18,6 @@ hi VertSplit guifg=#303030 guibg=#303030
 hi StatusLine guifg=#CCCCCC guibg=#303030
 hi StatusLineNC guifg=#888888 guibg=#303030
 
+" ir_black doesn't highlight operators for some reason
+hi Operator        guifg=#6699CC     guibg=NONE        gui=NONE      ctermfg=lightblue   ctermbg=NONE        cterm=NONE
+
