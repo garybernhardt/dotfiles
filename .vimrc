@@ -171,9 +171,6 @@ endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
-" Use semicolon for snippets
-let g:snippetsEmu_key = ';'
-
 if version >= 700
     autocmd FileType python set omnifunc=pythoncomplete#Complete
     let Tlist_Ctags_Cmd='~/bin/ctags'
@@ -289,4 +286,7 @@ set cmdheight=2
 " Don't show scroll bars in the GUI
 set guioptions-=L
 set guioptions-=r
+
+" Use <c-h> for snippets
+let g:NERDSnippets_key = '<c-h>'
 
