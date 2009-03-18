@@ -290,3 +290,5 @@ set guioptions-=r
 " Use <c-h> for snippets
 let g:NERDSnippets_key = '<c-h>'
 
+map <leader>f :FuzzyFinderFile<cr>
+
