@@ -171,6 +171,18 @@ endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
+" When hitting <;>, complete a snippet if there is one; else, insert an actual
+" <;>
+function! InsertSnippetWrapper()
+    let inserted = TriggerSnippet()
+    if inserted == "\<tab>"
+        return ";"
+    else
+        return inserted
+    endif
+endfunction
+inoremap ; <c-r>=InsertSnippetWrapper()<cr>
+
 if version >= 700
     autocmd FileType python set omnifunc=pythoncomplete#Complete
     let Tlist_Ctags_Cmd='~/bin/ctags'
