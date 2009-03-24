@@ -126,9 +126,16 @@ if has("gui_running")
 endif
 
 " GRB: set the color scheme
-if !has("gui_running")
+if has("gui_running")
+    :color grb3
+else
     :color grb2
 endif
+
+" GRB: hide the toolbar in GUI mode
+if has("gui_running")
+    set go-=T
+end
 
 " GRB: add pydoc command
 :command! -nargs=+ Pydoc :call ShowPydoc("<args>")
