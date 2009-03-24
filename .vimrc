@@ -304,3 +304,10 @@ let g:NERDSnippets_key = '<c-h>'
 
 map <leader>f :FuzzyFinderFile<cr>
 
+augroup myfiletypes
+  "clear old autocmds in group
+  autocmd!
+  "for ruby, autoindent with two spaces, always expand tabs
+  autocmd FileType ruby,haml,eruby,yaml set ai sw=2 sts=2 et
+augroup END
+
