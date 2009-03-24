@@ -21,7 +21,6 @@ set history=1000
 
 " Make tab completion for files/buffers act like bash
 set wildmenu
-set wildmode=list:longest
 
 " Make searches case-sensitive only if they contain upper-case characters
 set ignorecase
