@@ -315,3 +315,5 @@ augroup myfiletypes
   autocmd FileType ruby,haml,eruby,yaml set ai sw=2 sts=2 et
 augroup END
 
+set switchbuf=useopen
+
