@@ -213,8 +213,7 @@ function! ModuleTestPath()
     let file_path = @%
     let components = split(file_path, '/')
     let path_without_extension = substitute(file_path, '\.py$', '', '')
-    let path_without_bb_prefix = join(split(path_without_extension, '/')[1:], '/')
-    let test_path = 'tests/unit/' . path_without_bb_prefix
+    let test_path = 'tests/unit/' . path_without_extension
     return test_path
 endfunction
 
@@ -266,16 +265,17 @@ function! JumpToError()
             endif
         endfor
         let error_message = substitute(error['text'], '^ *', '', 'g')
-        silent cc!
+        " silent cc!
+        exec ":sbuffer " . error['bufnr']
         hi TestsFail ctermfg=white ctermbg=red guibg=red
         echohl TestsFail
-        echo "                                                                                                                                                            "
+        echo "                                                                                                                "
         echohl
         echo error_message
     else
         hi TestsPass ctermfg=white ctermbg=green guibg=green
         echohl TestsPass
-        echo "                                                                                                                                                            "
+        echo "                                                                                                                "
         echohl
         echo "All tests passed"
     endif
