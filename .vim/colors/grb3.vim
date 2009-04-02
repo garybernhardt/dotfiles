@@ -15,7 +15,7 @@ hi CursorLine guibg=#181818
 hi CursorColumn guibg=#181818
 
 hi VertSplit guifg=#303030 guibg=#303030
-hi StatusLine guifg=#CCCCCC guibg=#303030
+hi StatusLine guifg=#000000 guibg=#a0a0a0
 hi StatusLineNC guifg=#888888 guibg=#303030
 
 " ir_black doesn't highlight operators for some reason
