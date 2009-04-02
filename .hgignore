@@ -28,6 +28,7 @@
 ^trac.db$
 ^virtualenv-1.3$
 ^virtualenv-1.3.2$
+^work$
 
 ^\.CFUserTextEncoding$
 (^|/)\.DS_Store($|/)
