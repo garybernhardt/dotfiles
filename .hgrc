@@ -1,8 +1,16 @@
 [ui]
 username = Gary Bernhardt
 
+[defaults]
+log = --graph --style compact
+outgoing = --graph
+incoming = --graph
+diff = -p
+
+[diff]
+git=1
+
 [extensions]
-#hgext.churn=~/lib/churn.py
 churn=
 hgk=
 mq=
@@ -12,4 +20,7 @@ color=
 rebase=
 transplant=
 convert=
+bookmarks=
+record=
+shelve=
 bookmarks=
