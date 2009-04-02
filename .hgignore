@@ -29,6 +29,7 @@
 ^virtualenv-1.3$
 ^virtualenv-1.3.2$
 ^work$
+^.vimfuzzyfinder$
 
 ^\.CFUserTextEncoding$
 (^|/)\.DS_Store($|/)
