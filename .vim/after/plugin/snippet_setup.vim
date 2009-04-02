@@ -26,3 +26,10 @@ function! PyCleanupClassName(text)
     let text = substitute(text, '\s', '', 'g')
     return text
 endfunction
+
+" Given a string containing a list of class name components (e.g. "one two
+" three"), this function cleans it up by replacing whitespace with underscores
+function! PyCleanupFunctionName(text)
+    let text = substitute(a:text, '\s', '_', 'g')
+    return text
+endfunction

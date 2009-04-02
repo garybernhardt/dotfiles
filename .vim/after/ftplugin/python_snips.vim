@@ -11,7 +11,7 @@ exe "Snipp wh while ${1:condition}:\n\t${2:# code...}"
 " New Class
 exe "Snipp cl class ${1:ClassName}(${2:object}):\n\t\"\"\"${3:docstring for $1}\"\"\"\n\tdef __init__(self, ${4:arg}):\n\t\t${5:super($1, self).__init__()}\n\t\tself.$4 = $4\n\t\t${6}"
 " New Function
-exe "Snipp def def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):\n\t\"\"\"${3:docstring for $1}\"\"\"\n\t${4:pass}"
+exe "Snipp def def ${1:name}(${2:args}):\n\t${3:pass}"
 " New Method
 exe "Snipp defs def ${1:mname}(self, ${2:arg})):\n\t${3:pass}"
 " New Property
