@@ -267,18 +267,26 @@ function! JumpToError()
         let error_message = substitute(error['text'], '^ *', '', 'g')
         " silent cc!
         exec ":sbuffer " . error['bufnr']
-        hi TestsFail ctermfg=white ctermbg=red guibg=red
-        echohl TestsFail
-        echo "                                                                                                                "
-        echohl
+        call RedBar()
         echo error_message
     else
-        hi TestsPass ctermfg=white ctermbg=green guibg=green
-        echohl TestsPass
-        echo "                                                                                                                "
-        echohl
+        call GreenBar()
         echo "All tests passed"
     endif
+endfunction
+
+function! RedBar()
+    hi RedBar ctermfg=white ctermbg=red guibg=red
+    echohl RedBar
+    echon repeat(" ",&columns - 1)
+    echohl
+endfunction
+
+function! GreenBar()
+    hi GreenBar ctermfg=white ctermbg=green guibg=green
+    echohl GreenBar
+    echon repeat(" ",&columns - 1)
+    echohl
 endfunction
 
 function! JumpToTestsForClass()
