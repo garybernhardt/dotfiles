@@ -43,6 +43,8 @@
 ^\.emacs\.bak$
 ^\.emacs\.d$
 ^\.emacs-places$
+^\.gem$
+^\.god$
 ^\.hg\.cvsps$
 ^\.hgk$
 ^\.ipython$
