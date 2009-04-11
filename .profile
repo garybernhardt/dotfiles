@@ -21,6 +21,8 @@ alias vi='mvim --remote-silent'
 alias x='xargs'
 alias g='grep'
 alias xg='xargs grep'
+gd() { git diff $* | view -; }
+gdc() { gd --cached $*; }
 
 export PATH="~/bin:$PATH"
 
