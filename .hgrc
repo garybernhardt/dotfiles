@@ -6,6 +6,8 @@ log = --graph --style compact
 outgoing = --graph
 incoming = --graph
 diff = -p
+qnew = -D
+qrefresh = -D
 
 [diff]
 git=1
