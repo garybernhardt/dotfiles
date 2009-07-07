@@ -2,7 +2,7 @@
 username = Gary Bernhardt
 
 [defaults]
-log = --graph --style compact
+#log = --graph --style compact
 outgoing = --graph
 incoming = --graph
 diff = -p
