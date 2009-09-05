@@ -6,6 +6,10 @@ let snippet_filetype = 'python'
 
 " #!/usr/bin/python
 exe "Snipp #! #!/usr/bin/python\n"
+" None
+exe "Snipp n None"
+" Self
+exe "Snipp s self."
 " While
 exe "Snipp wh while ${1:condition}:\n\t${2:# code...}"
 " New Class
