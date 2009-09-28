@@ -325,3 +325,6 @@ augroup END
 
 set switchbuf=useopen
 
+autocmd BufRead,BufNewFile *.html source ~/.vim/indent/html_grb.vim
+autocmd FileType htmldjango source ~/.vim/indent/html_grb.vim
+
