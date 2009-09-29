@@ -25,4 +25,5 @@ convert=
 bookmarks=
 record=
 shelve=
-bookmarks=
+hg-git=~/.hgext/hg-git
+
