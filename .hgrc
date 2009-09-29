@@ -12,6 +12,10 @@ qrefresh = -D
 [diff]
 git=1
 
+[extdiff]
+cmd.vimdiff = mvim
+opts.vimdiff = -f '+next' '+execute "DirDiff" argv(0) argv(1)'
+
 [extensions]
 churn=
 hgk=
@@ -26,4 +30,5 @@ bookmarks=
 record=
 shelve=
 hg-git=~/.hgext/hg-git
+extdiff=
 
