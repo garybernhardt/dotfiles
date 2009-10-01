@@ -6,6 +6,9 @@ let snippet_filetype = 'python'
 
 " #!/usr/bin/python
 exe "Snipp #! #!/usr/bin/python\n"
+" True and False
+exe "Snipp t True"
+exe "Snipp f False"
 " None
 exe "Snipp n None"
 " Self
