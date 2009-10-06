@@ -29,6 +29,8 @@
 ^virtualenv-1.3$
 ^virtualenv-1.3.2$
 ^work$
+^jruby-1.3.1
+^\.hudson
 ^.vimfuzzyfinder$
 ^\.wireshark$
 ^\.wireshark-etc$
