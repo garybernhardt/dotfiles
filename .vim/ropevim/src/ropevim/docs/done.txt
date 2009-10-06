@@ -1,0 +1,22 @@
+======
+ Done
+======
+
+> Public Release 0.2 : October 3, 2008
+
+* fixed quickfix error format : August 18, 2008
+* ropevim_guess_project variable : June 18, 2008
+
+> Public Release 0.2c1 : June 12, 2008
+
+* not showing python traceback for bad inputs : May 23, 2008
+* interrupting refactorings : May 22, 2008
+
+> Public Release 0.1 : May 22, 2008
+
+* ropvim menu : May 21, 2008
+* code-assist in insert mode : May 21, 2008
+* using vim quickfix for showing occurrences : May 20, 2008
+* better dialogs : May 19, 2008
+* implementing basic ropemode commands : May 15, 2008
+* project started! : May 12, 2008
