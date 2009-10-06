@@ -332,3 +332,6 @@ autocmd FileType htmldjango source ~/.vim/indent/html_grb.vim
 " Map ,e to open files in the same directory as the current file
 map <leader>e :e <C-R>=expand("%:h")<cr>/
 
+if has("python")
+    source ~/.vim/ropevim/rope.vim
+endif
