@@ -1,0 +1,14 @@
+[user]
+	name = Gary Bernhardt
+	email = gary.bernhardt@gmail.com
+[diff]
+[color]
+	ui = auto
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+	di = diff
+    dc = diff --cached
+[merge]
+	tool = opendiff
