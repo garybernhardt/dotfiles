@@ -26,5 +26,6 @@ alias vi='mvim --remote-silent'
 gd() { git diff $* | view -; }
 gdc() { gd --cached $*; }
 alias pygrep="grep --include='*.py' $*"
+alias rbgrep="grep --include='*.rb' $*"
 source ~/bin/git-completion.bash
 
