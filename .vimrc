@@ -335,3 +335,5 @@ map <leader>e :e <C-R>=expand("%:h")<cr>/
 if has("python")
     source ~/.vim/ropevim/rope.vim
 endif
+
+autocmd BufRead,BufNewFile *.feature set sw=4 sts=4 et
