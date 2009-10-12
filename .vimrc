@@ -192,9 +192,6 @@ if version >= 700
     let Tlist_Ctags_Cmd='~/bin/ctags'
 endif
 
-" GRB: use fancy buffer closing that doesn't close the split
-cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
-
 function! RunTests(target, args)
     silent ! echo
     exec 'silent ! echo -e "\033[1;36mRunning tests in ' . a:target . '\033[0m"'
