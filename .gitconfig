@@ -10,5 +10,6 @@
 	co = checkout
 	di = diff
     dc = diff --cached
+    ammend = commit --amend
 [merge]
 	tool = opendiff
