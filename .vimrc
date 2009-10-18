@@ -334,3 +334,8 @@ if has("python")
 endif
 
 autocmd BufRead,BufNewFile *.feature set sw=4 sts=4 et
+
+" Highlight lines that are too long
+highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929
+match OverLength /\%81v.*/
+
