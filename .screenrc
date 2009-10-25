@@ -1,0 +1,4 @@
+hardstatus on
+hardstatus alwayslastline "%{=b}%{G} Screen(s): %{b}%w"
+defscrollback 5000
+
