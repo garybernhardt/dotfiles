@@ -16,6 +16,7 @@
 ^doc$
 ^emu$
 ^id_rsa.pub$
+^kata$
 ^misc$
 ^mysql-5.1.30$
 ^parallels_shared$
