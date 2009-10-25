@@ -56,11 +56,13 @@
 ^\.psql_history$
 ^\.python-eggs$
 ^\.rnd$
+^\.sh_history
 ^\.sqlite_history$
 ^\.ssh$
 ^\.subversion$
 ^\.vim-tmp$
 ^\.viminfo$
+^\.vim/.netrwhist
 ^\.vimprojects$
 ^\.vimrc\.backup$
 ^\.vimrc\.old$
