@@ -25,10 +25,7 @@ graphlog=
 color=
 rebase=
 transplant=
-convert=
 bookmarks=
 record=
-shelve=
-hg-git=~/.hgext/hg-git
 extdiff=
 
