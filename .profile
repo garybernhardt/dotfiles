@@ -29,4 +29,5 @@ gdc() { gd --cached $*; }
 alias pygrep="grep --include='*.py' $*"
 alias rbgrep="grep --include='*.rb' $*"
 source ~/bin/git-completion.bash
+source ~/bin/hg-completion.sh
 
