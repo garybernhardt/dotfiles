@@ -335,17 +335,3 @@ endif
 
 autocmd BufRead,BufNewFile *.feature set sw=4 sts=4 et
 
-" Highlight lines that are too long
-highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929
-function! ToggleLongLines()
-  if (exists("g:highlight_long_lines"))
-    unlet g:highlight_long_lines
-    match OverLength //
-  else
-    let g:highlight_long_lines = 1
-    match OverLength /\%81v.*/
-  endif
-endfunction
-call ToggleLongLines()
-map <silent> <leader>ll :call ToggleLongLines()<cr>
-

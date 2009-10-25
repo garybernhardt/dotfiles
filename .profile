@@ -1,6 +1,7 @@
 # Add paths that should have been there by default
 export PATH=${PATH}:/usr/local/bin
 export PATH="~/bin:$PATH"
+export PATH="$PATH:~/.gem/ruby/1.8/bin"
 
 # Add postgres to the path
 export PATH=$PATH:/usr/local/pgsql/bin
