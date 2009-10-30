@@ -338,3 +338,7 @@ autocmd BufRead,BufNewFile *.feature set sw=4 sts=4 et
 set number
 set numberwidth=5
 
+if has("gui_running")
+    source ~/proj/vim-complexity/repo/complexity.vim
+endif
+
