@@ -342,3 +342,6 @@ if has("gui_running")
     source ~/proj/vim-complexity/repo/complexity.vim
 endif
 
+" Seriously, guys. It's not like :W is bound to anything anyway.
+command! W :w
+
