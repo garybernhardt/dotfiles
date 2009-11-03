@@ -53,6 +53,7 @@
 ^\.vim-tmp$
 ^\.viminfo$
 ^\.vim/.netrwhist
+^\.vimfuzzyfinder$
 ^\.vimprojects$
 ^\.vimrc\.backup$
 ^\.vimrc\.old$
