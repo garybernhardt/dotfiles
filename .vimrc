@@ -59,7 +59,8 @@ map Q gq
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
-  set guifont=Monaco:h12
+  " set guifont=Monaco:h14
+  set guifont=Inconsolata-dz:h12
 endif
 
 " Only do this part when compiled with support for autocommands.
