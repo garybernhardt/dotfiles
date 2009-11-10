@@ -119,7 +119,7 @@ if has("gui_running")
 
   " GRB: set window size"
   :set lines=100
-  :set columns=157
+  :set columns=171
 
   " GRB: highlight current line"
   :set cursorline
