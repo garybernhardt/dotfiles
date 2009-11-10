@@ -16,6 +16,9 @@ git=1
 cmd.vimdiff = mvim
 opts.vimdiff = -f '+next' '+execute "DirDiff" argv(0) argv(1)'
 
+[pager]
+pager=LESS='FSRX' less
+
 [extensions]
 churn=
 hgk=
@@ -28,4 +31,5 @@ transplant=
 bookmarks=
 record=
 extdiff=
+pager=
 
