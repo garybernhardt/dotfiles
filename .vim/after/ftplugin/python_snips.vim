@@ -13,6 +13,8 @@ exe "Snipp f False"
 exe "Snipp n None"
 " Self
 exe "Snipp s self."
+" Init function
+exe "Snipp i def __init__(self, "
 " While
 exe "Snipp wh while ${1:condition}:\n\t${2:# code...}"
 " New Class
