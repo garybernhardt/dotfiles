@@ -399,6 +399,8 @@ map <leader>/i /^ *if\><cr>
 " Delete function
 " \%$ means 'end of file' in vim-regex-speak
 map <leader>df d/\(^ *def\>\)\\|\%$<cr>
+com! FindLastImport :execute'normal G<CR>' | :execute':normal ?^\(from\|import\)\><CR>'
+map <leader>/m :FindLastImport<cr>
 
 map <leader>ws :%s/ *$//g<cr><c-o><cr>
 
