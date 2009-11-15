@@ -18,7 +18,7 @@ opts.vimdiff = -f '+next' '+execute "DirDiff" argv(0) argv(1)'
 
 [pager]
 pager=LESS='FSRX' less
-ignore=version, help, update, push, pull, merge, fetch, convert, clone, record, crecord, grep
+ignore=version, help, update, push, pull, merge, fetch, convert, clone, record, crecord, grep, stat
 
 [extensions]
 churn=
