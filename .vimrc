@@ -263,7 +263,7 @@ function! JumpToError()
             endif
         endfor
         let error_message = substitute(error['text'], '^ *', '', 'g')
-        " silent cc!
+        silent cc!
         exec ":sbuffer " . error['bufnr']
         call RedBar()
         echo error_message
