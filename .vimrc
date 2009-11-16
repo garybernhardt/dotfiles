@@ -381,9 +381,9 @@ function! InlineVariable()
     " work; I'm not sure why.
     normal k$
     " Find the next occurence of the variable
-    exec "/" . @a
+    exec '/\<' . @a . '\>'
     " Replace that occurence with the text we yanked
-    exec ":.s/" . @a . "/" . @b
+    exec ':.s/\<' . @a . '\>/' . @b
 endfunction
 
 vnoremap <leader>rv :call ExtractVariable()<cr>
