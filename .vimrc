@@ -295,6 +295,8 @@ let mapleader=","
 nnoremap <leader>m :call RunTestsForFile('--machine-out')<cr>:redraw<cr>:call JumpToError()<cr>
 nnoremap <leader>M :call RunTestsForFile('')<cr>
 nnoremap <leader>a :call RunAllTests('--machine-out')<cr>:redraw<cr>:call JumpToError()<cr>
+nnoremap <leader>t <leader>a
+nnoremap <leader>T <leader>A
 nnoremap <leader>A :call RunAllTests('')<cr>
 nnoremap <leader>t :call JumpToTestsForClass()<cr>
 nnoremap <leader><leader> <c-^>
