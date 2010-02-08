@@ -30,12 +30,16 @@
 ^\.bazaar$
 ^\.bugs_everywhere$
 ^\.bzr\.log$
+^\.cache$
 ^\.cups$
 ^\.dropbox$
+^\.ec2$
 ^\.emacs\.bak$
 ^\.emacs\.d$
 ^\.emacs-places$
+^\.freemind$
 ^\.gem$
+^\.gnupg$
 ^\.god$
 ^\.hg\.cvsps$
 ^\.hgk$
