@@ -60,7 +60,7 @@ if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
   " set guifont=Monaco:h14
-  set guifont=Inconsolata-dz:h12
+  set guifont=Inconsolata-dz:h14
 endif
 
 " Only do this part when compiled with support for autocommands.
@@ -292,13 +292,18 @@ function! JumpToTestsForClass()
 endfunction
 
 let mapleader=","
-nnoremap <leader>m :call RunTestsForFile('--machine-out')<cr>:redraw<cr>:call JumpToError()<cr>
-nnoremap <leader>M :call RunTestsForFile('')<cr>
-nnoremap <leader>a :call RunAllTests('--machine-out')<cr>:redraw<cr>:call JumpToError()<cr>
-nnoremap <leader>t <leader>a
-nnoremap <leader>T <leader>A
-nnoremap <leader>A :call RunAllTests('')<cr>
-nnoremap <leader>t :call JumpToTestsForClass()<cr>
+" nnoremap <leader>m :call RunTestsForFile('--machine-out')<cr>:redraw<cr>:call JumpToError()<cr>
+" nnoremap <leader>M :call RunTestsForFile('')<cr>
+" nnoremap <leader>a :call RunAllTests('--machine-out')<cr>:redraw<cr>:call JumpToError()<cr>
+" nnoremap <leader>A :call RunAllTests('')<cr>
+
+nnoremap <leader>a :call RunAllTestsWithArgs('spec --machine-out')<cr>:redraw<cr>:call JumpToError()<cr>
+nnoremap <leader>A :call RunAllTestsWithArgs('spec')<cr>
+
+nnoremap <leader>t :call RunAllTestsWithArgs('spec --machine-out')<cr>:redraw<cr>:call JumpToError()<cr>
+nnoremap <leader>T :call RunAllTestsWithArgs('spec')<cr>
+
+" nnoremap <leader>t :call JumpToTestsForClass()<cr>
 nnoremap <leader><leader> <c-^>
 
 " highlight current line
@@ -406,3 +411,5 @@ map <leader>/m :FindLastImport<cr>
 
 map <leader>ws :%s/ *$//g<cr><c-o><cr>
 
+" Always show tab bar
+set showtabline=2
