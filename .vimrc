@@ -319,8 +319,6 @@ set guioptions-=r
 " Use <c-h> for snippets
 let g:NERDSnippets_key = '<c-h>'
 
-map <leader>f :FuzzyFinderFile<cr>
-
 augroup myfiletypes
   "clear old autocmds in group
   autocmd!
@@ -413,3 +411,5 @@ map <leader>ws :%s/ *$//g<cr><c-o><cr>
 
 " Always show tab bar
 set showtabline=2
+
+map <leader>f :CommandT<cr>
