@@ -17,7 +17,6 @@
 ^purchases$
 ^talks$
 ^work$
-^jruby-1.3.1
 ^\.hudson
 ^\.wireshark$
 ^\.wireshark-etc$
