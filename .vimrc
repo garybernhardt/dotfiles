@@ -413,3 +413,9 @@ map <leader>ws :%s/ *$//g<cr><c-o><cr>
 set showtabline=2
 
 map <leader>f :CommandT<cr>
+
+augroup mkd
+    autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
+    autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
+augroup END
+
