@@ -35,5 +35,4 @@ activate_virtualenv() {
     fi
 }
 source ~/bin/git-completion.bash
-source ~/bin/hg-completion.sh
 
