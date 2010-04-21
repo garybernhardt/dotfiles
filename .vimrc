@@ -129,7 +129,7 @@ endif
 if has("gui_running")
     :color grb3
 else
-    :color grb2
+    :color grb4
 endif
 
 " GRB: hide the toolbar in GUI mode
