@@ -38,6 +38,7 @@
 ^\.emacs\.bak$
 ^\.emacs\.d$
 ^\.emacs-places$
+^\.erlang\.cookie$
 ^\.freemind$
 ^\.gem$
 ^\.gnupg$
@@ -47,6 +48,7 @@
 ^\.ipython$
 ^\.irb_history$
 ^\.lesshst$
+^\.localized$
 ^\.macports$
 ^\.mysql_history$
 ^\.psql_history$
