@@ -35,7 +35,7 @@
 (setq load-path (cons "~/.emacs-lisp" load-path))
 
 ; GRB: load python mode
-(load-file "~/.emacs-lisp/python-mode.elc")
+(load-file "~/.emacs-lisp/python-mode.el")
 (setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
 (setq interpreter-mode-alist (cons '("python" . python-mode)
 				   interpreter-mode-alist))
@@ -61,9 +61,9 @@
 ; GRB: set the font.  See these messages:
 ;  http://lists.sourceforge.jp/mailman/archives/macemacsjp-english/2007-January/000858.html
 ;  http://lists.sourceforge.jp/mailman/archives/macemacsjp-english/2007-January/000860.html
-(require 'carbon-font)
-(add-to-list 'default-frame-alist
- 	     '(font . "-*-*-medium-r-normal--10-*-*-*-*-*-fontset-osaka"))
+; (require 'carbon-font)
+; (add-to-list 'default-frame-alist
+;  	     '(font . "-*-*-medium-r-normal--10-*-*-*-*-*-fontset-osaka"))
 
 (global-set-key "\C-cb" 'gary-insert-comment)
 
