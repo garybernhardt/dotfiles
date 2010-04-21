@@ -15,7 +15,9 @@
 ^misc$
 ^proj$
 ^purchases$
+^src$
 ^talks$
+^var$
 ^work$
 ^\.hudson
 ^\.wireshark$
@@ -45,6 +47,7 @@
 ^\.ipython$
 ^\.irb_history$
 ^\.lesshst$
+^\.macports$
 ^\.mysql_history$
 ^\.psql_history$
 ^\.python-eggs$
