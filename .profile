@@ -28,8 +28,10 @@ gdc() { gd --cached $*; }
 alias pygrep="grep --include='*.py' $*"
 alias rbgrep="grep --include='*.rb' $*"
 activate_virtualenv() {
-    if [ -f ../env/bin/activate ]; then . ../env/bin/activate;
+    if [ -f env/bin/activate ]; then . env/bin/activate;
+    elif [ -f ../env/bin/activate ]; then . ../env/bin/activate;
     elif [ -f ../../env/bin/activate ]; then . ../../env/bin/activate;
+    elif [ -f ../../../env/bin/activate ]; then . ../../../env/bin/activate;
     fi
 }
 source ~/bin/git-completion.bash
