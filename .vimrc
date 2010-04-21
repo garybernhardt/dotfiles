@@ -196,7 +196,6 @@ endif
 function! RunTests(target, args)
     silent ! echo
     exec 'silent ! echo -e "\033[1;36mRunning tests in ' . a:target . '\033[0m"'
-    set makeprg=scripts/tests\ --with-doctest\ -x
     silent w
     exec "make " . a:target . " " . a:args
 endfunction
@@ -250,9 +249,8 @@ endfunction
 function! RunAllTests(args)
     silent ! echo
     silent ! echo -e "\033[1;36mRunning all unit tests\033[0m"
-    set makeprg=scripts/tests\ --with-doctest\ -x\ -v
     silent w
-    exec "make! tests.unit " . a:args
+    exec "make!" . a:args
 endfunction
 
 function! JumpToError()
@@ -297,11 +295,11 @@ let mapleader=","
 " nnoremap <leader>a :call RunAllTests('--machine-out')<cr>:redraw<cr>:call JumpToError()<cr>
 " nnoremap <leader>A :call RunAllTests('')<cr>
 
-nnoremap <leader>a :call RunAllTestsWithArgs('spec --machine-out')<cr>:redraw<cr>:call JumpToError()<cr>
-nnoremap <leader>A :call RunAllTestsWithArgs('spec')<cr>
+" nnoremap <leader>a :call RunAllTests('')<cr>:redraw<cr>:call JumpToError()<cr>
+" nnoremap <leader>A :call RunAllTests('')<cr>
 
-nnoremap <leader>t :call RunAllTestsWithArgs('spec --machine-out')<cr>:redraw<cr>:call JumpToError()<cr>
-nnoremap <leader>T :call RunAllTestsWithArgs('spec')<cr>
+nnoremap <leader>t :call RunAllTests('')<cr>:redraw<cr>:call JumpToError()<cr>
+nnoremap <leader>T :call RunAllTests('')<cr>
 
 " nnoremap <leader>t :call JumpToTestsForClass()<cr>
 nnoremap <leader><leader> <c-^>
