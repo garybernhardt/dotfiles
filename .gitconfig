@@ -12,5 +12,6 @@
     dc = diff --cached
     amend = commit --amend
     aa = add --all
+    head = log -1
 [merge]
 	tool = opendiff
