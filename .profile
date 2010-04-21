@@ -23,7 +23,6 @@ shopt -s histappend
 
 # ACTUAL CUSTOMIZATION OH NOES!
 PS1='\h:\W$(__git_ps1 "(%s)") \u\$ '
-alias vi='mvim --remote-silent'
 gd() { git diff $* | view -; }
 gdc() { gd --cached $*; }
 alias pygrep="grep --include='*.py' $*"
