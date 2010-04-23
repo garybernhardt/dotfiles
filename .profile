@@ -27,6 +27,7 @@ gd() { git diff $* | view -; }
 gdc() { gd --cached $*; }
 alias pygrep="grep --include='*.py' $*"
 alias rbgrep="grep --include='*.rb' $*"
+
 activate_virtualenv() {
     if [ -f env/bin/activate ]; then . env/bin/activate;
     elif [ -f ../env/bin/activate ]; then . ../env/bin/activate;
@@ -34,6 +35,13 @@ activate_virtualenv() {
     elif [ -f ../../../env/bin/activate ]; then . ../../../env/bin/activate;
     fi
 }
+
+python_module_dir () {
+    echo "$(python -c "import os.path as _, ${1}; \
+        print _.dirname(_.realpath(${1}.__file__[:-1]))"
+        )"
+}
+
 source ~/bin/git-completion.bash
 
 # MacPorts Installer addition on 2010-04-21_at_09:59:50: adding an appropriate PATH variable for use with MacPorts.
