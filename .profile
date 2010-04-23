@@ -36,12 +36,7 @@ activate_virtualenv() {
 }
 source ~/bin/git-completion.bash
 
-
-##
-# Your previous /Users/grb/.profile file was backed up as /Users/grb/.profile.macports-saved_2010-04-02_at_15:08:30
-##
-
-# MacPorts Installer addition on 2010-04-02_at_15:08:30: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# MacPorts Installer addition on 2010-04-21_at_09:59:50: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin:$PATH
 # Finished adapting your PATH environment variable for use with MacPorts.
 
