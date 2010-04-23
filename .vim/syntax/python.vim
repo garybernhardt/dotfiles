@@ -309,7 +309,7 @@ syn match pythonError	 "^\s*finally\s*$" display
 syn match pythonError	 "^\s*try\s*$" display
 syn match pythonError	 "^\s*except\s.*[^\:]$" display
 syn match pythonError	 "[;]$" display
-syn match pythonError    ".\%>79v" display
+" syn match pythonError    ".\%>79v" display
 syn keyword pythonError         do
 " GRB END
 
