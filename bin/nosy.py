@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 '''
 Watch for changes in all .py files. If changes, run nosetests. 
 '''
