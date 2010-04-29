@@ -29,6 +29,7 @@
 ^\.Trash$
 ^\.bash_history$
 ^\.bazaar$
+^\.bi_li3$
 ^\.bugs_everywhere$
 ^\.bzr\.log$
 ^\.cache$
