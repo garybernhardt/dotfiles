@@ -1,0 +1,248 @@
+##
+## Load with `autoload -U zgitinit; zgitinit'
+##
+
+typeset -gA zgit_info
+zgit_info=()
+
+zgit_chpwd_hook() {
+	zgit_info_update
+}
+
+zgit_preexec_hook() {
+	if [[ $2 == git\ * ]] || [[ $2 == *\ git\ * ]]; then
+		zgit_precmd_do_update=1
+	fi
+}
+
+zgit_precmd_hook() {
+	if [ $zgit_precmd_do_update ]; then
+		unset zgit_precmd_do_update
+		zgit_info_update
+	fi
+}
+
+zgit_info_update() {
+	zgit_info=()
+
+	local gitdir="$(git rev-parse --git-dir 2>/dev/null)"
+	if [ $? -ne 0 ] || [ -z "$gitdir" ]; then
+		return
+	fi
+
+	zgit_info[dir]=$gitdir
+	zgit_info[bare]=$(git rev-parse --is-bare-repository)
+	zgit_info[inwork]=$(git rev-parse --is-inside-work-tree)
+}
+
+zgit_isgit() {
+	if [ -z "$zgit_info[dir]" ]; then
+		return 1
+	else
+		return 0
+	fi
+}
+
+zgit_inworktree() {
+	zgit_isgit || return
+	if [ "$zgit_info[inwork]" = "true" ]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+zgit_isbare() {
+	zgit_isgit || return
+	if [ "$zgit_info[bare]" = "true" ]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+zgit_head() {
+	zgit_isgit || return 1
+
+	if [ -z "$zgit_info[head]" ]; then
+		local name=''
+		name=$(git symbolic-ref -q HEAD)
+		if [ $? -eq 0 ]; then
+			if [[ $name == refs/(heads|tags)/* ]]; then
+				name=${name#refs/(heads|tags)/}
+			fi
+		else
+			name=$(git name-rev --name-only --no-undefined --always HEAD)
+			if [ $? -ne 0 ]; then
+				return 1
+			elif [[ $name == remotes/* ]]; then
+				name=${name#remotes/}
+			fi
+		fi
+		zgit_info[head]=$name
+	fi
+
+	echo $zgit_info[head]
+}
+
+zgit_branch() {
+	zgit_isgit || return 1
+	zgit_isbare && return 1
+
+	if [ -z "$zgit_info[branch]" ]; then
+		local branch=$(git symbolic-ref HEAD 2>/dev/null)
+		if [ $? -eq 0 ]; then
+			branch=${branch##*/}
+		else
+			branch=$(git name-rev --name-only --always HEAD)
+		fi
+		zgit_info[branch]=$branch
+	fi
+
+	echo $zgit_info[branch]
+	return 0
+}
+
+zgit_tracking_remote() {
+	zgit_isgit || return 1
+	zgit_isbare && return 1
+
+	local branch
+	if [ -n "$1" ]; then
+		branch=$1
+	elif [ -z "$zgit_info[branch]" ]; then
+		branch=$(zgit_branch)
+		[ $? -ne 0 ] && return 1
+	else
+		branch=$zgit_info[branch]
+	fi
+
+	local k="tracking_$branch"
+	local remote
+	if [ -z "$zgit_info[$k]" ]; then
+		remote=$(git config branch.$branch.remote)
+		zgit_info[$k]=$remote
+	fi
+
+	echo $zgit_info[$k]
+	return 0
+}
+
+zgit_tracking_merge() {
+	zgit_isgit || return 1
+	zgit_isbare && return 1
+
+	local branch
+	if [ -z "$zgit_info[branch]" ]; then
+		branch=$(zgit_branch)
+		[ $? -ne 0 ] && return 1
+	else
+		branch=$zgit_info[branch]
+	fi
+
+	local remote=$(zgit_tracking_remote $branch)
+	[ $? -ne 0 ] && return 1
+	if [ -n "$remote" ]; then # tracking branch
+		local merge=$(git config branch.$branch.merge)
+		if [ $remote != "." ]; then
+			merge=$remote/$(basename $merge)
+		fi
+		echo $merge
+		return 0
+	else
+		return 1
+	fi
+}
+
+zgit_isindexclean() {
+	zgit_isgit || return 1
+	if git diff --quiet --cached 2>/dev/null; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+zgit_isworktreeclean() {
+	zgit_isgit || return 1
+	if git diff --quiet 2>/dev/null; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+zgit_hasuntracked() {
+	zgit_isgit || return 1
+	local -a flist
+	flist=($(git ls-files --others --exclude-standard))
+	if [ $#flist -gt 0 ]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+zgit_hasunmerged() {
+	zgit_isgit || return 1
+	local -a flist
+	flist=($(git ls-files -u))
+	if [ $#flist -gt 0 ]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+zgit_svnhead() {
+	zgit_isgit || return 1
+
+	local commit=$1
+	if [ -z "$commit" ]; then
+		commit='HEAD'
+	fi
+
+	git show --raw $commit | \
+		grep git-svn-id | \
+			sed -re 's/^\s*git-svn-id: .*@([0-9]+).*$/\1/'
+}
+
+zgit_rebaseinfo() {
+	zgit_isgit || return 1
+	if [ -d $zgit_info[dir]/rebase-merge ]; then
+		dotest=$zgit_info[dir]/rebase-merge
+	elif [ -d $zgit_info[dir]/.dotest-merge ]; then
+		dotest=$zgit_info[dir]/.dotest-merge
+	elif [ -d .dotest ]; then
+		dotest=.dotest
+	else
+		return 1
+	fi
+
+	zgit_info[dotest]=$dotest
+
+	zgit_info[rb_onto]=$(cat "$dotest/onto")
+	zgit_info[rb_upstream]=$(cat "$dotest/upstream")
+	if [ -f "$dotest/orig-head" ]; then
+		zgit_info[rb_head]=$(cat "$dotest/orig-head")
+	elif [ -f "$dotest/head" ]; then
+		zgit_info[rb_head]=$(cat "$dotest/head")
+	fi
+	zgit_info[rb_head_name]=$(cat "$dotest/head-name")
+
+	return 0
+}
+
+zgitinit() {
+	typeset -ga chpwd_functions
+	typeset -ga preexec_functions
+	typeset -ga precmd_functions
+	chpwd_functions+='zgit_chpwd_hook'
+	preexec_functions+='zgit_preexec_hook'
+	precmd_functions+='zgit_precmd_hook'
+}
+
+zgitinit
+zgit_info_update
+
+# vim:set ft=zsh:

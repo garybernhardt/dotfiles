@@ -1,5 +1,13 @@
 . ~/bin/bash_colors.sh
 
+setopt promptsubst
+
+autoload -U promptinit
+promptinit
+
+# Use the wunjo prompt theme
+prompt wunjo
+
 # Add paths that should have been there by default
 export PATH=${PATH}:/usr/local/bin
 export PATH="~/bin:$PATH"
@@ -15,13 +23,6 @@ alias ls='ls -G'
 alias ll='ls -lG'
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 export GREP_OPTIONS="--color"
-
-# Erase duplicates in history
-export HISTCONTROL=erasedups
-# Store 10k history entries
-export HISTSIZE=10000
-# Append to the history file when exiting instead of overwriting it
-shopt -s histappend
 
 # ACTUAL CUSTOMIZATION OH NOES!
 function minutes_since_last_commit {
@@ -48,7 +49,6 @@ grb_git_prompt() {
         echo ${GIT_PROMPT}
     fi
 }
-PS1="\h:\W\$(grb_git_prompt) \u\$ "
 gd() { git diff $* | view -; }
 gdc() { gd --cached $*; }
 alias pygrep="grep --include='*.py' $*"
@@ -71,6 +71,4 @@ python_module_dir () {
 # MacPorts Installer addition on 2010-04-21_at_09:59:50: adding an appropriate PATH variable for use with MacPorts.
 export PATH=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin:$PATH
 # Finished adapting your PATH environment variable for use with MacPorts.
-
-source ~/bin/git-completion.bash
 
