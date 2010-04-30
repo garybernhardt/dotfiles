@@ -44,6 +44,7 @@
 ^\.gem$
 ^\.gnupg$
 ^\.god$
+^\.history$
 ^\.hg\.cvsps$
 ^\.hgk$
 ^\.ipython$
