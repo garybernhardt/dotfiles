@@ -160,8 +160,8 @@ prompt_grb_setup() {
 	#PROMPT+="%(?.. $pc[rc]exited %1v$pc[reset])"
 #    PROMPT+="
 #"
-	PROMPT+="($pc[hist]%h$pc[reset])"
-	PROMPT+="$pc[shortpath]%1~$pc[reset]"
+	#PROMPT+="($pc[hist]%h$pc[reset])"
+	PROMPT+=":$pc[shortpath]%1~$pc[reset]"
     PROMPT+="\$(prompt_grb_scm_info)"
 	PROMPT+=" $pc[#]\$$pc[reset] "
 
