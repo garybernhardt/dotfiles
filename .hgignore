@@ -29,6 +29,7 @@
 ^\.Trash$
 ^\.bash_history$
 ^\.bazaar$
+^\.bundle$
 ^\.bi_li3$
 ^\.bugs_everywhere$
 ^\.bzr\.log$
@@ -41,6 +42,7 @@
 ^\.emacs-places$
 ^\.erlang\.cookie$
 ^\.freemind$
+^\.history\.436tlA$
 ^\.gem$
 ^\.gnupg$
 ^\.god$
@@ -56,6 +58,7 @@
 ^\.psql_history$
 ^\.python-eggs$
 ^\.rnd$
+^\.rvm$
 ^\.sh_history
 ^\.sqlite_history$
 ^\.ssh$
