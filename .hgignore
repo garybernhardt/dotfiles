@@ -42,6 +42,7 @@
 ^\.emacs-places$
 ^\.erlang\.cookie$
 ^\.freemind$
+^\.heroku$
 ^\.history\.436tlA$
 ^\.gem$
 ^\.gnupg$
