@@ -321,7 +321,7 @@ augroup myfiletypes
   "clear old autocmds in group
   autocmd!
   "for ruby, autoindent with two spaces, always expand tabs
-  autocmd FileType ruby,haml,eruby,yaml set ai sw=2 sts=2 et
+  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass set ai sw=2 sts=2 et
   autocmd FileType python set sw=4 sts=4 et
 augroup END
 
@@ -329,6 +329,7 @@ set switchbuf=useopen
 
 autocmd BufRead,BufNewFile *.html source ~/.vim/indent/html_grb.vim
 autocmd FileType htmldjango source ~/.vim/indent/html_grb.vim
+autocmd! BufRead,BufNewFile *.sass setfiletype sass 
 
 " Map ,e to open files in the same directory as the current file
 map <leader>e :e <C-R>=expand("%:h")<cr>/
