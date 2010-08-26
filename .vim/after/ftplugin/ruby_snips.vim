@@ -4,6 +4,9 @@ en
 let s:did_ruby_snips = 1
 let snippet_filetype = 'ruby'
 
+" GRB
+exe "Snipp i inspect"
+
 " #!/usr/bin/ruby
 exe "Snipp #! #!/usr/bin/ruby\n"
 " New Block
