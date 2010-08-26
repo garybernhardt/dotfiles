@@ -410,7 +410,7 @@ map <leader>ws :%s/ *$//g<cr><c-o><cr>
 " Always show tab bar
 set showtabline=2
 
-map <leader>f :CommandT<cr>
+" map <leader>f :CommandT<cr>
 
 augroup mkd
     autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
