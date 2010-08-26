@@ -37,7 +37,7 @@ gd() { git diff $* | view -; }
 gdc() { gd --cached $*; }
 alias pygrep="grep --include='*.py' $*"
 alias rbgrep="grep --include='*.rb' $*"
-alias r=rails
+alias r=script/rails
 
 activate_virtualenv() {
     if [ -f env/bin/activate ]; then . env/bin/activate;
