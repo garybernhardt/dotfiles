@@ -41,6 +41,7 @@
 ^\.emacs\.d$
 ^\.emacs-places$
 ^\.erlang\.cookie$
+^\.fonts$
 ^\.freemind$
 ^\.heroku$
 ^\.history\.436tlA$
@@ -74,6 +75,7 @@
 ^\.vimrc\.old$
 ^\.eshell$
 ^\.viper$
+^\.zcompdump$
 
 \.elc$
 ~$
