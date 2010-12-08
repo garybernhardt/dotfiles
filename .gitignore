@@ -59,6 +59,7 @@
 /.mysql_history
 /.pip
 /.psql_history
+/.pypirc
 /.python-eggs
 /.rnd
 /.rvm
