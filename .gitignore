@@ -12,6 +12,7 @@
 /desktop_temp
 /doc
 /kata
+/media
 /misc.sparsebundle
 /proj
 /purchases
@@ -35,6 +36,7 @@
 /.bzr.log
 /.cache
 /.cups
+/.djangy
 /.dropbox
 /.ec2
 /.emacs.bak
