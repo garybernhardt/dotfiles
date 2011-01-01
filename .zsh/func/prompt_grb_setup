@@ -43,10 +43,14 @@ colorword() {
 
 function minutes_since_last_commit {
     now=`date +%s`
-    last_commit=`git log --pretty=format:'%at' -1`
-    seconds_since_last_commit=$((now-last_commit))
-    minutes_since_last_commit=$((seconds_since_last_commit/60))
-    echo $minutes_since_last_commit
+    last_commit=`git log --pretty=format:'%at' -1 2>/dev/null`
+    if $lastcommit ; then
+      seconds_since_last_commit=$((now-last_commit))
+      minutes_since_last_commit=$((seconds_since_last_commit/60))
+      echo $minutes_since_last_commit
+    else
+      echo "-1"
+    fi
 }
 
 function prompt_grb_scm_time_since_commit() {
@@ -55,14 +59,19 @@ function prompt_grb_scm_time_since_commit() {
 
 	if zgit_inworktree; then
         local MINUTES_SINCE_LAST_COMMIT=`minutes_since_last_commit`
-        if [ "$MINUTES_SINCE_LAST_COMMIT" -gt 30 ]; then
-            COLOR="$pc[scm_time_long]"
-        elif [ "$MINUTES_SINCE_LAST_COMMIT" -gt 10 ]; then
-            COLOR="$pc[scm_time_medium]"
+        if [ "$MINUTES_SINCE_LAST_COMMIT" -eq -1 ]; then
+          COLOR="$pc[scm_time_uncommitted]"
+          local SINCE_LAST_COMMIT="${COLOR}uncommitted$pc[reset]"  
         else
+          if [ "$MINUTES_SINCE_LAST_COMMIT" -gt 30 ]; then
+            COLOR="$pc[scm_time_long]"
+          elif [ "$MINUTES_SINCE_LAST_COMMIT" -gt 10 ]; then
+            COLOR="$pc[scm_time_medium]"
+          else
             COLOR="$pc[scm_time_short]"
+          fi
+          local SINCE_LAST_COMMIT="${COLOR}$(minutes_since_last_commit)m$pc[reset]"
         fi
-        local SINCE_LAST_COMMIT="${COLOR}$(minutes_since_last_commit)m$pc[reset]"
         echo $SINCE_LAST_COMMIT
     fi
 }
@@ -74,73 +83,74 @@ function prompt_grb_scm_info() {
 }
 
 prompt_grb_setup() {
-	local verbose
-	if [[ $TERM == screen* ]] && [ -n "$STY" ]; then
-		verbose=
-	else
-		verbose=1
-	fi
-
-	typeset -A colorcode
-	colorcode[black]=0
-	colorcode[red]=1
-	colorcode[green]=2
-	colorcode[yellow]=3
-	colorcode[blue]=4
-	colorcode[magenta]=5
-	colorcode[cyan]=6
-	colorcode[white]=7
-	colorcode[default]=9
-	colorcode[k]=$colorcode[black]
-	colorcode[r]=$colorcode[red]
-	colorcode[g]=$colorcode[green]
-	colorcode[y]=$colorcode[yellow]
-	colorcode[b]=$colorcode[blue]
-	colorcode[m]=$colorcode[magenta]
-	colorcode[c]=$colorcode[cyan]
-	colorcode[w]=$colorcode[white]
-	colorcode[.]=$colorcode[default]
-
-	typeset -A attcode
-	attcode[none]=00
-	attcode[bold]=01
-	attcode[faint]=02
-	attcode[standout]=03
-	attcode[underline]=04
-	attcode[blink]=05
-	attcode[reverse]=07
-	attcode[conceal]=08
-	attcode[normal]=22
-	attcode[no-standout]=23
-	attcode[no-underline]=24
-	attcode[no-blink]=25
-	attcode[no-reverse]=27
-	attcode[no-conceal]=28
-
-	local -A pc
-	pc[default]='default'
-	pc[date]='cyan'
-	pc[time]='Blue'
-	pc[host]='Green'
-	pc[user]='cyan'
-	pc[punc]='yellow'
-	pc[line]='magenta'
-	pc[hist]='green'
-	pc[path]='Cyan'
-	pc[shortpath]='default'
-	pc[rc]='red'
-	pc[scm_branch]='Cyan'
-	pc[scm_commitid]='Yellow'
-	pc[scm_status_dirty]='Red'
-	pc[scm_status_staged]='Green'
+    local verbose
+    if [[ $TERM == screen* ]] && [ -n "$STY" ]; then
+      verbose=
+    else
+      verbose=1
+    fi
+  
+    typeset -A colorcode
+    colorcode[black]=0
+    colorcode[red]=1
+    colorcode[green]=2
+    colorcode[yellow]=3
+    colorcode[blue]=4
+    colorcode[magenta]=5
+    colorcode[cyan]=6
+    colorcode[white]=7
+    colorcode[default]=9
+    colorcode[k]=$colorcode[black]
+    colorcode[r]=$colorcode[red]
+    colorcode[g]=$colorcode[green]
+    colorcode[y]=$colorcode[yellow]
+    colorcode[b]=$colorcode[blue]
+    colorcode[m]=$colorcode[magenta]
+    colorcode[c]=$colorcode[cyan]
+    colorcode[w]=$colorcode[white]
+    colorcode[.]=$colorcode[default]
+  
+    typeset -A attcode
+    attcode[none]=00
+    attcode[bold]=01
+    attcode[faint]=02
+    attcode[standout]=03
+    attcode[underline]=04
+    attcode[blink]=05
+    attcode[reverse]=07
+    attcode[conceal]=08
+    attcode[normal]=22
+    attcode[no-standout]=23
+    attcode[no-underline]=24
+    attcode[no-blink]=25
+    attcode[no-reverse]=27
+    attcode[no-conceal]=28
+  
+    local -A pc
+    pc[default]='default'
+    pc[date]='cyan'
+    pc[time]='Blue'
+    pc[host]='Green'
+    pc[user]='cyan'
+    pc[punc]='yellow'
+    pc[line]='magenta'
+    pc[hist]='green'
+    pc[path]='Cyan'
+    pc[shortpath]='default'
+    pc[rc]='red'
+    pc[scm_branch]='Cyan'
+    pc[scm_commitid]='Yellow'
+    pc[scm_status_dirty]='Red'
+    pc[scm_status_staged]='Green'
     pc[scm_time_short]='green'
     pc[scm_time_medium]='yellow'
     pc[scm_time_long]='red'
-	pc[#]='Yellow'
-	for cn in ${(k)pc}; do
-		pc[${cn}]=$(colorword $pc[$cn])
-	done
-	pc[reset]=$(colorword . . 00)
+    pc[scm_time_uncommitted]='Magenta'
+    pc[#]='Yellow'
+    for cn in ${(k)pc}; do
+      pc[${cn}]=$(colorword $pc[$cn])
+    done
+    pc[reset]=$(colorword . . 00)
 
 	typeset -Ag wunjo_prompt_colors
 	wunjo_prompt_colors=(${(kv)pc})
