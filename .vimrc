@@ -331,8 +331,9 @@ autocmd BufRead,BufNewFile *.html source ~/.vim/indent/html_grb.vim
 autocmd FileType htmldjango source ~/.vim/indent/html_grb.vim
 autocmd! BufRead,BufNewFile *.sass setfiletype sass 
 
-" Map ,e to open files in the same directory as the current file
-map <leader>e :e <C-R>=expand("%:h")<cr>/
+" Map ,e and ,v to open files in the same directory as the current file
+map <leader>e :edit <C-R>=expand("%:h")<cr>/
+map <leader>v :view <C-R>=expand("%:h")<cr>/
 
 if has("python")
     source ~/.vim/ropevim/rope.vim
