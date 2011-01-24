@@ -38,6 +38,7 @@ gdc() { gd --cached $*; }
 alias pygrep="grep --include='*.py' $*"
 alias rbgrep="grep --include='*.rb' $*"
 alias r=script/rails
+alias t=script/tests
 
 activate_virtualenv() {
     if [ -f env/bin/activate ]; then . env/bin/activate;
