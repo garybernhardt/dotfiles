@@ -426,3 +426,6 @@ map <silent> <leader>y :<C-u>silent '<,'>w !pbcopy<CR>
 " Make <leader>' switch between ' and "
 nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
 
+" Make <leader>t run tests
+map <leader>t :w\|:!script/tests<CR>
+
