@@ -298,8 +298,8 @@ let mapleader=","
 " nnoremap <leader>a :call RunAllTests('')<cr>:redraw<cr>:call JumpToError()<cr>
 " nnoremap <leader>A :call RunAllTests('')<cr>
 
-nnoremap <leader>t :call RunAllTests('')<cr>:redraw<cr>:call JumpToError()<cr>
-nnoremap <leader>T :call RunAllTests('')<cr>
+" nnoremap <leader>t :call RunAllTests('')<cr>:redraw<cr>:call JumpToError()<cr>
+" nnoremap <leader>T :call RunAllTests('')<cr>
 
 " nnoremap <leader>t :call JumpToTestsForClass()<cr>
 nnoremap <leader><leader> <c-^>
@@ -427,11 +427,18 @@ map <silent> <leader>y :<C-u>silent '<,'>w !pbcopy<CR>
 nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
 
 " Make <leader>t run tests
-map <leader>t :w\|:!script/tests<CR>
+" map <leader>t :w\|:!script/tests<CR>
 
 " Map keys to go to specific files
 map <leader>gr :e config/routes.rb<cr>
 map <leader>gd :e spec/todo_spec.rb<cr>
 
 call pathogen#runtime_append_all_bundles() 
+
+function SetGRBRailsCompiler()
+    compiler grbrails
+    hi GreenBar term=reverse ctermfg=black ctermbg=green guifg=white guibg=green
+endfunction
+autocmd BufNewFile,BufRead *.rb call SetGRBRailsCompiler()
+map <leader>T :make<cr>
 
