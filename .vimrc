@@ -429,5 +429,9 @@ nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
 " Make <leader>t run tests
 map <leader>t :w\|:!script/tests<CR>
 
+" Map keys to go to specific files
+map <leader>gr :e config/routes.rb<cr>
+map <leader>gd :e spec/todo_spec.rb<cr>
+
 call pathogen#runtime_append_all_bundles() 
 
