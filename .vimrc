@@ -429,3 +429,5 @@ nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
 " Make <leader>t run tests
 map <leader>t :w\|:!script/tests<CR>
 
+call pathogen#runtime_append_all_bundles() 
+
