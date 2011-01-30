@@ -442,3 +442,6 @@ endfunction
 autocmd BufNewFile,BufRead *.rb call SetGRBRailsCompiler()
 map <leader>T :make<cr>
 
+map <leader>a :call MakeGreen('spec')<cr>
+map <leader>t :call MakeGreen('%')<cr>
+
