@@ -412,8 +412,6 @@ map <leader>ws :%s/ *$//g<cr><c-o><cr>
 " Always show tab bar
 set showtabline=2
 
-" map <leader>f :CommandT<cr>
-
 augroup mkd
     autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
     autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
@@ -441,6 +439,9 @@ function SetGRBRailsCompiler()
 endfunction
 autocmd BufNewFile,BufRead *.rb call SetGRBRailsCompiler()
 map <leader>T :make<cr>
+
+let g:CommandTCursorStartMap='<leader>f'
+map <leader>f :CommandT<cr>
 
 map <leader>a :call MakeGreen('spec')<cr>
 map <leader>t :call MakeGreen('%')<cr>
