@@ -407,7 +407,7 @@ map <leader>df d/\(^ *def\>\)\\|\%$<cr>
 com! FindLastImport :execute'normal G<CR>' | :execute':normal ?^\(from\|import\)\><CR>'
 map <leader>/m :FindLastImport<cr>
 
-map <leader>ws :%s/ *$//g<cr><c-o><cr>
+command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 
 " Always show tab bar
 set showtabline=2
@@ -424,16 +424,13 @@ map <silent> <leader>y :<C-u>silent '<,'>w !pbcopy<CR>
 " Make <leader>' switch between ' and "
 nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
 
-" Make <leader>t run tests
-" map <leader>t :w\|:!script/tests<CR>
-
 " Map keys to go to specific files
 map <leader>gr :e config/routes.rb<cr>
 map <leader>gd :e spec/todo_spec.rb<cr>
 
 call pathogen#runtime_append_all_bundles() 
 
-function SetGRBRailsCompiler()
+function! SetGRBRailsCompiler()
     compiler grbrails
     hi GreenBar term=reverse ctermfg=black ctermbg=green guifg=white guibg=green
 endfunction
@@ -441,8 +438,34 @@ autocmd BufNewFile,BufRead *.rb call SetGRBRailsCompiler()
 map <leader>T :make<cr>
 
 let g:CommandTCursorStartMap='<leader>f'
-map <leader>f :CommandT<cr>
+map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 
-map <leader>a :call MakeGreen('spec')<cr>
-map <leader>t :call MakeGreen('%')<cr>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Running tests
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" vim-makegreen binds itself to ,t unless something else is bound to its
+" function.
+map <leader>\dontstealmymapsmakegreen :w\|:call MakeGreen('spec')<cr>
+
+function! RunTests(filename)
+    " Write the file and run tests for the given filename
+    :w
+    :silent !echo;echo;echo;echo;echo
+    exec ":!script/tests " . a:filename
+endfunction
+
+function! SetTestFile()
+    " Set the spec file that tests will be run for.
+    let g:grb_test_file=@%
+endfunction
+
+function! RunTestFile()
+    " Run the tests for the previously-marked file.
+    call RunTests(g:grb_test_file)
+endfunction
+
+map <leader>w :call SetTestFile()<cr>
+map <leader>t :call RunTestFile()<cr>
+map <leader>a :call RunTests('spec')<cr>
 
