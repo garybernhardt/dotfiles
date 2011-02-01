@@ -426,7 +426,7 @@ nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
 
 " Map keys to go to specific files
 map <leader>gr :e config/routes.rb<cr>
-map <leader>gd :e spec/todo_spec.rb<cr>
+map <leader>gd :sp spec/todo_spec.rb<cr>
 
 call pathogen#runtime_append_all_bundles() 
 
