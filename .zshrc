@@ -7,7 +7,7 @@ autoload -U compinit
 compinit
 
 # Add paths that should have been there by default
-export PATH=/usr/local/bin:${PATH}
+export PATH=/usr/local/sbin:/usr/local/bin:${PATH}
 export PATH="/Users/grb/bin:$PATH"
 export PATH="$PATH:~/.gem/ruby/1.8/bin"
 
