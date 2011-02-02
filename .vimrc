@@ -445,6 +445,20 @@ map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
 map <leader>gM :CommandTFlush<cr>\|:CommandT spec/models<cr>
 map <leader>gl :CommandTFlush<cr>\|:CommandT app/views/layouts<cr>
 map <leader>gs :CommandTFlush<cr>\|:CommandT public/stylesheets<cr>
+function! OpenTestAlternate()
+  let current_file = expand("%")
+  let in_spec = match(current_file, "^spec/") != -1
+  if in_spec
+    let new_file = substitute(current_file, "^spec", "app", "")
+    let new_file = substitute(new_file, "_spec\.rb$", ".rb", "")
+  else
+    let new_file = substitute(current_file, "^app", "spec", "")
+    let new_file = substitute(new_file, "\.rb$", "_spec.rb", "")
+  endif
+  exec ":e " . new_file
+endfunction
+map <leader>. :call OpenTestAlternate()<cr>
+map ; :call OpenTestAlternate()<cr>
 
 call pathogen#runtime_append_all_bundles() 
 
