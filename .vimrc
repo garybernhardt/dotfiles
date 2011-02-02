@@ -426,6 +426,16 @@ nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
 
 " Map keys to go to specific files
 map <leader>gr :sp config/routes.rb<cr>
+function! ShowRoutes()
+  " Requires 'scratch' plugin
+  :topleft :split __Scratch__
+  normal G
+  normal 3o
+  normal 78a-
+  normal 2o
+  :r! rake routes
+endfunction
+map <leader>gR :call ShowRoutes()<cr>
 map <leader>gd :sp spec/todo_spec.rb<cr>
 
 call pathogen#runtime_append_all_bundles() 
