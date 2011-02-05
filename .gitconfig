@@ -13,5 +13,7 @@
     amend = commit --amend
     aa = add --all
     head = log -1
+    oneline = log --oneline
+    recent = log --oneline -10
 [merge]
 	tool = opendiff
