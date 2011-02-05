@@ -73,3 +73,5 @@ export PATH=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
 
+export EDITOR=vi
+
