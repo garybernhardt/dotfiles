@@ -59,6 +59,7 @@
 /.hgk
 /.ipython
 /.irb_history
+/.irb-history
 /.lesshst
 /.localized
 /.macports
@@ -72,6 +73,7 @@
 /.sh_history
 /.sqlite_history
 /.ssh
+/.ssl
 /.subversion
 /.vim-tmp
 /.viminfo
