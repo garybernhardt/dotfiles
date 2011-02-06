@@ -443,7 +443,7 @@ map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
 map <leader>gC :CommandTFlush<cr>\|:CommandT spec/controllers<cr>
 map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
 map <leader>gM :CommandTFlush<cr>\|:CommandT spec/models<cr>
-map <leader>gl :CommandTFlush<cr>\|:CommandT app/views/layouts<cr>
+map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
 map <leader>gs :CommandTFlush<cr>\|:CommandT public/stylesheets<cr>
 function! OpenTestAlternate()
   let current_file = expand("%")
