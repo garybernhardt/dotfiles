@@ -157,7 +157,7 @@ let python_slow_sync = 1
 set wildmode=longest,list
 
 " GRB: Put useful info in status line
-:set statusline=%<%f%=\ [%1*%M%*%n%R%H]\ %-19(%3l,%02c%03V%)%O'%02b'
+:set statusline=%<%f\ (%{&ft})%=%-19(%3l,%02c%03V%)
 :hi User1 term=inverse,bold cterm=inverse,bold ctermfg=red
 
 " GRB: clear the search buffer when hitting return
