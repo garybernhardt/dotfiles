@@ -446,12 +446,15 @@ map <leader>gM :CommandTFlush<cr>\|:CommandT spec/models<cr>
 map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
 map <leader>gs :CommandTFlush<cr>\|:CommandT public/stylesheets<cr>
 function! OpenTestAlternate()
+  let new_file = AlternateForCurrentFile()
+  exec ':e ' . new_file
+endfunction
+function! AlternateForCurrentFile()
   let current_file = expand("%")
   let new_file = current_file
   let in_spec = match(current_file, '^spec/') != -1
   let going_to_spec = !in_spec
   let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1
-
   if going_to_spec
     if in_app
       let new_file = substitute(new_file, '^app/', '', '')
@@ -465,7 +468,7 @@ function! OpenTestAlternate()
       let new_file = 'app/' . new_file
     end
   endif
-  exec ':e ' . new_file
+  return new_file
 endfunction
 map <leader>. :call OpenTestAlternate()<cr>
 map ; :call OpenTestAlternate()<cr>
