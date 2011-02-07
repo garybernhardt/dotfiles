@@ -302,7 +302,6 @@ let mapleader=","
 " nnoremap <leader>T :call RunAllTests('')<cr>
 
 " nnoremap <leader>t :call JumpToTestsForClass()<cr>
-nnoremap <leader><leader> <c-^>
 
 " highlight current line
 set cursorline
@@ -470,8 +469,7 @@ function! AlternateForCurrentFile()
   endif
   return new_file
 endfunction
-map <leader>. :call OpenTestAlternate()<cr>
-map ; :call OpenTestAlternate()<cr>
+nnoremap <leader><leader> :call OpenTestAlternate()<cr>
 
 call pathogen#runtime_append_all_bundles() 
 
