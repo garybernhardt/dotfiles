@@ -393,19 +393,19 @@ endfunction
 
 vnoremap <leader>rv :call ExtractVariable()<cr>
 nnoremap <leader>ri :call InlineVariable()<cr>
-" Find comment
-map <leader>/# /^ *#<cr>
-" Find function
-map <leader>/f /^ *def\><cr>
-" Find class
-map <leader>/c /^ *class\><cr>
-" Find if
-map <leader>/i /^ *if\><cr>
-" Delete function
-" \%$ means 'end of file' in vim-regex-speak
-map <leader>df d/\(^ *def\>\)\\|\%$<cr>
-com! FindLastImport :execute'normal G<CR>' | :execute':normal ?^\(from\|import\)\><CR>'
-map <leader>/m :FindLastImport<cr>
+" " Find comment
+" map <leader>/# /^ *#<cr>
+" " Find function
+" map <leader>/f /^ *def\><cr>
+" " Find class
+" map <leader>/c /^ *class\><cr>
+" " Find if
+" map <leader>/i /^ *if\><cr>
+" " Delete function
+" " \%$ means 'end of file' in vim-regex-speak
+" map <leader>df d/\(^ *def\>\)\\|\%$<cr>
+" com! FindLastImport :execute'normal G<CR>' | :execute':normal ?^\(from\|import\)\><CR>'
+" map <leader>/m :FindLastImport<cr>
 
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 
