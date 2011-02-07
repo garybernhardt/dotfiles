@@ -517,3 +517,12 @@ endfunction
 map <leader>t :call RunTestFile()<cr>
 map <leader>a :call RunTests('spec')<cr>
 
+" Tab stack
+for i in range(1, 9)
+  exec "map " . i  . " :tabnext " . i . "<cr>"
+endfor
+map <c-k> :tablast\|:tabnew<cr>
+map <c-j> :tabclose<cr>
+map <c-h> :tabprevious<cr>
+map <c-l> :tabnext<cr>
+
