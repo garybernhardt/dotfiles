@@ -500,15 +500,20 @@ endfunction
 
 function! SetTestFile()
     " Set the spec file that tests will be run for.
-    let g:grb_test_file=@%
+    let t:grb_test_file=@%
 endfunction
 
 function! RunTestFile()
     " Run the tests for the previously-marked file.
-    call RunTests(g:grb_test_file)
+    let in_spec_file = match(expand("%"), '\<spec\>') != -1
+    if in_spec_file
+        call SetTestFile()
+    elseif !exists("t:grb_test_file")
+        return
+    end
+    call RunTests(t:grb_test_file)
 endfunction
 
-map <leader>w :call SetTestFile()<cr>
 map <leader>t :call RunTestFile()<cr>
 map <leader>a :call RunTests('spec')<cr>
 
