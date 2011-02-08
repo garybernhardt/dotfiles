@@ -515,7 +515,7 @@ endfunction
 
 function! RunTestFile()
     " Run the tests for the previously-marked file.
-    let in_spec_file = match(expand("%"), '\<spec\>') != -1
+    let in_spec_file = match(expand("%"), '_spec.rb$') != -1
     if in_spec_file
         call SetTestFile()
     elseif !exists("t:grb_test_file")
