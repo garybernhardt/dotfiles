@@ -108,7 +108,10 @@ set showmatch
 set incsearch
 
 " GRB: wrap lines at 78 characters
-set textwidth=78
+" set textwidth=78
+
+" GRB: Highlight long lines
+autocmd TabEnter,WinEnter,BufWinEnter *.rb match ErrorMsg '\%>78v.\+'
 
 " GRB: highlighting search"
 set hls
