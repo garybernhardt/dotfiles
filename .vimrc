@@ -427,18 +427,25 @@ map <silent> <leader>y :<C-u>silent '<,'>w !pbcopy<CR>
 nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
 
 " Map keys to go to specific files
-map <leader>gr :sp config/routes.rb<cr>
+map <leader>gr :topleft :split config/routes.rb<cr>
 function! ShowRoutes()
   " Requires 'scratch' plugin
-  :topleft :split __Scratch__
-  normal G
-  normal 3o
-  normal 78a-
-  normal 2o
-  :r! rake routes
+  :topleft 100 :split __Routes__
+  " Make sure Vim doesn't write __Routes__ as a file
+  :set buftype=nofile
+  " Delete everything
+  :normal 1GdG
+  " Put routes output in buffer
+  :0r! rake -s routes
+  " Size window to number of lines (1 plus rake output length)
+  :exec ":normal " . line("$") . "_ "
+  " Move cursor to bottom
+  :normal 1GG
+  " Delete empty trailing line
+  :normal dd
 endfunction
 map <leader>gR :call ShowRoutes()<cr>
-map <leader>gd :sp spec/todo_spec.rb<cr>
+map <leader>gd :topleft 100 :split spec/todo_spec.rb<cr>
 map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
 map <leader>gV :CommandTFlush<cr>\|:CommandT spec/views<cr>
 map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
