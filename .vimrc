@@ -447,11 +447,8 @@ endfunction
 map <leader>gR :call ShowRoutes()<cr>
 map <leader>gd :topleft 100 :split spec/todo_spec.rb<cr>
 map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
-map <leader>gV :CommandTFlush<cr>\|:CommandT spec/views<cr>
 map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-map <leader>gC :CommandTFlush<cr>\|:CommandT spec/controllers<cr>
 map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
-map <leader>gM :CommandTFlush<cr>\|:CommandT spec/models<cr>
 map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
 map <leader>gs :CommandTFlush<cr>\|:CommandT public/stylesheets<cr>
 function! OpenTestAlternate()
