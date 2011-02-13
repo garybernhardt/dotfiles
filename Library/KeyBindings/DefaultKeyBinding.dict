@@ -1,0 +1,10 @@
+/* ~/Library/KeyBindings/DefaultKeyBinding.dict */
+{
+    "~f" = "moveWordForward:";
+    "~b" = "moveWordBackward:";
+    "~<" = "moveToBeginningOfDocument:";
+    "~>" = "moveToEndOfDocument:";
+    "~v" = "pageUp:";
+    "~d" = "deleteWordForward:";
+}
+

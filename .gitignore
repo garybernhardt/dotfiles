@@ -2,7 +2,8 @@
 /Documents
 /Downloads
 /Dropbox
-/Library
+/Library/*
+!/Library/KeyBindings
 /Movies
 /Music
 /Pictures
