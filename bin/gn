@@ -1,4 +1,14 @@
 #!/usr/bin/python
+
+#
+# Print a diff summary like:
+#
+#   $ git diff 'master~10..master' | gn
+#   293 lines of diff
+#   185 lines added
+#   19 lines removed
+#   +166 lines net change
+
 import sys, os, re, fileinput
 
 def get_lines(diff_lines):
