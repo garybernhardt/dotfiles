@@ -129,11 +129,8 @@ if has("gui_running")
 endif
 
 " GRB: set the color scheme
-if has("gui_running")
-    :color grb3
-else
-    :color grb4
-endif
+:set t_Co=256 " 256 colors
+:color grb256
 
 " GRB: hide the toolbar in GUI mode
 if has("gui_running")
@@ -308,7 +305,6 @@ let mapleader=","
 
 " highlight current line
 set cursorline
-hi CursorLine cterm=NONE ctermbg=black
 
 set cmdheight=2
 
@@ -532,4 +528,14 @@ map <c-k> :tablast\|:tabnew<cr>
 map <c-j> :tabclose<cr>
 map <c-h> :tabprevious<cr>
 map <c-l> :tabnext<cr>
+
+function! ShowColors()
+  let num = 255
+  while num >= 0
+    exec 'hi col_'.num.' ctermbg='.num.' ctermfg=white'
+    exec 'syn match col_'.num.' "ctermbg='.num.':...." containedIn=ALL'
+    call append(0, 'ctermbg='.num.':....')
+    let num = num - 1
+  endwhile
+endfunction
 
