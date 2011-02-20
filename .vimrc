@@ -116,10 +116,10 @@ set incsearch
 " setting highlighting when entering a .rb file will cause e.g. a quickfix
 " window opened later to have the same match. There doesn't seem to be any way
 " to localize it to a file type.
-function HighlightLongLines()
+function! HighlightLongLines()
   hi LongLine guifg=NONE guibg=NONE gui=undercurl ctermfg=white ctermbg=red cterm=NONE guisp=#FF6C60 " undercurl color
 endfunction
-function StopHighlightingLongLines()
+function! StopHighlightingLongLines()
   hi LongLine guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE guisp=NONE
 endfunction
 autocmd TabEnter,WinEnter,BufWinEnter * call StopHighlightingLongLines()
