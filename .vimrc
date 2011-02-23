@@ -353,6 +353,16 @@ autocmd! BufRead,BufNewFile *.sass setfiletype sass
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>e :edit %%
 map <leader>v :view %%
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'))
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+map <leader>n :call RenameFile()<cr>
 
 if has("python")
     source ~/.vim/ropevim/rope.vim
