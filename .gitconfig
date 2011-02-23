@@ -15,5 +15,8 @@
     head = log -1
     oneline = log --oneline
     recent = log --oneline -10
+    ff = merge --ff-only
+    pullff = pull --ff-only
+
 [merge]
 	tool = opendiff
