@@ -570,3 +570,5 @@ function! ShowColors()
   endwhile
 endfunction
 
+command! -range Md5 :echo system('echo '.shellescape(join(getline(<line1>, <line2>), '\n')) . '| md5')
+
