@@ -123,7 +123,7 @@ function! StopHighlightingLongLines()
   hi LongLine guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE guisp=NONE
 endfunction
 autocmd TabEnter,WinEnter,BufWinEnter * call StopHighlightingLongLines()
-autocmd TabEnter,WinEnter,BufWinEnter *.rb call HighlightLongLines()
+autocmd TabEnter,WinEnter,BufWinEnter *.rb,*.py call HighlightLongLines()
 hi LongLine guifg=NONE
 match LongLine '\%>78v.\+'
 
