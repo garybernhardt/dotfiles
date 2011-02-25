@@ -32,6 +32,8 @@ export PYTHONDONTWRITEBYTECODE=1
 
 export WORDCHARS='*?[]~&;!$%^<>'
 
+export ACK_COLOR_MATCH='red'
+
 # ACTUAL CUSTOMIZATION OH NOES!
 gd() { git diff $* | view -; }
 gdc() { gd --cached $*; }
