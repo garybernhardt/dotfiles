@@ -42,6 +42,7 @@ alias rbgrep="grep --include='*.rb' $*"
 alias r=script/rails
 alias t="script/tests $*"
 alias sr="screen -r"
+alias :q="echo YOU FAIL"
 
 activate_virtualenv() {
     if [ -f env/bin/activate ]; then . env/bin/activate;
