@@ -39,7 +39,7 @@ gd() { git diff $* | view -; }
 gdc() { gd --cached $*; }
 alias pygrep="grep --include='*.py' $*"
 alias rbgrep="grep --include='*.rb' $*"
-alias r=script/rails
+alias r=rails
 alias t="script/tests $*"
 alias sr="screen -r"
 alias :q="echo YOU FAIL"
