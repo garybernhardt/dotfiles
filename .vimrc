@@ -505,6 +505,8 @@ function! AlternateForCurrentFile()
   return new_file
 endfunction
 nnoremap <leader><leader> :call OpenTestAlternate()<cr>
+map <leader>gg :topleft 100 :split Gemfile<cr>
+map <leader>gi :CommandTFlush<cr>\|:CommandT integration_spec<cr>
 
 call pathogen#runtime_append_all_bundles() 
 
