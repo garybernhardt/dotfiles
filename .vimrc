@@ -116,16 +116,16 @@ set incsearch
 " setting highlighting when entering a .rb file will cause e.g. a quickfix
 " window opened later to have the same match. There doesn't seem to be any way
 " to localize it to a file type.
-function! HighlightLongLines()
-  hi LongLine guifg=NONE guibg=NONE gui=undercurl ctermfg=white ctermbg=red cterm=NONE guisp=#FF6C60 " undercurl color
-endfunction
-function! StopHighlightingLongLines()
-  hi LongLine guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE guisp=NONE
-endfunction
-autocmd TabEnter,WinEnter,BufWinEnter * call StopHighlightingLongLines()
-autocmd TabEnter,WinEnter,BufWinEnter *.rb,*.py call HighlightLongLines()
-hi LongLine guifg=NONE
-match LongLine '\%>78v.\+'
+" function! HighlightLongLines()
+"   hi LongLine guifg=NONE guibg=NONE gui=undercurl ctermfg=white ctermbg=red cterm=NONE guisp=#FF6C60 " undercurl color
+" endfunction
+" function! StopHighlightingLongLines()
+"   hi LongLine guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE guisp=NONE
+" endfunction
+" autocmd TabEnter,WinEnter,BufWinEnter * call StopHighlightingLongLines()
+" autocmd TabEnter,WinEnter,BufWinEnter *.rb,*.py call HighlightLongLines()
+" hi LongLine guifg=NONE
+" match LongLine '\%>78v.\+'
 
 " GRB: highlighting search"
 set hls
