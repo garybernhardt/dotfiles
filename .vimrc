@@ -530,16 +530,6 @@ endfunction
 map <leader>t :call RunTestFile()<cr>
 map <leader>a :call RunTests('spec')<cr>
 
-" Tab stack
-"for i in range(1, 9)
-"  exec "map " . i  . " :tabnext " . i . "<cr>"
-"endfor
-"map <c-k> :tablast\|:tabnew<cr>
-"map <c-j> :tabclose<cr>
-"map <c-h> :tabprevious<cr>
-"map <c-l> :tabnext<cr>
-
-" Window stack
 set winwidth=84
 " We have to have a winheight bigger than we want to set winminheight. But if
 " we set winheight to be huge before winminheight, the winminheight set will
@@ -547,21 +537,6 @@ set winwidth=84
 set winheight=5
 set winminheight=5
 set winheight=999
-function! CycleWindow(forward)
-  if a:forward
-    :normal w
-  else
-    :normal W
-  endif
-  :normal =
-endfunction
-function! NewWindow()
-  :vsplit
-  :call CycleWindow(1)
-endfunction
-" map <c-l> :call CycleWindow(1)<cr>
-" map <c-h> :call CycleWindow(0)<cr>
-" map <c-o> :call NewWindow()<cr>
 
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
