@@ -569,3 +569,11 @@ function! OpenChangedFiles()
 endfunction
 command! OpenChangedFiles :call OpenChangedFiles()
 
+if &diff
+  nmap <c-h> :diffget 1<cr>
+  nmap <c-l> :diffget 3<cr>
+  nmap <c-k> [cz.
+  nmap <c-j> ]cz.
+  set nonumber
+endif
+
