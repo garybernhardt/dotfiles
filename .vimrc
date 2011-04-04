@@ -175,13 +175,7 @@ set wildmode=longest,list
 :hi User1 term=inverse,bold cterm=inverse,bold ctermfg=red
 
 " GRB: clear the search buffer when hitting return
-function! PressedEnter()
-    :nohlsearch
-    if &filetype == 'python'
-        " :PyflakesUpdate
-    end
-endfunction
-:nnoremap <CR> :nohlsearch\|:call PressedEnter()<cr>
+:nnoremap <CR> :nohlsearch<cr>
 
 " Remap the tab key to do autocompletion or indentation depending on the
 " context (from http://www.vim.org/tips/tip.php?tip_id=102)
