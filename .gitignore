@@ -38,8 +38,8 @@
 /.bzr.log
 /.cache
 /.cups
-/.djangy
 /.dropbox
+/.dvdcss
 /.ec2
 /.emacs.bak
 /.emacs.d
@@ -76,6 +76,7 @@
 /.ssh
 /.ssl
 /.subversion
+/.tox
 /.vim-tmp
 /.viminfo
 /.vim/.netrwhist
