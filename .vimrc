@@ -178,7 +178,7 @@ set wildmode=longest,list
 function! PressedEnter()
     :nohlsearch
     if &filetype == 'python'
-        :PyflakesUpdate
+        " :PyflakesUpdate
     end
 endfunction
 :nnoremap <CR> :nohlsearch\|:call PressedEnter()<cr>
