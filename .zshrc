@@ -44,6 +44,7 @@ alias t="script/tests $*"
 alias sr="screen -r"
 alias :q="echo YOU FAIL"
 function cdf() { cd *$1*/ } # stolen from @topfunky
+function das() { cd ~/proj/destroyallsoftware.com/destroyallsoftware.com && pwd && rvm use ree@das }
 
 activate_virtualenv() {
     if [ -f env/bin/activate ]; then . env/bin/activate;
