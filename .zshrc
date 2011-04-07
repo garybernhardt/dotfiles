@@ -19,6 +19,7 @@ export PATH=$PATH:/Library/PostgreSQL/8.3/bin
 export TERM='xterm-color'
 alias ls='ls -G'
 alias ll='ls -lG'
+alias duh='du -csh'
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 export GREP_OPTIONS="--color"
 
