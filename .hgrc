@@ -1,5 +1,5 @@
 [ui]
-username = Gary Bernhardt
+username = Gary Bernhardt <gary.bernhardt@gmail.com>
 
 [defaults]
 #log = --graph --style compact
