@@ -43,6 +43,8 @@ alias rbgrep="grep --include='*.rb' $*"
 alias r=rails
 alias t="script/tests $*"
 alias sr="screen -r"
+alias gx="gitx"
+alias gxa="gitx --all"
 alias :q="echo YOU FAIL"
 function cdf() { cd *$1*/ } # stolen from @topfunky
 function das() { cd ~/proj/destroyallsoftware.com/destroyallsoftware.com && pwd && rvm use ree@das }
