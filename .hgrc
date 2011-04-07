@@ -3,11 +3,10 @@ username = Gary Bernhardt
 
 [defaults]
 #log = --graph --style compact
-outgoing = --graph
-incoming = --graph
 diff = -p
-qnew = -D
-qrefresh = -D
+qnew = -D --git
+qrefresh = -D --git
+qseries = -s
 
 [diff]
 git=1
@@ -19,6 +18,9 @@ opts.vimdiff = -f '+next' '+execute "DirDiff" argv(0) argv(1)'
 [pager]
 pager=LESS='FSRX' less
 ignore=version, help, update, push, pull, merge, fetch, convert, clone, record, crecord, grep, status, add, addremove, revert, commit, init
+
+[git]
+intree=1
 
 [extensions]
 churn=
