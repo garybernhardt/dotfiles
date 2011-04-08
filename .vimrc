@@ -490,6 +490,7 @@ map <leader>T :make<cr>
 
 let g:CommandTCursorStartMap='<leader>f'
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Running tests
