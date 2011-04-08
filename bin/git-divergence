@@ -2,12 +2,22 @@
 
 set -e
 
+function show_rev() {
+    rev=$1
+    git log -1 $rev --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    echo "  `git di $rev^..$rev | diffstat | tail -1`"
+}
+
 BRANCH=`git branch 2>/dev/null | grep -e '^*' | tr -d '\* '`
 
 echo incoming:
-git lg $* ${BRANCH}..origin/${BRANCH}
+for rev in `git rev-list ${BRANCH}..origin/${BRANCH}`; do
+    show_rev $rev
+done
 
 echo
 echo outgoing:
-git lg $* origin/${BRANCH}..${BRANCH}
+for rev in `git rev-list origin/${BRANCH}..${BRANCH}`; do
+    show_rev $rev
+done
 
