@@ -4,5 +4,10 @@ set -e
 
 BRANCH=`git branch 2>/dev/null | grep -e '^*' | tr -d '\* '`
 
+echo incoming:
+git lg $* ${BRANCH}..origin/${BRANCH}
+
+echo
+echo outgoing:
 git lg $* origin/${BRANCH}..${BRANCH}
 
