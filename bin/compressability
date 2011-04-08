@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+# By Gary Bernhardt.
+# Dotfiles at: https://github.com/garybernhardt/dotfiles
+
 import sys
 import zlib
 import bz2
