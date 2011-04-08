@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+
+BRANCH=`git branch 2>/dev/null | grep -e '^*' | tr -d '\* '`
+
+git lg $* ${BRANCH}..origin/${BRANCH}
+
