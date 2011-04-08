@@ -19,6 +19,7 @@
     ff = merge --ff-only
     pullff = pull --ff-only
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    div = divergence
 
 [merge]
     tool = vimdiff
