@@ -46,7 +46,7 @@ run_tests() {
 
 log_command() {
     echo "=> $*" >&2
-    $*
+    eval $*
 }
 
 main
