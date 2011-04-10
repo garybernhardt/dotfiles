@@ -8,16 +8,33 @@ function show_rev() {
     echo "  `git di $rev^..$rev | diffstat | tail -1`"
 }
 
-BRANCH=`git branch 2>/dev/null | grep -e '^*' | tr -d '\* '`
+function branch() {
+    git branch 2>/dev/null | grep -e '^*' | tr -d '\* '
+}
+
+if [[ $1 == "" ]]; then
+    LOCAL=`branch`
+else
+    LOCAL=$1
+fi
+
+if [[ $2 == "" ]]; then
+    REMOTE=origin/$LOCAL
+else
+    REMOTE=$2
+fi
+
+echo "changes from local ${LOCAL} to remote ${REMOTE}:"
+echo
 
 echo incoming:
-for rev in `git rev-list ${BRANCH}..origin/${BRANCH}`; do
+for rev in `git rev-list $LOCAL..$REMOTE`; do
     show_rev $rev
 done
 
 echo
 echo outgoing:
-for rev in `git rev-list origin/${BRANCH}..${BRANCH}`; do
+for rev in `git rev-list $REMOTE..$LOCAL`; do
     show_rev $rev
 done
 
