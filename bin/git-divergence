@@ -12,17 +12,31 @@ function branch() {
     git branch 2>/dev/null | grep -e '^*' | tr -d '\* '
 }
 
-if [[ $1 == "" ]]; then
-    LOCAL=`branch`
-else
+function ensure_valid_ref() {
+    ref=$1
+    (
+        set +e
+        git show-ref $ref > /dev/null
+        if [[ $? == 1 ]]; then
+            echo "$0: bad ref: $ref"
+            exit 1
+        fi
+    )
+}
+
+if [[ $# == 2 ]]; then
     LOCAL=$1
+    REMOTE=$2
+elif [[ $# == 1 ]]; then
+    LOCAL=`branch`
+    REMOTE=$1
+else
+    LOCAL=`branch`
+    REMOTE=origin/$LOCAL
 fi
 
-if [[ $2 == "" ]]; then
-    REMOTE=origin/$LOCAL
-else
-    REMOTE=$2
-fi
+ensure_valid_ref $LOCAL
+ensure_valid_ref $REMOTE
 
 echo "changes from local ${LOCAL} to remote ${REMOTE}:"
 echo
