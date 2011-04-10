@@ -573,3 +573,18 @@ if &diff
   set nonumber
 endif
 
+" In these functions, we don't use the count argument, but the map referencing
+" v:count seems to make it work. I don't know why.
+function! ScrollOtherWindowDown(count)
+  normal! 
+  normal! 
+  normal! 
+endfunction
+function! ScrollOtherWindowUp(count)
+  normal! 
+  normal! 
+  normal! 
+endfunction
+nnoremap g<c-y> :call ScrollOtherWindowUp(v:count)<cr>
+nnoremap g<c-e> :call ScrollOtherWindowDown(v:count)<cr>
+
