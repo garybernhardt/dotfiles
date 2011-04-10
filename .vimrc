@@ -504,7 +504,7 @@ function! RunTests(filename)
     " Write the file and run tests for the given filename
     :w
     :silent !echo;echo;echo;echo;echo
-    exec ":!script/tests " . a:filename
+    exec ":!script/test " . a:filename
 endfunction
 
 function! SetTestFile()

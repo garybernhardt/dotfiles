@@ -41,7 +41,7 @@ gdc() { gd --cached $*; }
 alias pygrep="grep --include='*.py' $*"
 alias rbgrep="grep --include='*.rb' $*"
 alias r=rails
-alias t="script/tests $*"
+alias t="script/test $*"
 alias sr="screen -r"
 alias gx="gitx"
 alias gxa="gitx --all"
