@@ -19,8 +19,10 @@ def main():
 
 
 def file_data():
-    path = sys.argv[1]
-    return file(path, 'rb').read()
+    files = map(open, sys.argv[1:])
+    if not files:
+        files = [sys.stdin]
+    return ''.join(f.read() for f in files)
 
 
 def percent(part, whole):
