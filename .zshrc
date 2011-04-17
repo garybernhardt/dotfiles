@@ -47,7 +47,16 @@ alias gx="gitx"
 alias gxa="gitx --all"
 alias :q="echo YOU FAIL"
 function cdf() { cd *$1*/ } # stolen from @topfunky
-function das() { cd ~/proj/destroyallsoftware.com/destroyallsoftware.com && pwd && rvm use ree@das }
+function das() {
+    cd ~/proj/destroyallsoftware.com/destroyallsoftware.com
+    pwd
+    rvm use ree@das
+    export RUBY_HEAP_MIN_SLOTS=1000000
+    export RUBY_HEAP_SLOTS_INCREMENT=1000000
+    export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+    export RUBY_GC_MALLOC_LIMIT=1000000000
+    export RUBY_HEAP_FREE_MIN=500000
+}
 
 activate_virtualenv() {
     if [ -f env/bin/activate ]; then . env/bin/activate;
