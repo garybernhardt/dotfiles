@@ -486,7 +486,6 @@ function! SetGRBRailsCompiler()
     hi GreenBar term=reverse ctermfg=black ctermbg=green guifg=white guibg=green
 endfunction
 autocmd BufNewFile,BufRead *.rb call SetGRBRailsCompiler()
-map <leader>T :make<cr>
 
 let g:CommandTCursorStartMap='<leader>f'
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
