@@ -1,14 +1,14 @@
 [user]
-	name = Gary Bernhardt
-	email = gary.bernhardt@gmail.com
+    name = Gary Bernhardt
+    email = gary.bernhardt@gmail.com
 [diff]
 [color]
-	ui = auto
+    ui = auto
 [alias]
-	st = status
-	ci = commit
-	co = checkout
-	di = diff
+    st = status
+    ci = commit
+    co = checkout
+    di = diff
     dc = diff --cached
     amend = commit --amend
     aa = add --all
