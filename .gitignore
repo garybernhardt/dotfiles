@@ -70,6 +70,7 @@
 /Dropbox
 /Library/*
 !/Library/KeyBindings
+!/Library/AppleScripts
 /Movies
 /Music
 /Pictures
