@@ -481,12 +481,6 @@ nnoremap <leader><leader> <c-^>
 
 call pathogen#runtime_append_all_bundles() 
 
-function! SetGRBRailsCompiler()
-    compiler grbrails
-    hi GreenBar term=reverse ctermfg=black ctermbg=green guifg=white guibg=green
-endfunction
-autocmd BufNewFile,BufRead *.rb call SetGRBRailsCompiler()
-
 let g:CommandTCursorStartMap='<leader>f'
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
