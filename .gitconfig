@@ -24,6 +24,7 @@
     gn = goodness
     gnc = goodness --cached
     fa = fetch --all
+    pom = push origin master
 
 [format]
     pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
