@@ -496,7 +496,11 @@ function! RunTests(filename)
     " Write the file and run tests for the given filename
     :w
     :silent !echo;echo;echo;echo;echo
-    exec ":!script/test " . a:filename
+    if filereadable("script/test")
+        exec ":!script/test " . a:filename
+    else
+        exec ":!bundle exec rspec " . a:filename
+    end
 endfunction
 
 function! SetTestFile()
