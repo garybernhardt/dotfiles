@@ -333,7 +333,7 @@ augroup myfiletypes
   "clear old autocmds in group
   autocmd!
   "for ruby, autoindent with two spaces, always expand tabs
-  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass set ai sw=2 sts=2 et
+  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
   autocmd FileType python set sw=4 sts=4 et
 augroup END
 
@@ -361,8 +361,6 @@ map <leader>n :call RenameFile()<cr>
 if has("python")
     source ~/.vim/ropevim/rope.vim
 endif
-
-autocmd BufRead,BufNewFile *.feature set sw=4 sts=4 et
 
 set number
 set numberwidth=5
