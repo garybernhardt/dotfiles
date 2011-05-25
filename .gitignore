@@ -55,6 +55,7 @@
 /.tox
 /.vim-tmp
 /.vim/.netrwhist
+/.vim-fuf-data
 /.vimfuzzyfinder
 /.viminfo
 /.vimprojects
