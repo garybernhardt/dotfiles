@@ -200,7 +200,6 @@ function! InsertSnippetWrapper()
         return inserted
     endif
 endfunction
-inoremap ; <c-r>=InsertSnippetWrapper()<cr>
 
 if version >= 700
     autocmd FileType python set omnifunc=pythoncomplete#Complete
