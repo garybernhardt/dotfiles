@@ -601,3 +601,7 @@ nnoremap g<c-e> :call ScrollOtherWindowDown(v:count)<cr>
 
 set shell=bash
 
+" Can't be bothered to understand the difference between ESC and <c-c> in
+" insert mode
+imap <c-c> <esc>
+
