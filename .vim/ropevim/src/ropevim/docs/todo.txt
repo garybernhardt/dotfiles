@@ -1,8 +1,0 @@
-==============
- Ropevim TODO
-==============
-
-* preventing changed file warnings
-* interrupting refactorings
-* better progress bar
-* prefixing functions

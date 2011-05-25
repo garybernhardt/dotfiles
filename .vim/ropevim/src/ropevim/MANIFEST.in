@@ -1,4 +1,0 @@
-include README.txt COPYING setup.py MANIFEST.in
-include ropevim.py ropevim.vim
-recursive-include ropemode *.py
-recursive-include docs *.txt
