@@ -65,6 +65,7 @@
 /.wireshark
 /.wireshark-etc
 /.zcompdump
+/.Xauthority
 /Desktop
 /Documents
 /Downloads
@@ -77,6 +78,12 @@
 /Pictures
 /Public
 /Sites
+/bin/rvm
+/bin/rvm-auto-ruby
+/bin/rvm-exec
+/bin/rvm-prompt
+/bin/rvm-shell
+/bin/rvmsudo
 /blog
 /desktop_temp
 /doc
@@ -86,6 +93,7 @@
 /proj
 /purchases
 /screencasts
+/share/man
 /src
 /talks
 /var
