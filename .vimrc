@@ -3,6 +3,8 @@
 " Be warned: this has grown slowly over years and may not be internally
 " consistent.
 
+call pathogen#runtime_append_all_bundles()
+
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
@@ -144,7 +146,7 @@ endif
 
 " GRB: set the color scheme
 :set t_Co=256 " 256 colors
-:color grb256
+:color solarized
 
 " GRB: hide the toolbar in GUI mode
 if has("gui_running")
@@ -481,8 +483,6 @@ map <leader>f :call FindFile('')<cr>
 map <leader>gf :call FindFile('%%')<cr>
 
 nnoremap <leader><leader> <c-^>
-
-call pathogen#runtime_append_all_bundles() 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Running tests
