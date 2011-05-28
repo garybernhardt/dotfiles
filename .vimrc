@@ -161,14 +161,6 @@ function! ShowPydoc(module, ...)
     :execute ":sp ".fPath
 endfunction
 
-" GRB: Always source python.vim for Python files
-au FileType python source ~/.vim/scripts/python.vim
-
-" GRB: Use custom python.vim syntax file
-au! Syntax python source ~/.vim/syntax/python.vim
-let python_highlight_all = 1
-let python_slow_sync = 1
-
 " GRB: use emacs-style tab completion when selecting files, etc
 set wildmode=longest,list
 
