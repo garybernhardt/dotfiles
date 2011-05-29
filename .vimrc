@@ -457,7 +457,7 @@ function! ShowRoutes()
   :normal dd
 endfunction
 function! FindFile(prefix)
-    if a:prefix
+    if a:prefix != ""
         :call fuf#setOneTimeVariables(['g:fuf_coveragefile_globPatterns', [a:prefix.'/**']])
     endif
     :FufCoverageFile
