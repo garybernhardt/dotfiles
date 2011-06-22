@@ -352,10 +352,6 @@ function! RenameFile()
 endfunction
 map <leader>n :call RenameFile()<cr>
 
-if has("python")
-    source ~/.vim/ropevim/rope.vim
-endif
-
 set number
 set numberwidth=5
 
