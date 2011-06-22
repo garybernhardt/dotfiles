@@ -146,7 +146,7 @@ endif
 
 " GRB: set the color scheme
 :set t_Co=256 " 256 colors
-:set background=dark
+:set background=light
 :color solarized
 
 " GRB: hide the toolbar in GUI mode
