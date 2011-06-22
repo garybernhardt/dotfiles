@@ -588,3 +588,5 @@ set shell=bash
 " insert mode
 imap <c-c> <esc>
 
+command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
+
