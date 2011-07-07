@@ -1,0 +1,12 @@
+# lexically sort filenames
+--sort-files
+
+--type-add=ruby=rake,haml
+--type-add=vim=vimrc
+--type-add=js=json
+--type-add=sass=sass
+
+# add types ack doesn't know about
+--type-set=MARKDOWN=md,mkd,markdown
+--type-set=RDOC=rdoc
+
