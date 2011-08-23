@@ -56,6 +56,8 @@ function das() {
     export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
     export RUBY_GC_MALLOC_LIMIT=1000000000
     export RUBY_HEAP_FREE_MIN=500000
+    . /Volumes/misc/filing/business/destroy\ all\ software\ llc/s3.sh
+    . /Volumes/misc/filing/business/destroy\ all\ software\ llc/braintree.sh
 }
 
 activate_virtualenv() {
