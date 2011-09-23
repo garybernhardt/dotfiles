@@ -18,6 +18,7 @@
     ra = !git r --all
     ff = merge --ff-only
     pullff = pull --ff-only
+    noff = merge --no-ff
     l = log --graph --abbrev-commit --date=relative 
     la = !git l --all
     div = divergence
