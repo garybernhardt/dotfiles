@@ -78,7 +78,7 @@ function prompt_grb_scm_time_since_commit() {
 
 function prompt_grb_scm_info() {
     if zgit_inworktree; then
-        echo "($(prompt_grb_scm_time_since_commit)|$(prompt_wunjo_scm_branch))"
+        echo "($(prompt_wunjo_scm_branch))"
     fi
 }
 
@@ -138,7 +138,7 @@ prompt_grb_setup() {
     pc[path]='Cyan'
     pc[shortpath]='default'
     pc[rc]='red'
-    pc[scm_branch]='Cyan'
+    pc[scm_branch]='green'
     pc[scm_commitid]='Yellow'
     pc[scm_status_dirty]='Red'
     pc[scm_status_staged]='Green'
@@ -172,7 +172,7 @@ prompt_grb_setup() {
 #"
 	#PROMPT+="($pc[hist]%h$pc[reset])"
 	PROMPT+=":$pc[shortpath]%1~$pc[reset]"
-    PROMPT+="\$(prompt_grb_scm_info)"
+    PROMPT+="($pc[scm_branch]\$(prompt_wunjo_scm_branch)$pc[reset])"
 	PROMPT+=" $pc[#]\$$pc[reset] "
 
     #RPROMPT=
