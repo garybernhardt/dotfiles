@@ -26,6 +26,7 @@
     gnc = goodness --cached
     fa = fetch --all
     pom = push origin master
+    b = branch
 
 [format]
     pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
