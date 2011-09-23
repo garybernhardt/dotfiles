@@ -480,10 +480,14 @@ function! RunTests(filename)
     " Write the file and run tests for the given filename
     :w
     :silent !echo;echo;echo;echo;echo
-    if filereadable("script/test")
-        exec ":!script/test " . a:filename
+    if match(a:filename, '\.feature$') != -1
+        exec ":!bundle exec cucumber " . a:filename
     else
-        exec ":!bundle exec rspec " . a:filename
+        if filereadable("script/test")
+            exec ":!script/test " . a:filename
+        else
+            exec ":!bundle exec rspec " . a:filename
+        end
     end
 endfunction
 
@@ -500,8 +504,8 @@ function! RunTestFile(...)
     endif
 
     " Run the tests for the previously-marked file.
-    let in_spec_file = match(expand("%"), '_spec.rb$') != -1
-    if in_spec_file
+    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
+    if in_test_file
         call SetTestFile()
     elseif !exists("t:grb_test_file")
         return
