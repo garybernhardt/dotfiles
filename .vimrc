@@ -528,15 +528,15 @@ set winwidth=84
 " We have to have a winheight bigger than we want to set winminheight. But if
 " we set winheight to be huge before winminheight, the winminheight set will
 " fail.
-set winheight=5
-set winminheight=5
-set winheight=999
+" set winheight=5
+" set winminheight=5
+" set winheight=999
 
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-nnoremap <c-n> :let &wh = (&wh == 999 ? 10 : 999)<CR><C-W>=
+" nnoremap <c-n> :let &wh = (&wh == 999 ? 10 : 999)<CR><C-W>=
 
 function! ShowColors()
   let num = 255
