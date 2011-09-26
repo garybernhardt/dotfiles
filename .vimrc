@@ -520,7 +520,7 @@ endfunction
 
 map <leader>t :call RunTestFile()<cr>
 map <leader>T :call RunNearestTest()<cr>
-map <leader>a :call RunTests('spec')<cr>
+map <leader>a :call RunTests('')<cr>
 map <leader>c :w\|:!cucumber<cr>
 map <leader>C :w\|:!cucumber --profile wip<cr>
 
