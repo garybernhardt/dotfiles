@@ -12,6 +12,10 @@
 
 set -e
 
+if [[ $1 == -v ]]; then
+    verbose=1
+    shift
+fi
 start_ref=$1
 end_ref=$2
 test_command=$3
@@ -36,17 +40,23 @@ run_tests() {
     revs=`log_command git rev-list --reverse ${start_ref}..${end_ref}`
 
     for rev in $revs; do
-        echo "Checking out: $(git log --oneline -1 $rev)"
+        debug "Checking out: $(git log --oneline -1 $rev)"
         log_command git checkout --quiet $rev
         log_command $test_command
     done
-    log_command git checkout $end_ref
-    echo "OK for all revisions!"
+    log_command git checkout --quiet $end_ref
+    debug "OK for all revisions!"
 }
 
 log_command() {
-    echo "=> $*" >&2
+    debug "=> $*"
     eval $*
+}
+
+debug() {
+    if [ $verbose ]; then
+        echo $* >&2
+    fi
 }
 
 main
