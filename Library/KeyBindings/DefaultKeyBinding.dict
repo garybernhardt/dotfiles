@@ -6,5 +6,6 @@
     "~>" = "moveToEndOfDocument:";
     "~v" = "pageUp:";
     "~d" = "deleteWordForward:";
+    "^w" = "deleteWordBackward:";
 }
 
