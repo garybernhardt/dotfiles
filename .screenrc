@@ -1,4 +1,5 @@
 hardstatus on
 hardstatus alwayslastline "%{=b}%{G} Screen(s): %{b}%w"
 defscrollback 5000
+term screen-256color
 
