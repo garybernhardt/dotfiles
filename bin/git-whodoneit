@@ -1,7 +1,47 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env ruby
 
-for x in $(git grep -I --name-only $1); do
-    git blame -f -- $x | grep $1;
-done
+class WhoDoneIt
+  PATTERN = ARGV.fetch(0)
+
+  def print
+    lines.each do |line|
+      puts line
+    end
+  end
+
+  def lines
+    blame_and_code.map do |blame, code|
+      blame += " " * (longest_blame_line - blame.length)
+      "#{blame} #{code}"
+    end
+  end
+
+  def blame_and_code
+    @blame_and_code ||= blame_lines.map do |line|
+      blame, code = line.split(')', 2)
+      blame += ")"
+      [blame, code]
+    end
+  end
+
+  def longest_blame_line
+    @longest_blame_line ||= blame_and_code.map do |blame, code|
+      blame.length
+    end.max
+  end
+
+  def blame_lines
+    @blame_lines ||= matching_files.map do |filename|
+      `git blame -f -- #{filename} | grep #{PATTERN}`
+    end.map do |line|
+      line.split("\n")
+    end.flatten
+  end
+
+  def matching_files
+    @matching_files ||= `git grep -I --name-only #{PATTERN}`.split("\n")
+  end
+end
+
+WhoDoneIt.new.print
 
