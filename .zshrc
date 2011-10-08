@@ -74,15 +74,6 @@ python_module_dir () {
         )"
 }
 
-# Originally from Jonathan Penn, with modifications by Gary Bernhardt
-function whodoneit() {
-    (set -e &&
-        for x in $(git grep -I --name-only $1); do
-            git blame -f -- $x | grep $1;
-        done
-    )
-}
-
 # Set up rvm
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 

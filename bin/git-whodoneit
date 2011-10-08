@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+
+for x in $(git grep -I --name-only $1); do
+    git blame -f -- $x | grep $1;
+done
+
