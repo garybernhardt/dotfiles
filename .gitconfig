@@ -14,7 +14,7 @@
     aa = add --all
     head = !git l -1
     h = !git head
-    r = !git --no-pager l -20
+    r = !git l -20
     ra = !git r --all
     ff = merge --ff-only
     pullff = pull --ff-only
