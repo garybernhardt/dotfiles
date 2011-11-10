@@ -146,8 +146,8 @@ endif
 
 " GRB: set the color scheme
 :set t_Co=256 " 256 colors
-:set background=light
-:color solarized
+:set background=dark
+:color grb256
 
 " GRB: hide the toolbar in GUI mode
 if has("gui_running")
