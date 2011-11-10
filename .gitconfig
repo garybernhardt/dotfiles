@@ -27,6 +27,7 @@
     fa = fetch --all
     pom = push origin master
     b = branch
+    ds = diff --stat=160,120
 
 [format]
     pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
