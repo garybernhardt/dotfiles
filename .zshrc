@@ -45,6 +45,7 @@ alias t="script/test $*"
 alias sr="screen -r"
 alias gx="gitx"
 alias gxa="gitx --all"
+function mcd() { mkdir -p $1 && cd $1 }
 alias :q="echo YOU FAIL"
 function cdf() { cd *$1*/ } # stolen from @topfunky
 function das() {
