@@ -600,3 +600,17 @@ map <Left> :echo "no!"<cr>
 map <Right> :echo "no!"<cr>
 map <Up> :echo "no!"<cr>
 map <Down> :echo "no!"<cr>
+
+function! PromoteToLet()
+  :normal! dd
+  " :exec '?^\s*it\>'
+  :normal! P
+  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+  :normal ==
+  " :normal! <<
+  " :normal! ilet(:
+  " :normal! f 2cl) {
+  " :normal! A }
+endfunction
+:command! PromoteToLet :call PromoteToLet()
+
