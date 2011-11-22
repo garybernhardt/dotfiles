@@ -42,6 +42,7 @@ alias pygrep="grep --include='*.py' $*"
 alias rbgrep="grep --include='*.rb' $*"
 alias r=rails
 alias t="script/test $*"
+alias c="cucumber $*"
 alias sr="screen -r"
 alias gx="gitx"
 alias gxa="gitx --all"
