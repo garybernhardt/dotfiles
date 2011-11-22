@@ -28,6 +28,7 @@
     pom = push origin master
     b = branch
     ds = diff --stat=160,120
+    dh1 = diff HEAD~1
 
 [format]
     pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
