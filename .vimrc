@@ -472,10 +472,6 @@ nnoremap <leader><leader> <c-^>
 " Running tests
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" vim-makegreen binds itself to ,t unless something else is bound to its
-" function.
-map <leader>\dontstealmymapsmakegreen :w\|:call MakeGreen('spec')<cr>
-
 function! RunTests(filename)
     " Write the file and run tests for the given filename
     :w
