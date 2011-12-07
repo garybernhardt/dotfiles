@@ -609,4 +609,5 @@ function! PromoteToLet()
   " :normal! A }
 endfunction
 :command! PromoteToLet :call PromoteToLet()
+:map <leader>p :PromoteToLet<cr>
 
