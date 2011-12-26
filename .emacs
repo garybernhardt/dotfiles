@@ -167,7 +167,8 @@
           "^\\*.* output\\*$"           ; tex compilation buffer
           "^\\*TeX Help\\*$"
           "^\\*Shell Command Output\\*$"
-          "^\\*Async Shell Command\\*$"))
+          "^\\*Async Shell Command\\*$"
+          "^\\*Backtrace\\*$"))
 (setq grb-temporary-window (nth 2 (window-list)))
 (defun grb-special-display (buffer &optional data)
   (let ((window grb-temporary-window))
