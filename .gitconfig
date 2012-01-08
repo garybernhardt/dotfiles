@@ -19,7 +19,7 @@
     ff = merge --ff-only
     pullff = pull --ff-only
     noff = merge --no-ff
-    l = log --graph --abbrev-commit --date=relative 
+    l = "!f() { git log --graph --abbrev-commit --date=relative $* | sed -Ee 's/, [[:digit:]]+ .*months? ago)/)/' | sed -Ee 's/ ago//' | column -s '}' -t | less -rF; }; f"
     la = !git l --all
     div = divergence
     gn = goodness
@@ -31,7 +31,7 @@
     dh1 = diff HEAD~1
 
 [format]
-    pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
+    pretty=tformat:%C(yellow)%h%Creset}%Cgreen(%ar)}%C(bold blue)<%an>%Creset}%C(red)%d%Creset %s
 
 [merge]
     tool = vimdiff
