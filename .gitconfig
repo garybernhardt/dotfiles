@@ -19,7 +19,7 @@
     ff = merge --ff-only
     pullff = pull --ff-only
     noff = merge --no-ff
-    l = "!f() { git log --graph --abbrev-commit --date=relative $* | sed -Ee 's/, [[:digit:]]+ .*months? ago)/)/' | sed -Ee 's/ ago//' | column -s '}' -t | less -rF; }; f"
+    l = "!f() { git log --graph --abbrev-commit --date=relative $* | sed -Ee 's/, [[:digit:]]+ .*months? ago)/)/' | sed -Ee 's/ ago//' | column -s '}' -t | less -FXRS; }; f"
     la = !git l --all
     div = divergence
     gn = goodness
