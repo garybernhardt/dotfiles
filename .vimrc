@@ -614,3 +614,6 @@ endfunction
 :command! PromoteToLet :call PromoteToLet()
 :map <leader>p :PromoteToLet<cr>
 
+" Indent p tags
+autocmd TabEnter,WinEnter,BufWinEnter *.html,*.erb let g:html_indent_tags = g:html_indent_tags.'\|p'
+
