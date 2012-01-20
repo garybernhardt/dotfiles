@@ -615,5 +615,5 @@ endfunction
 :map <leader>p :PromoteToLet<cr>
 
 " Indent p tags
-autocmd TabEnter,WinEnter,BufWinEnter *.html,*.erb let g:html_indent_tags = g:html_indent_tags.'\|p'
+autocmd FileType html,eruby if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags .= '\|p\|li\|dt\|dd' | endif
 
