@@ -96,8 +96,8 @@
 
 (autoload 'psvn "psvn:w" "PSVN")
 
-(setq viper-mode t)                ; enable Viper at load time
-(setq viper-ex-style-editing nil)  ; can backspace past start of insert / line
+(setq viper-mode nil)                ; enable Viper at load time
+;(setq viper-ex-style-editing nil)  ; can backspace past start of insert / line
 (require 'viper)                   ; load Viper
 (require 'vimpulse)                ; load Vimpulse
 (require 'redo)			   ; enable vim-style redo
@@ -105,8 +105,8 @@
 
 ; GRB: don't go into insert mode for shells, because that trips me up
 ; when I expect to be able to use C-w to switch through all my windows
-(delq 'shell-mode viper-insert-state-mode-list)
-(delq 'eshell-mode viper-insert-state-mode-list)
+;(delq 'shell-mode viper-insert-state-mode-list)
+;(delq 'eshell-mode viper-insert-state-mode-list)
 
 ; GRB: resize and move the window if we're in a windowing system
 (defun resize-frame ()
