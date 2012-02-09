@@ -520,7 +520,7 @@ endfunction
 
 function! RunNearestTest()
     let spec_line_number = line('.')
-    call RunTestFile(":" . spec_line_number)
+    call RunTestFile(":" . spec_line_number . " -b")
 endfunction
 
 map <leader>t :call RunTestFile()<cr>
