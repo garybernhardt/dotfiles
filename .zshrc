@@ -106,12 +106,9 @@ function up()
     test $DIR != "/" && echo $DIR/$TARGET
 }
 
-# Set up rvm
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+[[ -s "/Users/grb/.rvm/scripts/rvm" ]] && source "/Users/grb/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # MacPorts Installer addition on 2010-04-21_at_09:59:50: adding an appropriate PATH variable for use with MacPorts.
 export PATH=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin:/opt/local/lib/mysql5/bin:$PATH
 # Finished adapting your PATH environment variable for use with MacPorts.
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
 
