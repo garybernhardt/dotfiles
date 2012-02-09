@@ -484,7 +484,7 @@ function! RunTests(filename)
     :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
     :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
     if match(a:filename, '\.feature$') != -1
-        exec ":!bundle exec cucumber " . a:filename
+        exec ":!script/features " . a:filename
     else
         if filereadable("script/test")
             exec ":!script/test " . a:filename
@@ -526,8 +526,8 @@ endfunction
 map <leader>t :call RunTestFile()<cr>
 map <leader>T :call RunNearestTest()<cr>
 map <leader>a :call RunTests('')<cr>
-map <leader>c :w\|:!cucumber<cr>
-map <leader>w :w\|:!cucumber --profile wip<cr>
+map <leader>c :w\|:!script/features<cr>
+map <leader>w :w\|:!script/features --profile wip<cr>
 
 set winwidth=79
 set nonumber
