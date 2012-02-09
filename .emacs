@@ -187,9 +187,9 @@
 (add-hook 'text-mode-hook #'turn-on-auto-fill)
 (setq-default fill-column 78)
 
-(require 'color-theme)
+;(require 'color-theme)
 ;(color-theme-pok-wog)
-(color-theme-robin-hood)
+;(color-theme-robin-hood)
 
 ; map gw to fill region like it does in vim
 (define-key viper-vi-global-user-map "gw" 'fill-region)
