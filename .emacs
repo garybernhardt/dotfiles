@@ -53,7 +53,7 @@
 (setq-default default-tab-width 4)
 
 ; GRB: confirm exit
-(setq confirm-kill-emacs #'yes-or-no-p)
+;(setq confirm-kill-emacs #'yes-or-no-p)
 
 ; GRB: C-style indentation in CSS mode
 (setq cssm-indent-function #'cssm-c-style-indenter)
