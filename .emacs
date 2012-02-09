@@ -203,3 +203,7 @@
 ; by default, grep into compressed files if possible when using M-x
 ; grep
 (setq-default grep-command "zgrep -nH -e ")
+
+(require 'mouse)
+(xterm-mouse-mode t)
+(defun track-mouse (e))
