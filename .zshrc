@@ -42,12 +42,14 @@ alias pygrep="grep --include='*.py' $*"
 alias rbgrep="grep --include='*.rb' $*"
 alias r=rails
 alias t="script/test $*"
-alias c="cucumber $*"
+alias f="script/features $*"
+alias g="bundle exec guard $*"
 alias sr="screen -r"
 alias gx="gitx"
 alias gxa="gitx --all"
 function mcd() { mkdir -p $1 && cd $1 }
 alias :q="echo YOU FAIL"
+alias misc="cd /Volumes/misc"
 function cdf() { cd *$1*/ } # stolen from @topfunky
 function das() {
     cd ~/proj/destroyallsoftware.com/destroyallsoftware.com
