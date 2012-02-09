@@ -432,7 +432,7 @@ augroup END
 
 set makeprg=python\ -m\ nose.core\ --machine-out
 
-map <silent> <leader>y :<C-u>silent '<,'>w !pbcopy<CR>
+map <leader>y "*y
 
 " Make <leader>' switch between ' and "
 nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
