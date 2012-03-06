@@ -28,6 +28,11 @@ export HISTSIZE=100000
 export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
 
+export EDITOR=vi
+# GNU Screen sets -o vi if EDITOR=vi, so we have to force it back. What the
+# hell, GNU?
+set -o emacs
+
 # Unbreak Python's error-prone .pyc file generation
 export PYTHONDONTWRITEBYTECODE=1
 
