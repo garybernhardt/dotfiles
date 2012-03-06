@@ -1,179 +1,131 @@
 " This is Gary Bernhardt's .vimrc file
-"
-" Be warned: this has grown slowly over years and may not be internally
-" consistent.
+" vim:set ts=2 sts=2 sw=2 expandtab:
 
 call pathogen#runtime_append_all_bundles()
 
-" When started as "evim", evim.vim will already have done these settings.
-if v:progname =~? "evim"
-  finish
-endif
-
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" BASIC EDITING CONFIGURATION
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
-
-" Allow backgrounding buffers without writing them, and remember marks/undo
-" for backgrounded buffers
+" allow unsaved background buffers and remember marks/undo for them
 set hidden
-
-" Remember more commands and search history
-set history=1000
-
-" Make tab completion for files/buffers act like bash
-set wildmenu
-
-" Make searches case-sensitive only if they contain upper-case characters
-set ignorecase
-set smartcase
-
-" Keep more context when scrolling off the end of a buffer
-set scrolloff=3
-
-" Store temporary files in a central spot
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file
-endif
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
-
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-" This is an alternative that also works in block mode, but the deleted
-" text is lost and it only works for putting the current register.
-"vnoremap p "_dp
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-  " set guifont=Monaco:h14
-  set guifont=Inconsolata-dz:h14
-endif
-
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
-
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
-
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
-
-  augroup END
-
-else
-
-  set autoindent		" always set autoindenting on
-
-endif " has("autocmd")
-
-
-" GRB: sane editing configuration"
+" remember more commands and search history
+set history=10000
 set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set autoindent
-" set smartindent
 set laststatus=2
 set showmatch
 set incsearch
+set hlsearch
+" make searches case-sensitive only if they contain upper-case characters
+set ignorecase smartcase
+" highlight current line
+set cursorline
+set cmdheight=2
+set switchbuf=useopen
+set numberwidth=5
+set showtabline=2
+set winwidth=79
+set shell=bash
+" Prevent Vim from clobbering the scrollback buffer. See
+" http://www.shallowsky.com/linux/noaltscreen.html
+set t_ti= t_te=
+" keep more context when scrolling off the end of a buffer
+set scrolloff=3
+" Store temporary files in a central spot
+set backup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+" display incomplete commands
+set showcmd
+" Enable highlighting for syntax
+syntax on
+" Enable file type detection.
+" Use the default filetype settings, so that mail gets 'tw' set to 72,
+" 'cindent' is on in C files, etc.
+" Also load indent files, to automatically do language-dependent indenting.
+filetype plugin indent on
+" use emacs-style tab completion when selecting files, etc
+set wildmode=longest,list
+" make tab completion for files/buffers act like bash
+set wildmenu
+let mapleader=","
 
-" GRB: wrap lines at 78 characters
-" set textwidth=78
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CUSTOM AUTOCMDS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup vimrcEx
+  " Clear all autocmds in the group
+  autocmd!
+  autocmd FileType text setlocal textwidth=78
+  " Jump to last cursor position unless it's invalid or in an event handler
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
 
-" GRB: Highlight long lines
-" Turn long-line highlighting off when entering all files, then on when
-" entering certain files. I don't understand why :match is so stupid that
-" setting highlighting when entering a .rb file will cause e.g. a quickfix
-" window opened later to have the same match. There doesn't seem to be any way
-" to localize it to a file type.
-" function! HighlightLongLines()
-"   hi LongLine guifg=NONE guibg=NONE gui=undercurl ctermfg=white ctermbg=red cterm=NONE guisp=#FF6C60 " undercurl color
-" endfunction
-" function! StopHighlightingLongLines()
-"   hi LongLine guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE guisp=NONE
-" endfunction
-" autocmd TabEnter,WinEnter,BufWinEnter * call StopHighlightingLongLines()
-" autocmd TabEnter,WinEnter,BufWinEnter *.rb,*.py call HighlightLongLines()
-" hi LongLine guifg=NONE
-" match LongLine '\%>78v.\+'
+  "for ruby, autoindent with two spaces, always expand tabs
+  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+  autocmd FileType python set sw=4 sts=4 et
 
-" GRB: highlighting search"
-set hls
+  autocmd! BufRead,BufNewFile *.sass setfiletype sass 
 
-if has("gui_running")
-  " GRB: set font"
-  ":set nomacatsui anti enc=utf-8 gfn=Monaco:h12
+  autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
+  autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
 
-  " GRB: set window size"
-  :set lines=100
-  :set columns=171
+  " Indent p tags
+  autocmd FileType html,eruby if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags .= '\|p\|li\|dt\|dd' | endif
+augroup END
 
-  " GRB: highlight current line"
-  :set cursorline
-endif
-
-" GRB: set the color scheme
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COLOR
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :set t_Co=256 " 256 colors
 :set background=dark
 :color grb256
 
-" GRB: hide the toolbar in GUI mode
-if has("gui_running")
-    set go-=T
-end
-
-" GRB: add pydoc command
-:command! -nargs=+ Pydoc :call ShowPydoc("<args>")
-function! ShowPydoc(module, ...)
-    let fPath = "/tmp/pyHelp_" . a:module . ".pydoc"
-    :execute ":!pydoc " . a:module . " > " . fPath
-    :execute ":sp ".fPath
-endfunction
-
-" GRB: use emacs-style tab completion when selecting files, etc
-set wildmode=longest,list
-
-" GRB: Put useful info in status line
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" STATUS LINE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 :hi User1 term=inverse,bold cterm=inverse,bold ctermfg=red
 
-" GRB: clear the search buffer when hitting return
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MISC KEY MAPS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>y "*y
+" Make <leader>' switch between ' and "
+nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
+" Move around splits with <c-hjkl>
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+" Insert a hash rocket with <c-l>
+imap <c-l> <space>=><space>
+" Can't be bothered to understand ESC vs <c-c> in insert mode
+imap <c-c> <esc>
+" Clear the search buffer when hitting return
 :nnoremap <CR> :nohlsearch<cr>
+nnoremap <leader><leader> <c-^>
 
-" Remap the tab key to do autocompletion or indentation depending on the
-" context (from http://www.vim.org/tips/tip.php?tip_id=102)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ARROW KEYS ARE UNACCEPTABLE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <Left> :echo "no!"<cr>
+map <Right> :echo "no!"<cr>
+map <Up> :echo "no!"<cr>
+map <Down> :echo "no!"<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MULTIPURPOSE TAB KEY
+" Indent if we're at the beginning of a line. Else, do completion.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! InsertTabWrapper()
     let col = col('.') - 1
     if !col || getline('.')[col - 1] !~ '\k'
@@ -185,52 +137,16 @@ endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
-" When hitting <;>, complete a snippet if there is one; else, insert an actual
-" <;>
-function! InsertSnippetWrapper()
-    let inserted = TriggerSnippet()
-    if inserted == "\<tab>"
-        return ";"
-    else
-        return inserted
-    endif
-endfunction
-
-if version >= 700
-    autocmd FileType python set omnifunc=pythoncomplete#Complete
-    let Tlist_Ctags_Cmd='~/bin/ctags'
-endif
-
-let mapleader=","
-
-" highlight current line
-set cursorline
-
-set cmdheight=2
-
-" Don't show scroll bars in the GUI
-set guioptions-=L
-set guioptions-=r
-
-" Use <c-h> for snippets
-let g:NERDSnippets_key = '<c-h>'
-
-augroup myfiletypes
-  "clear old autocmds in group
-  autocmd!
-  "for ruby, autoindent with two spaces, always expand tabs
-  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
-  autocmd FileType python set sw=4 sts=4 et
-augroup END
-
-set switchbuf=useopen
-
-autocmd! BufRead,BufNewFile *.sass setfiletype sass 
-
-" Map ,e and ,v to open files in the same directory as the current file
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" OPEN FILES IN DIRECTORY OF CURRENT FILE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>e :edit %%
 map <leader>v :view %%
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RENAME CURRENT FILE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! RenameFile()
     let old_name = expand('%')
     let new_name = input('New file name: ', expand('%'))
@@ -242,18 +158,22 @@ function! RenameFile()
 endfunction
 map <leader>n :call RenameFile()<cr>
 
-set number
-set numberwidth=5
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PROMOTE VARIABLE TO RSPEC LET
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! PromoteToLet()
+  :normal! dd
+  " :exec '?^\s*it\>'
+  :normal! P
+  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+  :normal ==
+endfunction
+:command! PromoteToLet :call PromoteToLet()
+:map <leader>p :PromoteToLet<cr>
 
-if has("gui_running")
-    " source ~/proj/vim-complexity/repo/complexity.vim
-endif
-
-" Seriously, guys. It's not like :W is bound to anything anyway.
-command! W :w
-
-map <leader>rm :BikeExtract<cr>
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" EXTRACT VARIABLE (SKETCHY
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! ExtractVariable()
     let name = input("Variable name: ")
     if name == ''
@@ -270,7 +190,11 @@ function! ExtractVariable()
     " Paste the original selected text to be the variable value
     normal! $p
 endfunction
+vnoremap <leader>rv :call ExtractVariable()<cr>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" INLINE VARIABLE (SKETCHY
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! InlineVariable()
     " Copy the variable under the cursor into the 'a' register
     :let l:tmp_a = @a
@@ -293,41 +217,11 @@ function! InlineVariable()
     :let @a = l:tmp_a
     :let @b = l:tmp_b
 endfunction
-
-vnoremap <leader>rv :call ExtractVariable()<cr>
 nnoremap <leader>ri :call InlineVariable()<cr>
-" " Find comment
-" map <leader>/# /^ *#<cr>
-" " Find function
-" map <leader>/f /^ *def\><cr>
-" " Find class
-" map <leader>/c /^ *class\><cr>
-" " Find if
-" map <leader>/i /^ *if\><cr>
-" " Delete function
-" " \%$ means 'end of file' in vim-regex-speak
-" map <leader>df d/\(^ *def\>\)\\|\%$<cr>
-" com! FindLastImport :execute'normal G<CR>' | :execute':normal ?^\(from\|import\)\><CR>'
-" map <leader>/m :FindLastImport<cr>
 
-command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
-
-" Always show tab bar
-set showtabline=2
-
-augroup mkd
-    autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
-    autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
-augroup END
-
-set makeprg=python\ -m\ nose.core\ --machine-out
-
-map <leader>y "*y
-
-" Make <leader>' switch between ' and "
-nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
-
-" Map keys to go to specific files
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MAPS TO JUMP TO SPECIFIC COMMAND-T TARGETS AND FILES
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>gr :topleft :split config/routes.rb<cr>
 function! ShowRoutes()
   " Requires 'scratch' plugin
@@ -359,6 +253,9 @@ map <leader>gt :CommandTFlush<cr>\|:CommandTTag<cr>
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SWITCH BETWEEN TEST AND PRODUCTION CODE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! OpenTestAlternate()
   let new_file = AlternateForCurrentFile()
   exec ':e ' . new_file
@@ -385,12 +282,10 @@ function! AlternateForCurrentFile()
   return new_file
 endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
-nnoremap <leader><leader> <c-^>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Running tests
+" RUNNING TESTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 function! RunTests(filename)
     " Write the file and run tests for the given filename
     :w
@@ -446,35 +341,16 @@ map <leader>a :call RunTests('')<cr>
 map <leader>c :w\|:!script/features<cr>
 map <leader>w :w\|:!script/features --profile wip<cr>
 
-set winwidth=79
-set nonumber
-" We have to have a winheight bigger than we want to set winminheight. But if
-" we set winheight to be huge before winminheight, the winminheight set will
-" fail.
-" set winheight=5
-" set winminheight=5
-" set winheight=999
-
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
-" nnoremap <c-n> :let &wh = (&wh == 999 ? 10 : 999)<CR><C-W>=
-
-function! ShowColors()
-  let num = 255
-  while num >= 0
-    exec 'hi col_'.num.' ctermbg='.num.' ctermfg=white'
-    exec 'syn match col_'.num.' "ctermbg='.num.':...." containedIn=ALL'
-    call append(0, 'ctermbg='.num.':....')
-    let num = num - 1
-  endwhile
-endfunction
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Md5 COMMAND
+" Show the MD5 of the current buffer
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 command! -range Md5 :echo system('echo '.shellescape(join(getline(<line1>, <line2>), '\n')) . '| md5')
 
-imap <c-l> <space>=><space>
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" OpenChangedFiles COMMAND
+" Open a split for each dirty file in git
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! OpenChangedFiles()
   only " Close all windows, unless they're modified
   let status = system('git status -s | grep "^ \?\(M\|A\)" | cut -d " " -f 3')
@@ -486,60 +362,9 @@ function! OpenChangedFiles()
 endfunction
 command! OpenChangedFiles :call OpenChangedFiles()
 
-if &diff
-  nmap <c-h> :diffget 1<cr>
-  nmap <c-l> :diffget 3<cr>
-  nmap <c-k> [cz.
-  nmap <c-j> ]cz.
-  set nonumber
-endif
-
-" In these functions, we don't use the count argument, but the map referencing
-" v:count seems to make it work. I don't know why.
-function! ScrollOtherWindowDown(count)
-  normal! 
-  normal! 
-  normal! 
-endfunction
-function! ScrollOtherWindowUp(count)
-  normal! 
-  normal! 
-  normal! 
-endfunction
-nnoremap g<c-y> :call ScrollOtherWindowUp(v:count)<cr>
-nnoremap g<c-e> :call ScrollOtherWindowDown(v:count)<cr>
-
-set shell=bash
-
-" Can't be bothered to understand the difference between ESC and <c-c> in
-" insert mode
-imap <c-c> <esc>
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" InsertTime COMMAND
+" Insert the current time
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
-
-map <Left> :echo "no!"<cr>
-map <Right> :echo "no!"<cr>
-map <Up> :echo "no!"<cr>
-map <Down> :echo "no!"<cr>
-
-function! PromoteToLet()
-  :normal! dd
-  " :exec '?^\s*it\>'
-  :normal! P
-  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
-  :normal ==
-  " :normal! <<
-  " :normal! ilet(:
-  " :normal! f 2cl) {
-  " :normal! A }
-endfunction
-:command! PromoteToLet :call PromoteToLet()
-:map <leader>p :PromoteToLet<cr>
-
-" Indent p tags
-autocmd FileType html,eruby if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags .= '\|p\|li\|dt\|dd' | endif
-
-" Prevent Vim from clobbering the scrollback buffer. See
-" http://www.shallowsky.com/linux/noaltscreen.html
-set t_ti= t_te=
 
