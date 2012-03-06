@@ -3,11 +3,6 @@
 " Be warned: this has grown slowly over years and may not be internally
 " consistent.
 
-let g:ctrlp_extensions = ["tag"]
-let g:ctrlp_match_window_reversed = 0
-" let g:ctrlp_map = '<leader>f'
-let g:ctrlp_max_height = 100
-
 call pathogen#runtime_append_all_bundles()
 
 " When started as "evim", evim.vim will already have done these settings.
