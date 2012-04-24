@@ -46,7 +46,9 @@
 /.psql_history
 /.pypirc
 /.python-eggs
+/.rbx
 /.rnd
+/.rubinius_last_error
 /.rvm
 /.sh_history
 /.sqlite_history
