@@ -28,7 +28,7 @@ show_git_head() {
 
 pretty_git_log() {
     git log --graph --abbrev-commit --date=relative --pretty="tformat:${FORMAT}" $* |
-        # Repalce (2 years ago) with (2 years)
+        # Replace (2 years ago) with (2 years)
         sed -Ee 's/(^[^<]*) ago)/\1)/' |
         # Replace (2 years, 5 months) with (2 years)
         sed -Ee 's/(^[^<]*), [[:digit:]]+ .*months?)/\1)/' |
