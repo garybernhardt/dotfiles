@@ -37,9 +37,6 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\C-x\C-e' edit-command-line
 
-# Unbreak Python's error-prone .pyc file generation
-export PYTHONDONTWRITEBYTECODE=1
-
 export WORDCHARS='*?[]~&;!$%^<>'
 
 export ACK_COLOR_MATCH='red'
