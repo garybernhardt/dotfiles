@@ -74,3 +74,5 @@ export PATH=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.
 
 source ~/bin/git-completion.bash
 
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
