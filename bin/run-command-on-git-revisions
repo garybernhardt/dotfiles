@@ -38,6 +38,17 @@ usage() {
 
 run_tests() {
     revs=`log_command git rev-list --reverse ${start_ref}..${end_ref}`
+    # try it backwards if this was empty
+    # this allows using either "master some_old_tag" or "some_old_tag master"
+    if [ -z "$revs" ]; then
+        revs=`log_command git rev-list --reverse ${end_ref}..${start_ref}`
+        # if this worked, change our end_ref and start_ref pointers
+        if [ -n "$revs" ]; then
+            tmp=$start_ref
+            start_ref=$end_ref
+            end_ref=$tmp
+        fi
+    fi
 
     for rev in $revs; do
         debug "Checking out: $(git log --oneline -1 $rev)"
@@ -61,4 +72,3 @@ debug() {
 }
 
 main
-
