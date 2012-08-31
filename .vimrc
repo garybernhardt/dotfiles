@@ -328,6 +328,14 @@ function! SetTestFile()
     let t:grb_test_file=@%
 endfunction
 
+" Support running specs in legacy projects
+function! RSpecCommand()
+    let rspec_gem_path = system("bundle show rspec")
+    let rspec_command  = match(rspec_gem_path, "rspec-1") != -1 ? "spec" : "rspec"
+
+    return rspec_command
+endfunction
+
 function! RunTests(filename)
     " Write the file and run tests for the given filename
     :w
@@ -343,9 +351,9 @@ function! RunTests(filename)
         if filereadable("script/test")
             exec ":!script/test " . a:filename
         elseif filereadable("Gemfile")
-            exec ":!bundle exec rspec --color " . a:filename
+            exec ":!bundle exec " . RSpecCommand() . " --color " . a:filename
         else
-            exec ":!rspec --color " . a:filename
+            exec ":!" . RSpecCommand() . " --color " . a:filename
         end
     end
 endfunction
