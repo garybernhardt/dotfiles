@@ -1,4 +1,4 @@
-setopt promptsubst
+setopt PROMPT_SUBST
 autoload -U promptinit
 promptinit
 prompt grb
