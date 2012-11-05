@@ -43,6 +43,8 @@
 /.macports
 /.mysql_history
 /.netrc
+/.npm
+/.offlineimap
 /.pip
 /.psql_history
 /.pypirc
@@ -75,6 +77,7 @@
 /Documents
 /Downloads
 /Dropbox
+/Gmail
 /Library/*
 !/Library/KeyBindings
 !/Library/AppleScripts
@@ -95,6 +98,7 @@
 /gmail-archive.sparsebundle
 /media
 /misc.sparsebundle
+/papers
 /proj
 /purchases
 /reference
