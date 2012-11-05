@@ -16,7 +16,6 @@ export PATH="$HOME/bin:$PATH"
 export TERM='xterm-color'
 alias ls='ls -G'
 alias ll='ls -lG'
-alias duh='du -csh'
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 export GREP_OPTIONS="--color"
 
