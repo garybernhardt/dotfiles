@@ -1,8 +1,10 @@
+# Set custom prompt
 setopt PROMPT_SUBST
 autoload -U promptinit
 promptinit
 prompt grb
 
+# Initialize completion
 autoload -U compinit
 compinit
 
@@ -10,7 +12,7 @@ compinit
 export PATH=/usr/local/sbin:/usr/local/bin:${PATH}
 export PATH="$HOME/bin:$PATH"
 
-# Unbreak broken, non-colored terminal
+# Colorize terminal
 export TERM='xterm-color'
 alias ls='ls -G'
 alias ll='ls -lG'
@@ -18,25 +20,29 @@ alias duh='du -csh'
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 export GREP_OPTIONS="--color"
 
-# Unbreak history
+# Nicer history
 export HISTSIZE=100000
 export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
 
+# Use vim as the editor
 export EDITOR=vi
-# GNU Screen sets -o vi if EDITOR=vi, so we have to force it back. What the
-# hell, GNU?
+# GNU Screen sets -o vi if EDITOR=vi, so we have to force it back.
 set -o emacs
 
+# Use C-x C-e to edit the current command line
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\C-x\C-e' edit-command-line
 
+# By default, zsh considers many characters part of a word (e.g., _ and -).
+# Narrow that down to allow easier skipping through words via M-f and M-b.
 export WORDCHARS='*?[]~&;!$%^<>'
 
+# Highlight search results in ack.
 export ACK_COLOR_MATCH='red'
 
-# ACTUAL CUSTOMIZATION OH NOES!
+# Aliases
 gd() { git diff $* | view -; }
 gdc() { gd --cached $*; }
 alias pygrep="grep --include='*.py' $*"
@@ -63,6 +69,7 @@ function das() {
     . /Volumes/misc/filing/business/destroy\ all\ software\ llc/braintree.sh
 }
 
+# Activate the closest virtualenv by looking in parent directories.
 activate_virtualenv() {
     if [ -f env/bin/activate ]; then . env/bin/activate;
     elif [ -f ../env/bin/activate ]; then . ../env/bin/activate;
@@ -71,6 +78,7 @@ activate_virtualenv() {
     fi
 }
 
+# Find the directory of the named Python module.
 python_module_dir () {
     echo "$(python -c "import os.path as _, ${1}; \
         print _.dirname(_.realpath(${1}.__file__[:-1]))"
@@ -106,6 +114,7 @@ function up()
     test $DIR != "/" && echo $DIR/$TARGET
 }
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
+# Initialize RVM
+PATH=$PATH:$HOME/.rvm/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
