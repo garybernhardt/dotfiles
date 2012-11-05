@@ -68,11 +68,7 @@ python_module_dir () {
         )"
 }
 
-# MacPorts Installer addition on 2010-04-21_at_09:59:50: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin:$PATH
-# Finished adapting your PATH environment variable for use with MacPorts.
-
 source ~/bin/git-completion.bash
 
-
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
