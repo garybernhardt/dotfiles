@@ -8,7 +8,7 @@ localrepository  = Local
 remoterepository = Remote
 
 [Repository Local]
-localfolders = ~/Gmail
+localfolders = ~/Downloads/Gmail
 type         = Maildir
 
 [Repository Remote]
