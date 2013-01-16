@@ -91,13 +91,8 @@ python_module_dir () {
 #
 function up()
 {
-    if [ "$1" != "" -a "$2" != "" ]; then
-        local DIR=$1
-        local TARGET=$2
-    elif [ "$1" ]; then
-        local DIR=$PWD
-        local TARGET=$1
-    fi
+    local DIR=$PWD
+    local TARGET=$1
     while [ ! -e $DIR/$TARGET -a $DIR != "/" ]; do
         DIR=$(dirname $DIR)
     done
