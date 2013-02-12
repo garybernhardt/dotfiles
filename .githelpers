@@ -9,9 +9,6 @@
 # author name, ensuring that we don't destroy anything in the commit message
 # that looks like time.
 #
-# The log format uses } characters between each field, and `column` is later
-# used to split on them. A } in the commit subject or any other field will
-# break this.
 
 HASH="%C(yellow)%h%Creset"
 RELATIVE_TIME="%Cgreen(%ar)%Creset"
@@ -19,7 +16,11 @@ AUTHOR="%C(bold blue)<%an>%Creset"
 REFS="%C(red)%d%Creset"
 SUBJECT="%s"
 
-FORMAT="$HASH}$RELATIVE_TIME}$AUTHOR}$REFS $SUBJECT"
+colsep=$'\c_'  # i.e. ^_ (ASCII Unit Separator)
+               # colsep can be any single char that will never appear in the
+               # commit subject or any other field.
+
+FORMAT="$HASH$colsep$RELATIVE_TIME$colsep$AUTHOR$colsep$REFS $SUBJECT"
 
 show_git_head() {
     pretty_git_log -1
@@ -32,8 +33,8 @@ pretty_git_log() {
         sed -Ee 's/(^[^<]*) ago\)/\1)/' |
         # Replace (2 years, 5 months) with (2 years)
         sed -Ee 's/(^[^<]*), [[:digit:]]+ .*months?\)/\1)/' |
-        # Line columns up based on } delimiter
-        column -s '}' -t |
+        # Line columns up based on $colsep delimiter
+        column -s "$colsep" -t |
         # Page only if we need to
         less -FXRS
 }
