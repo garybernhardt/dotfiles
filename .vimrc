@@ -58,7 +58,8 @@ set wildmenu
 let mapleader=","
 " Fix slow O inserts
 :set timeout timeoutlen=1000 ttimeoutlen=100
-
+" Show line numbers
+set number
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
