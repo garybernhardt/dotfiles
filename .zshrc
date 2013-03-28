@@ -42,7 +42,7 @@ export WORDCHARS='*?[]~&;!$%^<>'
 export ACK_COLOR_MATCH='red'
 
 # Aliases
-alias r=rails
+alias r="bundle exec rails"
 alias t="script/test $*"
 alias f="script/features $*"
 function mcd() { mkdir -p $1 && cd $1 }
