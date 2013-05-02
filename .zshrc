@@ -45,6 +45,11 @@ export ACK_COLOR_MATCH='red'
 alias r="bundle exec rails"
 alias t="script/test $*"
 alias f="script/features $*"
+function lack() {
+    # The +k clears the screen (it tries to scroll up but there's nowhere to
+    # go)
+    ack --group --color $* | less -r +k
+}
 function mcd() { mkdir -p $1 && cd $1 }
 function cdf() { cd *$1*/ } # stolen from @topfunky
 function das() {
