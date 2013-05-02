@@ -306,11 +306,11 @@ nnoremap <leader>. :call OpenTestAlternate()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUNNING TESTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>t :call RunTestFile()<cr>
-map <leader>T :call RunNearestTest()<cr>
-map <leader>a :call RunTests('')<cr>
-map <leader>c :w\|:!script/features<cr>
-map <leader>w :w\|:!script/features --profile wip<cr>
+map <leader>t :silent call RunTestFile()<cr>
+map <leader>T :silent call RunNearestTest()<cr>
+map <leader>a :silent call RunTests('')<cr>
+map <leader>c :w\|:silent !script/features<cr>
+map <leader>w :w\|:silent !script/features --profile wip<cr>
 
 function! RunTestFile(...)
     if a:0
