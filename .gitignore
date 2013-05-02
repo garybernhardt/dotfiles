@@ -60,6 +60,7 @@
 /.subversion
 /.toot
 /.tox
+/.trc
 /.vim-tmp
 /.vim/.netrwhist
 /.vim-fuf-data
@@ -69,6 +70,7 @@
 /.vimrc.backup
 /.vimrc.old
 /.viper
+/.wine
 /.wireshark
 /.wireshark-etc
 /.zcompdump
