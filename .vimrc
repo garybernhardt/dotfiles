@@ -26,7 +26,6 @@ set ignorecase smartcase
 set cursorline
 set cmdheight=2
 set switchbuf=useopen
-set numberwidth=5
 set showtabline=2
 set winwidth=79
 " This makes RVM work inside Vim. I have no idea why.
@@ -58,8 +57,6 @@ set wildmenu
 let mapleader=","
 " Fix slow O inserts
 :set timeout timeoutlen=1000 ttimeoutlen=100
-" Show line numbers
-set number
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
