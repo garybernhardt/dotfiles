@@ -42,9 +42,10 @@ export WORDCHARS='*?[]~&;!$%^<>'
 export ACK_COLOR_MATCH='red'
 
 # Aliases
-alias r="bundle exec rails"
 alias t="script/test $*"
 alias f="script/features $*"
+alias z="zeus $*"
+alias r="echo NOPE"
 function lack() {
     # The +k clears the screen (it tries to scroll up but there's nowhere to
     # go)
