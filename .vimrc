@@ -125,7 +125,14 @@ call MapCR()
 nnoremap <leader><leader> <c-^>
 " Close all other windows, open a vertical split, and open this file's test
 " alternate in it.
-nnoremap <leader>s <c-w>o <c-w>v <c-w>w :call OpenTestAlternate()<cr>
+nnoremap <leader>s :call FocusOnFile()<cr>
+function! FocusOnFile()
+  normal! o
+  normal! v
+  normal! l
+  call OpenTestAlternate()
+  normal! h
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
