@@ -25,7 +25,7 @@ end
 lines = STDIN.readlines.map { |line| line.sub(/\n$/, "") }
 
 definitions = lines.map do |line|
-  left, right = line.split("{")
+  left, right = line.split("{", 2)
   if left && right
     left = left.rstrip
     right = "{" + right
