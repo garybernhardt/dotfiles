@@ -73,6 +73,6 @@ shift; shift
 files=$*
 
 files=$(ack -l '\b'$old'\b' $files)
-leader_j='nnoremap <leader>j 0<cr>:%s/\<'$old'\>/'$new'/gc<cr>'
+leader_j='nnoremap <leader>j :%s/\<'$old'\>/'$new'/gc<cr>'
 leader_k='nnoremap <leader>k :update\|:bd<cr>'
 vim -c "$leader_j" -c "$leader_k" $files
