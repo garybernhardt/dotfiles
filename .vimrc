@@ -135,6 +135,8 @@ function! FocusOnFile()
   call OpenTestAlternate()
   normal! h
 endfunction
+" Reload in chrome
+map <leader>l :w\|:silent !reload-chrome<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
