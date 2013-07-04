@@ -42,7 +42,13 @@ export WORDCHARS='*?[]~&;!$%^<>'
 export ACK_COLOR_MATCH='red'
 
 # Aliases
-alias t="script/test $*"
+t() {
+    if [ -e script/test ]; then
+        script/test $*
+    else
+        rspec --color spec
+    fi
+}
 alias f="script/features $*"
 alias z="zeus $*"
 alias r="echo NOPE"
