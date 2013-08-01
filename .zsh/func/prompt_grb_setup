@@ -311,28 +311,28 @@ prompt_wunjo_scm_branch() {
 
 	echo -n "$pc[punc]$pc[scm_branch]$(zgit_head)"
 
-	if zgit_inworktree; then
-		if ! zgit_isindexclean; then
-			echo -n "$pc[scm_status_staged]+"
-		fi
+	#if zgit_inworktree; then
+	#	if ! zgit_isindexclean; then
+	#		echo -n "$pc[scm_status_staged]+"
+	#	fi
 
-		local -a dirty
-		if ! zgit_isworktreeclean; then
-			dirty+='!'
-		fi
+	#	local -a dirty
+	#	if ! zgit_isworktreeclean; then
+	#		dirty+='!'
+	#	fi
 
-		if zgit_hasunmerged; then
-			dirty+='*'
-		fi
+	#	if zgit_hasunmerged; then
+	#		dirty+='*'
+	#	fi
 
-		if zgit_hasuntracked; then
-			dirty+='?'
-		fi
+	#	if zgit_hasuntracked; then
+	#		dirty+='?'
+	#	fi
 
-		if [ $#dirty -gt 0 ]; then
-			echo -n "$pc[scm_status_dirty]${(j::)dirty}"
-		fi
-	fi
+	#	if [ $#dirty -gt 0 ]; then
+	#		echo -n "$pc[scm_status_dirty]${(j::)dirty}"
+	#	fi
+	#fi
 
 	echo $pc[reset]
 }
