@@ -6,6 +6,7 @@ accounts = Gmail
 [Account Gmail]
 localrepository  = Local
 remoterepository = Remote
+status_backend = sqlite
 
 [Repository Local]
 localfolders = ~/Downloads/Gmail
@@ -17,6 +18,4 @@ remoteuser       = gary.bernhardt@gmail.com
 remotepasseval   = get_imap_passwd()
 type             = Gmail
 readonly         = True
-#maxconnections   = 8
-
-
+maxconnections   = 1
