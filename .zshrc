@@ -50,7 +50,7 @@ t() {
 }
 alias f="script/features $*"
 alias z="zeus $*"
-alias r="echo NOPE"
+alias r="script/rails $*"
 function lack() {
     # The +k clears the screen (it tries to scroll up but there's nowhere to
     # go)
