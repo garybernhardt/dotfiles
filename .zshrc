@@ -69,6 +69,7 @@ function das() {
     . /Volumes/misc/filing/business/destroy\ all\ software\ llc/s3.sh
     . /Volumes/misc/filing/business/destroy\ all\ software\ llc/braintree.sh
 }
+alias v="view -"
 
 # Activate the closest virtualenv by looking in parent directories.
 activate_virtualenv() {
