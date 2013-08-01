@@ -129,7 +129,7 @@ nnoremap <leader><leader> <c-^>
 " alternate in it.
 nnoremap <leader>s :call FocusOnFile()<cr>
 function! FocusOnFile()
-  normal! o
+  tabnew %
   normal! v
   normal! l
   call OpenTestAlternate()
