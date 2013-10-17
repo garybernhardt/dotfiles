@@ -1,6 +1,7 @@
 [general]
 pythonfile = ~/.offlineimap.py
 accounts = Gmail
+socktimeout = 60
 #maxsyncaccounts = 10
 
 [Account Gmail]
@@ -13,9 +14,9 @@ localfolders = ~/Downloads/Gmail
 type         = Maildir
 
 [Repository Remote]
-cert_fingerprint = b0ba392bba326e6feb1add4d04fa0fb86cd173fa
+cert_fingerprint = 89091347184d41768bfc0da9fad94bfe882dd358
 remoteuser       = gary.bernhardt@gmail.com
 remotepasseval   = get_imap_passwd()
 type             = Gmail
-readonly         = True
+#readonly         = True
 maxconnections   = 1
