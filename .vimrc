@@ -123,11 +123,6 @@ nnoremap <c-l> <c-w>l
 imap <c-l> <space>=><space>
 " Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
-" Clear the search buffer when hitting return
-function! MapCR()
-  nnoremap <cr> :nohlsearch<cr>
-endfunction
-call MapCR()
 nnoremap <leader><leader> <c-^>
 " Close all other windows, open a vertical split, and open this file's test
 " alternate in it.
