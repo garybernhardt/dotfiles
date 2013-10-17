@@ -42,6 +42,9 @@
 /.localized
 /.macports
 /.mysql_history
+/.mutt/aliases
+/.mutt/certificates
+/.mutt/cache
 /.netrc
 /.npm
 /.offlineimap

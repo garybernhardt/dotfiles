@@ -1,0 +1,44 @@
+###############################################################################
+## Authentication
+###############################################################################
+
+set imap_user = "support@destroyallsoftware.com"
+set imap_pass = `get-password das-email`
+
+set smtp_url = "smtps://support@destroyallsoftware.com@secure.emailsrvr.com"
+set smtp_pass = `get-password das-email`
+set from = "support@destroyallsoftware.com"
+set realname = "DAS Support"
+
+###############################################################################
+## Folders
+###############################################################################
+
+# Folder names
+set my_inbox="INBOX"
+set my_archive="INBOX/Archive"
+set my_drafts="INBOX/Drafts"
+set my_sent="INBOX/Sent"
+set my_spam="INBOX/spam"
+
+# Default location of mailboxes
+set folder = "imaps://secure.emailsrvr.com"
+# Spool (inbox)
+set spoolfile = "+Inbox"
+# Draft folder
+set postponed="+Drafts"
+# Where to move read emails to
+set mbox = "+Archive"
+# Save sent mails to the Sent folder
+set record=+Sent
+# Move deleted messages to trash
+set trash = "+Trash"
+
+# Move read emails to archive when leaving a folder
+set move = ask-yes
+# Save a copy of sent mails
+set copy=yes
+# Actually delete things when leaving a folder, but confirm first
+set delete=ask-yes
+
+source ~/.mutt/common.muttrc

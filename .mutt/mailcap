@@ -1,0 +1,2 @@
+text/html; open -a "Google Chrome" %s & sleep 2; test=sh -c 'test $DISPLAY'
+text/html; w3m -I %{charset} -T text/html; copiousoutput;

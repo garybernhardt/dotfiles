@@ -1,0 +1,47 @@
+###############################################################################
+## Authentication
+###############################################################################
+
+set smtp_url = "smtp://gary.bernhardt@smtp.gmail.com:587"
+set smtp_pass = `get-password gmail`
+
+set from = "gary.bernhardt@gmail.com"
+set realname = "Gary Bernhardt"
+
+###############################################################################
+## Aliases
+###############################################################################
+set alias_file=~/.mutt/aliases
+source $alias_file
+
+# Set "display filter", which I use to capture email addresses
+set display_filter=~/.mutt/display-filter.sh
+
+###############################################################################
+## Folders
+###############################################################################
+
+# Folder names
+set my_inbox="INBOX"
+set my_archive="[Gmail].All<quote-char> Mail"
+set my_drafts="[Gmail].Drafts"
+set my_sent="[Gmail].Sent<quote-char> Mail"
+set my_spam="[Gmail].Spam"
+
+# Default location of mailboxes
+set folder = "~/Downloads/Gmail"
+# Spool (inbox)
+set spoolfile = "+INBOX"
+# Draft folder
+set postponed="+[Gmail].Drafts"
+# Where to move read emails to
+#set mbox = "+[Gmail].All\ Mail"
+# Save sent mails to the Sent folder
+#set record="+[Gmail].Sent\ Mail"
+# Move deleted messages to trash
+#set trash = "+[Gmail].Trash"
+
+# Signature
+set signature="~/.signature"
+
+source ~/.mutt/common.muttrc

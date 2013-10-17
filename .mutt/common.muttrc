@@ -1,0 +1,73 @@
+###############################################################################
+## General
+###############################################################################
+
+# Various paths
+set header_cache=~/.mutt/cache/headers
+set message_cachedir=~/.mutt/cache/messages
+set certificate_file=~/.mutt/certificates
+
+# Always quote in replies
+set include = yes
+# Don't wait after running external command
+set wait_key = no
+# Look for email after three seconds of inactivity
+set timeout = 3
+# Minimum time between email checks
+set mail_check = 0
+
+# Don't update read counts very frequently when loading large mailboxes
+set read_inc = 1000
+
+# Strip HTML tags from HTML emails
+set mailcap_path = ~/.mutt/mailcap
+auto_view text/html                                   # view html automatically
+alternative_order text/plain text/enriched text/html  # save html for last
+
+# Open an HTML attachment in Chrome
+macro pager H <view-attachments>/html<enter><view-mailcap><exit>
+
+# Only move read emails when they're actually looked at, not simply because we
+# saw them in the list
+set mark_old = no
+
+# Hitting `d` while viewing a message deletes it, then returns to the index
+macro pager d '<exit><delete-message>'
+
+# Hitting C-b while viewing a message opens links
+macro index,pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+
+# Hitting g replies to all
+macro index,pager G '<group-reply>'
+
+###############################################################################
+## Folders
+###############################################################################
+
+###############################################################################
+## Navigation
+###############################################################################
+
+# GMail-style folder navigation shortcuts
+macro index,pager gl "<change-folder>"
+macro index,pager gi "<change-folder>=$my_inbox<enter>" "Go to inbox"
+macro index,pager ga "<change-folder>=$my_archive<enter>" "Go to all mail"
+macro index,pager gd "<change-folder>=$my_drafts<enter>" "Go to drafts"
+macro index,pager gt "<change-folder>=$my_sent<enter>" "Go to sent mail"
+macro index,pager gs "<change-folder>=$my_spam<enter>" "Go to sent mail"
+
+###############################################################################
+## Beautification
+###############################################################################
+
+# Status Bar (from Steve Losh)
+set status_chars  = " *%A"
+# No idea what most of this is
+set status_format = "[ Folder: %f ] [%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Header (from Steve Losh)
+ignore *                                # ignore all headers
+unignore from: to: cc: date: subject:   # show only these
+unhdr_order *                           # some distros order things by default
+hdr_order from: to: cc: date: subject:  # and in this order
+
