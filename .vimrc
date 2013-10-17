@@ -3,7 +3,7 @@
 
 autocmd!
 
-call pathogen#runtime_append_all_bundles()
+call pathogen#incubate()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
