@@ -59,6 +59,10 @@ set wildmenu
 let mapleader=","
 " Fix slow O inserts
 :set timeout timeoutlen=1000 ttimeoutlen=100
+" Normally, Vim messes with iskeyword when you open a shell file. This can
+" leak out, polluting other file types even after a 'set ft=' change. This
+" variable prevents the iskeyword change so it can't hurt anyone.
+let g:sh_noisk=1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
