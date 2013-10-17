@@ -70,6 +70,14 @@ function das() {
     . /Volumes/misc/filing/business/destroy\ all\ software\ llc/braintree.sh
 }
 alias v="view -"
+function m() {
+    if [[ "$1" == "das" ]]; then
+        mutt -F ~/.mutt/das.muttrc
+    else
+        ~/proj/thelongpoll/thelongpoll/thelongpoll client -F ~/.mutt/$1.muttrc
+    fi
+}
+alias c="cd"
 
 # Activate the closest virtualenv by looking in parent directories.
 activate_virtualenv() {
