@@ -9,10 +9,11 @@ class VimFormatter < RSpec::Core::Formatters::BaseTextFormatter
     path = $1 if exception.backtrace.find do |frame|
       frame =~ %r{\b(spec/.*_spec\.rb:\d+)(?::|\z)}
     end
-    message = format_message exception.message
-    path    = format_caller path
-    output.puts "#{path}: #{example.example_group.description.strip} " +
-      "#{example.description.strip}: #{message.strip}" if path
+    if path
+      message = format_message exception.message
+      path    = format_caller path
+      output.puts "#{path}: #{message.strip}" if path
+    end
   end
 
   def example_pending *args;  end
