@@ -119,6 +119,9 @@ function up()
     test $DIR != "/" && echo $DIR/$TARGET
 }
 
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
 # Initialize RVM
 PATH=$PATH:$HOME/.rvm/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
