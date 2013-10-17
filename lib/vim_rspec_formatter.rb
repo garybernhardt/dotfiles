@@ -26,7 +26,7 @@ class VimFormatter < RSpec::Core::Formatters::BaseTextFormatter
 private
 
   def format_message msg
-    msg.gsub("\n", ' ')[0,120]
+    msg.gsub("\n", ' ')[0,200]
   end
 
 end
