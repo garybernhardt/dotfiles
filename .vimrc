@@ -136,6 +136,8 @@ function! FocusOnFile()
 endfunction
 " Reload in chrome
 map <leader>l :w\|:silent !reload-chrome<cr>
+" Align selected lines
+vnoremap <leader>ib :!align<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
