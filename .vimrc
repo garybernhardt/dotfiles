@@ -63,6 +63,9 @@ let mapleader=","
 " leak out, polluting other file types even after a 'set ft=' change. This
 " variable prevents the iskeyword change so it can't hurt anyone.
 let g:sh_noisk=1
+" Modelines (comments that set vim options on a per-file basis)
+set modeline
+set modelines=3
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
