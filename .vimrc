@@ -301,11 +301,14 @@ nnoremap <leader>. :call OpenTestAlternate()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUNNING TESTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>t :silent call RunTestFile()<cr>
-map <leader>T :silent call RunNearestTest()<cr>
-map <leader>a :silent call RunTests('')<cr>
-map <leader>c :w\|:silent !script/features<cr>
-map <leader>w :w\|:silent !script/features --profile wip<cr>
+function! MapCR()
+  nnoremap <cr> :call RunTestFile()<cr>
+endfunction
+call MapCR()
+nnoremap <leader>T :call RunNearestTest()<cr>
+nnoremap <leader>a :call RunTests('')<cr>
+nnoremap <leader>c :w\|:!script/features<cr>
+nnoremap <leader>w :w\|:!script/features --profile wip<cr>
 
 function! RunTestFile(...)
     if a:0
