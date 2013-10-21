@@ -416,3 +416,46 @@ command! GdiffInTab tabedit %|vsplit|Gdiff
 nnoremap <leader>d :GdiffInTab<cr>
 nnoremap <leader>D :tabclose<cr>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Test quickfix list management
+"
+" If the tests write a tmp/quickfix file, these mappings will navigate through
+" it
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! GetBufferList()
+  redir =>buflist
+  silent! ls
+  redir END
+  return buflist
+endfunction
+
+function! BufferIsOpen(bufname)
+  let buflist = GetBufferList()
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      return 1
+    endif
+  endfor
+  return 0
+endfunction
+
+function! ToggleQuickfix()
+  if BufferIsOpen("Quickfix List")
+    cclose
+  else
+    call OpenQuickfix()
+  endif
+endfunction
+
+function! OpenQuickfix()
+  cgetfile tmp/quickfix
+  topleft cwindow
+  if &ft == "qf"
+      cc
+  endif
+endfunction
+
+nnoremap <leader>q :call ToggleQuickfix()<cr>
+nnoremap <leader>Q :cc<cr>
+nnoremap <leader>j :cnext<cr>
+nnoremap <leader>k :cprev<cr>
