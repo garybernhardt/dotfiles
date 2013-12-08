@@ -16,14 +16,36 @@ if [[ $1 == -v ]]; then
     verbose=1
     shift
 fi
+
 start_ref=$1
 end_ref=$2
 test_command=$3
 
 main() {
+    is_repo_clean
     enforce_usage
     run_tests
 }
+
+
+is_repo_clean() {
+    staged_not_committed=$(git diff-index --quiet --cached HEAD)
+    if [[ $staged_not_committed -ne 0 ]]; then
+        echo "You have staged but not committed changes that would be lost! Aborting."
+        exit 1
+    fi
+    not_staged_not_committed=$(git diff-files --quiet)
+    if [[ $not_staged_not_committed -ne 0 ]]; then
+        echo "You have unstaged changes that would be lost! Aborting."
+        exit 2
+    fi
+    untracked=$(git ls-files --exclude-standard --others)
+    if [ -n "$untracked" ]; then
+        echo "You have untracked files that could be overwritten! Aborting."
+        exit 3
+    fi
+}
+
 
 enforce_usage() {
     if [ -z "$test_command" ]; then
@@ -32,9 +54,11 @@ enforce_usage() {
     fi
 }
 
+
 usage() {
     echo "usage: `basename $0` start_ref end_ref test_command"
 }
+
 
 run_tests() {
     revs=`log_command git rev-list --reverse ${start_ref}..${end_ref}`
@@ -49,10 +73,12 @@ run_tests() {
     debug "OK for all revisions!"
 }
 
+
 log_command() {
     debug "=> $*"
     eval $*
 }
+
 
 debug() {
     if [ $verbose ]; then
@@ -60,5 +86,5 @@ debug() {
     fi
 }
 
-main
 
+main
