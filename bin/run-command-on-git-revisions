@@ -16,19 +16,18 @@ if [[ $1 == -v ]]; then
     verbose=1
     shift
 fi
-
 start_ref=$1
 end_ref=$2
 test_command=$3
 
 main() {
-    is_repo_clean
+    abort_if_dirty_repo
     enforce_usage
     run_tests
 }
 
 
-is_repo_clean() {
+abort_if_dirty_repo() {
     staged_not_committed=$(git diff-index --quiet --cached HEAD)
     if [[ $staged_not_committed -ne 0 ]]; then
         echo "You have staged but not committed changes that would be lost! Aborting."
@@ -54,11 +53,9 @@ enforce_usage() {
     fi
 }
 
-
 usage() {
     echo "usage: `basename $0` start_ref end_ref test_command"
 }
-
 
 run_tests() {
     revs=`log_command git rev-list --reverse ${start_ref}..${end_ref}`
@@ -73,18 +70,15 @@ run_tests() {
     debug "OK for all revisions!"
 }
 
-
 log_command() {
     debug "=> $*"
     eval $*
 }
-
 
 debug() {
     if [ $verbose ]; then
         echo $* >&2
     fi
 }
-
 
 main
