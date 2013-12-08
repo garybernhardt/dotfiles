@@ -82,5 +82,4 @@ debug() {
     fi
 }
 
-echo $test_command
 main
