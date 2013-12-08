@@ -5,10 +5,10 @@
 # untracked files in your working tree.
 #
 # This came from Gary Bernhardt's dotfiles:
-#     https://github.com/garybernhardt/dotfiles
+# https://github.com/garybernhardt/dotfiles
 #
 # Example usage:
-#     $ run-command-on-git-revisions origin/master master 'python runtests.py'
+# $ run-command-on-git-revisions origin/master master 'python runtests.py'
 
 set -e
 
@@ -28,6 +28,7 @@ main() {
 
 
 abort_if_dirty_repo() {
+    set +e
     staged_not_committed=$(git diff-index --quiet --cached HEAD)
     if [[ $staged_not_committed -ne 0 ]]; then
         echo "You have staged but not committed changes that would be lost! Aborting."
@@ -36,13 +37,14 @@ abort_if_dirty_repo() {
     not_staged_not_committed=$(git diff-files --quiet)
     if [[ $not_staged_not_committed -ne 0 ]]; then
         echo "You have unstaged changes that would be lost! Aborting."
-        exit 2
+        exit 1
     fi
     untracked=$(git ls-files --exclude-standard --others)
     if [ -n "$untracked" ]; then
         echo "You have untracked files that could be overwritten! Aborting."
-        exit 3
+        exit 1
     fi
+    set -e
 }
 
 
@@ -72,13 +74,15 @@ run_tests() {
 
 log_command() {
     debug "=> $*"
-    eval $*
+    eval "$@"
 }
 
 debug() {
     if [ $verbose ]; then
         echo $* >&2
+
     fi
 }
 
+echo $test_command
 main
