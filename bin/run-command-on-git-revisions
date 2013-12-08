@@ -5,10 +5,10 @@
 # untracked files in your working tree.
 #
 # This came from Gary Bernhardt's dotfiles:
-# https://github.com/garybernhardt/dotfiles
+#     https://github.com/garybernhardt/dotfiles
 #
 # Example usage:
-# $ run-command-on-git-revisions origin/master master 'python runtests.py'
+#     $ run-command-on-git-revisions origin/master master 'python runtests.py'
 
 set -e
 
@@ -16,6 +16,7 @@ if [[ $1 == -v ]]; then
     verbose=1
     shift
 fi
+
 start_ref=$1
 end_ref=$2
 test_command=$3
@@ -25,7 +26,6 @@ main() {
     enforce_usage
     run_tests
 }
-
 
 abort_if_dirty_repo() {
     set +e
@@ -46,7 +46,6 @@ abort_if_dirty_repo() {
     fi
     set -e
 }
-
 
 enforce_usage() {
     if [ -z "$test_command" ]; then
@@ -80,7 +79,6 @@ log_command() {
 debug() {
     if [ $verbose ]; then
         echo $* >&2
-
     fi
 }
 
