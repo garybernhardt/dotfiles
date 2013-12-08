@@ -29,13 +29,13 @@ main() {
 
 abort_if_dirty_repo() {
     set +e
-    staged_not_committed=$(git diff-index --quiet --cached HEAD)
-    if [[ $staged_not_committed -ne 0 ]]; then
+    git diff-index --quiet --cached HEAD
+    if [[ $? -ne 0 ]]; then
         echo "You have staged but not committed changes that would be lost! Aborting."
         exit 1
     fi
-    not_staged_not_committed=$(git diff-files --quiet)
-    if [[ $not_staged_not_committed -ne 0 ]]; then
+    git diff-files --quiet
+    if [[ $? -ne 0 ]]; then
         echo "You have unstaged changes that would be lost! Aborting."
         exit 1
     fi
