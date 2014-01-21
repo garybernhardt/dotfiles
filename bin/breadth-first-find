@@ -1,0 +1,7 @@
+#!/bin/bash
+depth=0
+
+while find $* -mindepth $depth -maxdepth $depth | grep '.'
+do
+    depth=$((depth + 1))
+done
