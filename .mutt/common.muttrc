@@ -31,9 +31,6 @@ macro pager H <view-attachments>/html<enter><view-mailcap><exit>
 # saw them in the list
 set mark_old = no
 
-# Hitting `d` while viewing a message deletes it, then returns to the index
-macro pager d '<exit><delete-message>'
-
 # Hitting C-b while viewing a message opens links
 macro index,pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
 
