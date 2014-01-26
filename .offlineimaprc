@@ -1,22 +1,27 @@
 [general]
 pythonfile = ~/.offlineimap.py
-accounts = Gmail
+accounts = Fastmail
 socktimeout = 60
-#maxsyncaccounts = 10
+maxsyncaccounts = 3
 
-[Account Gmail]
+[Account Fastmail]
 localrepository  = Local
 remoterepository = Remote
 status_backend = sqlite
 
 [Repository Local]
-localfolders = ~/Downloads/Gmail
+localfolders = ~/Downloads/Mail
 type         = Maildir
+#readonly     = True
 
 [Repository Remote]
-cert_fingerprint = 89091347184d41768bfc0da9fad94bfe882dd358
-remoteuser       = gary.bernhardt@gmail.com
-remotepasseval   = get_imap_passwd()
-type             = Gmail
-#readonly         = True
-maxconnections   = 1
+type               = IMAP
+remotehost         = mail.messagingengine.com
+remoteport         = 993
+ssl                = yes
+cert_fingerprint   = fa86c1ca2d4f805e8fe7b8e7076a3ad2ccc52bb4
+holdconnectionopen = yes
+maxconnections     = 3
+#readonly           = True
+remoteusereval     = get_imap_email()
+remotepasseval     = get_imap_password()
