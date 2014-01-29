@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # From http://wcm1.web.rice.edu/mutt-tips.html
 
@@ -10,10 +10,18 @@ make_new_alias() {
 }
 NEWALIAS=$(make_new_alias)
 
-if grep -Fxq "$NEWALIAS" $HOME/.mutt/aliases; then
+(grep -q 'notification\|noreply\|no-reply' <(echo "$NEWALIAS"))>foo
+if grep -q 'notification\|noreply\|no-reply' <(echo "$NEWALIAS"); then
+    # This is an automated message.
     :
 else
-    echo "$NEWALIAS" >> $HOME/.mutt/aliases
+    if grep -Fxq "$NEWALIAS" $HOME/.mutt/aliases; then
+        # This alias already exists.
+        :
+    else
+        # Create the new alias.
+        echo "$NEWALIAS" >> $HOME/.mutt/aliases
+    fi
 fi
 
 echo "${MESSAGE}"
