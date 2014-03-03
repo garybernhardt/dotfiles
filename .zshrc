@@ -115,6 +115,17 @@ function up()
     test $DIR != "/" && echo $DIR/$TARGET
 }
 
+# Switch projects
+function p() {
+    (
+        set -e
+        proj=$(ls ~/proj | selecta)
+        if [[ -n "$proj" ]]; then
+            cd ~/proj/$proj
+        fi
+    )
+}
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
