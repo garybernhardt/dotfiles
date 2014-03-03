@@ -10,8 +10,7 @@ make_new_alias() {
 }
 NEWALIAS=$(make_new_alias)
 
-(grep -q 'notification\|noreply\|no-reply' <(echo "$NEWALIAS"))>foo
-if grep -q 'notification\|noreply\|no-reply' <(echo "$NEWALIAS"); then
+if grep -q 'notification\|noreply\|no-reply\|\(^bugs@\)' <(echo "$NEWALIAS"); then
     # This is an automated message.
     :
 else
