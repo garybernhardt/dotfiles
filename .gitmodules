@@ -1,7 +1,3 @@
-[submodule ".vim/bundle/Command-T"]
-	path = .vim/bundle/Command-T
-	url = https://github.com/wincent/Command-T.git
-    ignore = untracked
 [submodule ".vim/bundle/vim-makegreen"]
 	path = .vim/bundle/vim-makegreen
 	url = git@github.com:garybernhardt/vim-makegreen.git
