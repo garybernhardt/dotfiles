@@ -126,6 +126,8 @@ function p() {
     )
 }
 
+zstyle ':completion:*:*:git:*' script /usr/local/share/zsh/site-functions
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
