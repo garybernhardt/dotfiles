@@ -506,13 +506,13 @@ endfunction
 
 " Find all files in all non-dot directories starting in the working directory.
 " Fuzzy select one of those. Open the selected file with :e.
-nnoremap <leader>f :call SelectaCommand("breadth-first-find * -type f \| head -10000", "", ":e")<cr>
+nnoremap <leader>f :call SelectaCommand("find * -type f", "", ":e")<cr>
 
 function! SelectaIdentifier()
   " Yank the word under the cursor into the z register
   normal "zyiw
   " Fuzzy match files in the current directory, starting with the word under
   " the cursor
-  call SelectaCommand("breadth-first-find * -type f \| head -10000", "-s " . @z, ":e")
+  call SelectaCommand("find * -type f", "-s " . @z, ":e")
 endfunction
 nnoremap <c-g> :call SelectaIdentifier()<cr>
