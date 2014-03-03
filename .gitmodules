@@ -1,33 +1,9 @@
-[submodule ".vim/bundle/vim-makegreen"]
-	path = .vim/bundle/vim-makegreen
-	url = git@github.com:garybernhardt/vim-makegreen.git
 [submodule ".vim/bundle/vim-fugitive"]
 	path = .vim/bundle/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive.git
-[submodule ".vim/bundle/L9"]
-	path = .vim/bundle/L9
-	url = https://github.com/vim-scripts/L9
-[submodule ".vim/bundle/vim-fuzzyfinder"]
-	path = .vim/bundle/vim-fuzzyfinder
-	url = https://github.com/clones/vim-fuzzyfinder
-[submodule ".vim/bundle/vim-colors-solarized"]
-	path = .vim/bundle/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized
 [submodule ".vim/bundle/vim-ruby"]
 	path = .vim/bundle/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby.git
-[submodule ".vim/bundle/vim-commentary"]
-	path = .vim/bundle/vim-commentary
-	url = https://github.com/tpope/vim-commentary.git
-[submodule ".vim/bundle/vim-eunuch"]
-	path = .vim/bundle/vim-eunuch
-	url = https://github.com/tpope/vim-eunuch.git
-[submodule ".vim/bundle/vim-matchit"]
-	path = .vim/bundle/vim-matchit
-	url = https://github.com/tsaleh/vim-matchit.git
 [submodule ".vim/bundle/vim-slim"]
 	path = .vim/bundle/vim-slim
 	url = https://github.com/slim-template/vim-slim
-[submodule ".vim/bundle/vim-dispatch"]
-	path = .vim/bundle/vim-dispatch
-	url = https://github.com/tpope/vim-dispatch
