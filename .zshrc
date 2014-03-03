@@ -132,6 +132,11 @@ zstyle ':completion:*:*:git:*' script /usr/local/share/zsh/site-functions
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # Initialize RVM
-PATH=$PATH:$HOME/.rvm/bin
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+#PATH=$PATH:$HOME/.rvm/bin
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
+#export PATH="$HOME/.rbenv/bin:$PATH"
+#eval "$(rbenv init -)"
+
+#source /usr/local/share/chruby/chruby.sh
+#source /usr/local/share/chruby/auto.sh
