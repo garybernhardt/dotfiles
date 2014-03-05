@@ -40,7 +40,7 @@ set postponed="+INBOX.Drafts"
 # Where to move read emails to
 #set mbox = "+Archive"
 # Save sent mails to the Sent folder
-#set record=+Sent
+unset record
 # Move deleted messages to trash
 set trash = "+INBOX.Trash"
 
