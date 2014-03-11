@@ -117,13 +117,11 @@ function up()
 
 # Switch projects
 function p() {
-    (
-        set -e
-        proj=$(ls ~/proj | selecta)
-        if [[ -n "$proj" ]]; then
-            cd ~/proj/$proj
-        fi
-    )
+    set -e
+    proj=$(ls ~/proj | selecta)
+    if [[ -n "$proj" ]]; then
+        cd ~/proj/$proj
+    fi
 }
 
 zstyle ':completion:*:*:git:*' script /usr/local/share/zsh/site-functions
