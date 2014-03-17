@@ -180,10 +180,11 @@ map <leader>v :view %%
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! RenameFile()
     let old_name = expand('%')
-    let new_name = input('New file name: ', old_name, 'file')
+    let new_name = input('New file name: ', expand('%'), 'file')
     if new_name != '' && new_name != old_name
-        call rename(old_name, new_name)
-        exec ':e ' . new_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
     endif
 endfunction
 map <leader>n :call RenameFile()<cr>
