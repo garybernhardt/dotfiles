@@ -1,5 +1,0 @@
-#!/bin/bash
-
-line_number=$1
-head -$line_number | tail -1
-
