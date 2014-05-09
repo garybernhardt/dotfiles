@@ -54,7 +54,7 @@ pretty_git_log() {
         # Line columns up based on } delimiter
         column -s '}' -t |
         # Color merge commits specially
-        sed -Ee "s/(Merge branch .* into .*$)/$(printf $ANSI_RED)\1$(printf $ANSI_RESET)/" |
+        sed -Ee "s/(Merge (branch|pull request) .* (into|from) .*$)/$(printf $ANSI_RED)\1$(printf $ANSI_RESET)/" |
         # Page only if we need to
         less -FXRS
 }
