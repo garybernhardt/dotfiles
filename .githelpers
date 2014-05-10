@@ -56,6 +56,28 @@ pretty_git_log() {
         # Color merge commits specially
         sed -Ee "s/(Merge branch .* into .*$)/$(printf $ANSI_RED)\1$(printf $ANSI_RESET)/" |
         # Page only if we need to
-        less -FXRS
+        nowrap less -FXR
+}
+
+# Prevents terminal from wrapping text.
+#
+# `less --quit-if-one-screen --chop-long-lines` (`less -FS`) lets you scroll
+# horizontally to view longer-than-terminal-width lines, but it does not
+# automatically quit.
+#
+# `nowrap` unsets DECAWM[1] which tells terminal to draw excessive characters
+# on top of a right-most terminal column; runs command; sets DECAWM back.
+#
+# Better solution would be to use `tput rmam`[2] command, but tmux does not
+# respect it and has no other option to control wrapping[3].
+#
+# [1]: http://www.vt100.net/docs/vt510-rm/DECAWM
+# [2]: https://www.gnu.org/software/termutils/manual/termutils-2.0/html_chapter/tput_1.html#SEC8
+# [3]: http://sourceforge.net/p/tmux/tickets/14/
+nowrap() {
+    [ -t 1 ] && printf "\033[?7l"
+    "$@"; local ret="$?"
+    [ -t 1 ] && printf "\033[?7h"
+    return "$ret"
 }
 
