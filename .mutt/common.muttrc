@@ -37,6 +37,10 @@ macro index,pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
 # Hitting g replies to all
 macro index,pager G '<group-reply>'
 
+# Organize into threads, sorting the threads by sender
+set sort=threads
+set sort_aux=from
+
 ###############################################################################
 ## Folders
 ###############################################################################
