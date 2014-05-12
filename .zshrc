@@ -121,7 +121,6 @@ function up()
 
 # Switch projects
 function p() {
-    set -e
     proj=$(ls ~/proj | selecta)
     if [[ -n "$proj" ]]; then
         cd ~/proj/$proj
