@@ -55,7 +55,12 @@ pretty_git_log() {
         column -s '}' -t |
         # Color merge commits specially
         sed -Ee "s/(Merge (branch|remote-tracking branch|pull request) .*$)/$(printf $ANSI_RED)\1$(printf $ANSI_RESET)/" |
-        # Page only if we need to
-        less -FXRS
+        # Page only if we're asked to.
+        if [ -n "$GIT_NO_PAGER" ]; then
+            cat
+        else
+            # Page only if needed.
+            less -FXRS
+        fi
 }
 

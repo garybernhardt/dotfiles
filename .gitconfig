@@ -35,10 +35,10 @@
     #   ra = recent commits, all reachable refs
     #   l = all commits, only current branch
     #   la = all commits, all reachable refs
-    head = !git l -1
+    head = !git r -1
     h = !git head
     hp = "!. ~/.githelpers && show_git_head"
-    r = !git l -30
+    r = !GIT_NO_PAGER=1 git l -30
     ra = !git r --all
     l = "!. ~/.githelpers && pretty_git_log"
     la = !git l --all
