@@ -111,6 +111,9 @@ augroup vimrcEx
 
   " *.md is markdown
   autocmd! BufNewFile,BufRead *.md setlocal ft=
+
+  " indent slim two spaces, not four
+  autocmd! FileType *.slim set sw=2 sts=2 et
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
