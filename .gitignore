@@ -16,11 +16,16 @@
 /.bugs_everywhere
 /.bundle
 /.bzr.log
+/.cabal
 /.cache
+/.ccache
 /.certs
+/.config
 /.cups
 /.dropbox
+/.dropbox-master
 /.dvdcss
+/.ebooksrc
 /.ec2
 /.emacs-places
 /.emacs.bak
@@ -48,6 +53,7 @@
 /.irb-history
 /.irb_history
 /.lesshst
+/.local
 /.localized
 /.macports
 /.mutt/aliases
@@ -61,8 +67,11 @@
 /.psql_history
 /.pypirc
 /.python-eggs
+/.python_history
+/.rbenv
 /.rbx
 /.rnd
+/.rubies
 /.rubinius_last_error
 /.rvm
 /.sh_history
@@ -104,6 +113,8 @@
 /bin/rvm-shell
 /bin/rvmsudo
 /blog
+/books
+/design
 /desktop_temp
 /doc
 /gmail-archive.sparsebundle
