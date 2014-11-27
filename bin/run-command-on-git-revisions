@@ -65,7 +65,7 @@ run_tests() {
         debug "Checking out: $(git log --oneline -1 $rev)"
         log_command git checkout --quiet $rev
         log_command $test_command
-        log_command git reset --hard
+        log_command git reset --hard --quiet
     done
     log_command git checkout --quiet $end_ref
     debug "OK for all revisions!"
