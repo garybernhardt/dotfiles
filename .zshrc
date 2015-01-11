@@ -45,7 +45,7 @@ export WORDCHARS='*?[]~&;!$%^<>'
 export ACK_COLOR_MATCH='red'
 
 # Aliases
-t() {
+function t() {
     if [ -e script/test ]; then
         script/test $*
     else
