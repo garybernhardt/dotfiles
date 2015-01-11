@@ -369,6 +369,9 @@ function! RunTests(filename)
         " Fall back to a blocking test run with Bundler
         elseif filereadable("Gemfile")
             exec ":!bundle exec rspec --color " . a:filename
+        " If we see python-looking tests, assume they should be run with Nose
+        elseif strlen(glob("test/**/*.py") . glob("tests/**/*.py"))
+            exec "!nosetests " . a:filename
         " Fall back to a normal blocking test run
         else
             exec ":!rspec --color " . a:filename
