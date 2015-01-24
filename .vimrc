@@ -248,7 +248,7 @@ function! InlineVariable()
     " Find the next occurence of the variable
     exec '/\<' . @a . '\>'
     " Replace that occurence with the text we yanked
-    exec ':.s/\<' . @a . '\>/' . @b
+    exec ':.s/\<' . @a . '\>/' . escape(@b, "/")
     :let @a = l:tmp_a
     :let @b = l:tmp_b
 endfunction
