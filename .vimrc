@@ -513,6 +513,7 @@ nnoremap <leader>gp :call SelectaFile("public")<cr>
 nnoremap <leader>gs :call SelectaFile("public/stylesheets")<cr>
 nnoremap <leader>gf :call SelectaFile("features")<cr>
 
+"Fuzzy select
 function! SelectaIdentifier()
   " Yank the word under the cursor into the z register
   normal "zyiw
