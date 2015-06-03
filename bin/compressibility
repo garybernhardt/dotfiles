@@ -1,34 +1,53 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # By Gary Bernhardt.
 # Dotfiles at: https://github.com/garybernhardt/dotfiles
 
 import sys
+import time
+import collections
 import zlib
 import bz2
+import lzma
 
+Result = collections.namedtuple('Result', ['size', 'ratio', 'time'])
 
 def main():
     data = file_data()
     size = len(data)
-    print 'file size', size
-    gzip_size = len(zlib.compress(data))
-    print 'gzip size %i (%i%%)' % (gzip_size, percent(gzip_size, size))
-    bz2_size = len(bz2.compress(data))
-    print 'bz2 size %i (%i%%)' % (bz2_size, percent(bz2_size, size))
+    print("file size: {:,}".format(size))
+    benchmark(data, "gzip", zlib)
+    benchmark(data, "bz2", bz2)
+    benchmark(data, "xz", lzma)
+
+
+def benchmark(data, name, pkg):
+    result = compress(data, pkg)
+    rate = int(len(data) / result.time)
+    print(("{} size: {:,} ({}%); {:03.2f} seconds ({:,} bytes per second)".format(name, result.size, result.ratio, result.time, rate)))
+
+
+def compress(data, pkg):
+    original_size = len(data)
+    start_time = time.time()
+    compressed_size = len(pkg.compress(data))
+    stop_time = time.time()
+    runtime = stop_time - start_time
+    ratio = percent(compressed_size, original_size)
+    return Result(size=compressed_size, time=runtime, ratio=ratio)
 
 
 def file_data():
-    files = map(open, sys.argv[1:])
+    files = list([open(f, 'rb') for f in sys.argv[1:]])
     if not files:
-        files = [sys.stdin]
-    return ''.join(f.read() for f in files)
+        files = [sys.stdin.detach()]
+    return b''.join(f.read() for f in files)
 
 
 def percent(part, whole):
     return int(100.0 * part / whole)
 
-
 if __name__ == '__main__':
     main()
 
+# :set ft=python
