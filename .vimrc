@@ -332,7 +332,7 @@ function! RunTestFile(...)
     elseif !exists("t:grb_test_file")
         return
     end
-    call RunTests(t:grb_test_file . command_suffix)
+    call RunTests(t:grb_test_file)
 endfunction
 
 function! RunNearestTest()
