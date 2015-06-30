@@ -20,12 +20,24 @@ def get_lines(diff_lines):
         if line.startswith('-') and not line.startswith('---')]
     return added_lines, removed_lines
 
+def get_words(added_lines, removed_lines):
+    def word_count(lines):
+        return [word
+                for line in lines
+                for word in line.split()
+                if re.match(r'^\w+', word)]
+
+    return word_count(added_lines), word_count(removed_lines)
 
 if __name__ == '__main__':
     diff_lines = list(fileinput.input())
     added_lines, removed_lines = get_lines(diff_lines)
+    added_words, removed_words = get_words(added_lines, removed_lines)
     print '%i lines of diff' % len(diff_lines)
-    print '%i lines added' % len(added_lines)
-    print '%i lines removed' % len(removed_lines)
-    print '%+i lines net change' % (len(added_lines) - len(removed_lines))
+    print '%+i lines (+%i, -%i)' % (len(added_lines) - len(removed_lines),
+                                    len(added_lines),
+                                    len(removed_lines))
+    print '%+i words (+%i, -%i)' % (len(added_words) - len(removed_words),
+                                    len(added_words),
+                                    len(removed_words))
 
