@@ -17,7 +17,7 @@ export PATH="$HOME/bin:$PATH"
 unsetopt flowcontrol
 
 # Colorize terminal
-alias ls='ls -G'
+alias ls='ls --color=auto'
 alias ll='ls -lG'
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 export GREP_OPTIONS="--color"
