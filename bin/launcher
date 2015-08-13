@@ -1,0 +1,9 @@
+#!/bin/bash
+paths=$(echo $PATH | sed "s/:/\n/g" | while read p; do if [ -x "$p" ]; then echo "$p"; fi; done)
+candidates=$(find $paths -not -type d -and -executable | perl -ne 'print unless $seen{$_}++')
+target=$(echo "$candidates" | selecta)
+if [ $? -eq 0 ]; then
+  nohup $target >/dev/null 2>/dev/null &
+  disown
+  sleep 0.001
+fi
