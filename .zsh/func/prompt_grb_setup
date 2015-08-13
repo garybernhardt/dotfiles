@@ -162,7 +162,7 @@ prompt_grb_setup() {
 
 	p_line="$pc[line]%y$pc[reset]"
 
-    PROMPT="$pc[divider]\$(repeat \$COLUMNS printf '-')$pc[reset]"
+    PROMPT="$pc[reset]"
     PROMPT+=
 	if [ $verbose ]; then
 		PROMPT+="$pc[host]%m$pc[reset]"
