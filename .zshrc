@@ -121,9 +121,9 @@ function up()
 
 # Switch projects
 function p() {
-    proj=$(ls ~/proj | selecta)
-    if [[ -n "$proj" ]]; then
-        cd ~/proj/$proj
+    target=$(ls -d ~/* ~/proj/* | selecta)
+    if [[ -n "$target" ]]; then
+        cd $target
     fi
 }
 
