@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+set -e -o pipefail
+
+DATE_FORMAT='+%Y-%m-%d-%H%M'
+DATE_COMMAND="date -u $DATE_FORMAT"
+DATE=$($DATE_COMMAND)
+HOME="/home/grb"
+TARSNAP="/usr/local/bin/tarsnap"
+CACHE="$HOME/.tarsnap/cache"
+KEY="$HOME/.tarsnap/tarsnap.key"
+EXCLUDE="$HOME/.cache*"
+PACKAGE_MANIFEST="$HOME/log/packages.txt"
+SOURCE="$HOME"
+LOG="$HOME/log/backup.log"
+
+sync_package_list() {
+    echo "=== BEGIN PACKAGE SYNC $($DATE_COMMAND)"
+    dpkg -l > "$PACKAGE_MANIFEST"
+    echo "Packages dumped: $(wc -l $PACKAGE_MANIFEST)"
+    echo "=== END PACKAGE SYNC $($DATE_COMMAND)"
+}
+
+backup() {
+    echo "=== BEGIN BACKUP $($DATE_COMMAND)"
+    $TARSNAP \
+        --cachedir "$CACHE" \
+        --keyfile "$KEY" \
+        -cf "$DATE" \
+        --print-stats \
+        --exclude "$EXCLUDE" \
+        "$SOURCE"
+    echo "=== END BACKUP $($DATE_COMMAND)"
+}
+
+main() {
+    sync_package_list
+    backup
+}
+
+main &>> $LOG
