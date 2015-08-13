@@ -7,6 +7,7 @@
 *.rej
 *~
 /.CFUserTextEncoding
+/.ICEauthority
 /.Trash
 /.Xauthority
 /.account
@@ -20,8 +21,11 @@
 /.cache
 /.ccache
 /.certs
+/.compiz
 /.config
 /.cups
+/.dbus
+/.dmrc
 /.dropbox
 /.dropbox-master
 /.dvdcss
@@ -56,6 +60,7 @@
 /.local
 /.localized
 /.macports
+/.mozilla
 /.mutt/aliases
 /.mutt/cache
 /.mutt/certificates
@@ -78,6 +83,8 @@
 /.sqlite_history
 /.ssh
 /.ssl
+/.sudo_as_admin_successful
+/.tarsnap
 /.thelongpoll
 /.toot
 /.tox
@@ -87,6 +94,7 @@
 /.vim/.netrwhist
 /.vimfuzzyfinder
 /.viminfo
+/.vimperator
 /.vimprojects
 /.vimrc.backup
 /.vimrc.old
@@ -94,6 +102,8 @@
 /.wine
 /.wireshark
 /.wireshark-etc
+/.xsession-errors
+/.xsession-errors.old
 /.zcompdump
 /Desktop
 /Documents
@@ -117,7 +127,9 @@
 /design
 /desktop_temp
 /doc
+/filing
 /gmail-archive.sparsebundle
+/log
 /media
 /misc.sparsebundle
 /notes
@@ -130,3 +142,4 @@
 /talks
 /var
 /work
+/writing
