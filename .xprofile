@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-xrandr --dpi 200
-xrandr -s 2560x1600
+#xrandr --dpi 144
+#xrandr -s 2560x1600
 xsetroot -bg black
 xset r rate 250
