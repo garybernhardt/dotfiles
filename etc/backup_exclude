@@ -1,0 +1,16 @@
+.cache
+proj/book3/dist
+proj/book3/build
+proj/book3/cache
+.s3ql
+.tarsnap/cache
+.mozilla
+log
+.config/google-chrome
+.rubies
+Downloads
+src
+**/.sass-cache
+**/.gem
+proj/**/log/{development,test}.log
+.heroku
