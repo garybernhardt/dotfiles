@@ -1,7 +1,10 @@
-osascript -e '
-tell application "Google Chrome"
-    tell the active tab of its first window
-        reload
-    end tell
-end tell
-'
+#!/usr/bin/env bash
+
+set -e
+
+original=$(xdotool getactivewindow)
+browser=$(xdotool search --onlyvisible --name Chrome | head -1)
+
+xdotool windowactivate --sync "$browser"
+xdotool key --window "$browser" F5
+xdotool windowactivate "$original"
