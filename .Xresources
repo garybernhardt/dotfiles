@@ -1,0 +1,40 @@
+!Xft.dpi: 144
+
+UXTerm*faceName: Liberation Mono:size=11:antialias=true
+XTerm*selectToClipboard: true
+
+UXTerm*foreground: rgb:ee/ee/ee
+UXTerm*background: rgb:00/00/00
+UXTerm*color0: rgb:4e/4e/4e
+UXTerm*color1: rgb:ff/6b/60
+UXTerm*color2: rgb:a7/ff/60
+UXTerm*color3: rgb:ff/ff/b6
+UXTerm*color4: rgb:96/ca/fd
+UXTerm*color5: rgb:ff/73/fd
+UXTerm*color6: rgb:c6/c4/fd
+UXTerm*color7: rgb:ee/ee/ee
+UXTerm*color8: rgb:7c/7c/7c
+UXTerm*color9: rgb:ff/b6/b0
+UXTerm*color10: rgb:ce/ff/ab
+UXTerm*color11: rgb:ff/ff/cb
+UXTerm*color12: rgb:b5/dc/fe
+UXTerm*color13: rgb:ff/9c/fe
+UXTerm*color14: rgb:df/df/fe
+UXTerm*color15: rgb:ff/ff/ff
+UXTerm*termName: xterm-256color
+UXTerm*metaSendsEscape: true
+
+!*VT100.Translations: #override \
+!                    Shift <Key>Up:              scroll-back(1) \n\
+!                    Shift <Key>Down:            scroll-forw(1) \n\
+!                    ~Meta Shift Ctrl <Key>V:    insert-selection(CLIPBOARD) \n\
+!                     Meta Shift Ctrl <Key>V:    insert-selection(PRIMARY) \n\
+!                    ~Shift <Btn1Up>:            select-end(CLIPBOARD, CUT_BUFFER1) \n\
+!                     Shift <Btn1Up>:            select-end(PRIMARY, CUT_BUFFER0) \n\
+!                    ~Shift ~Ctrl ~Meta <Btn2Up>:insert-selection(CLIPBOARD, CUT_BUFFER0) \n\
+!                     Shift ~Ctrl ~Meta <Btn2Up>:insert-selection(PRIMARY, CUT_BUFFER1)
+
+*VT100.Translations: #override \
+                    <Btn1Up>:            select-end(CLIPBOARD, CUT_BUFFER1) \n\
+                    Ctrl Super <Key>V:   insert-selection(CLIPBOARD, CUT_BUFFER0) \n\
+                    <Btn2Up>:            insert-selection(CLIPBOARD, CUT_BUFFER0)
