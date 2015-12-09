@@ -63,11 +63,12 @@ function lack() {
 function mcd() { mkdir -p $1 && cd $1 }
 function cdf() { cd *$1*/ } # stolen from @topfunky
 function das() {
-    cd ~/proj/destroyallsoftware.com/destroyallsoftware.com
+    cd ~/proj/das
     pwd
-    . ~/Documents/filing/business/destroy\ all\ software\ llc/s3.sh
-    . ~/Documents/filing/business/destroy\ all\ software\ llc/braintree.sh
-    . ~/Documents/filing/business/destroy\ all\ software\ llc/cloudfront.sh
+    . ~/filing/business/destroy\ all\ software\ llc/s3.sh
+    . ~/filing/business/destroy\ all\ software\ llc/braintree.sh
+    . ~/filing/business/destroy\ all\ software\ llc/cloudfront.sh
+    . <(~/proj/rubies/lib/rubies.rb activate 1.9.3-p547 .)
 }
 alias v="view -"
 function m() {
