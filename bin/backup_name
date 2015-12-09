@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+BACKUP_NAME=$(date "+%Y-%m-%d_%H:%M:%S")
+echo "$BACKUP_NAME"

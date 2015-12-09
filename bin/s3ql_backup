@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Abort entire script if any command fails
+set -e
+
+HOME="/home/grb"
+
+new_backup="$1"
+if [[ -z "$new_backup" ]]; then
+    echo "aborting: no backup name specified" 1>&2
+    exit 1
+fi
+
+# Make sure that the backup target is mounted
+mountpoint="/mnt/backup"
+if ! mountpoint -q "$mountpoint"; then
+    echo "aborting: $mountpoint isn't mounted" 1>&2
+    exit 1
+fi
+
+# Figure out the most recent backup
+cd "$mountpoint"
+last_backup=`python <<EOF
+import os
+import re
+backups=sorted(x for x in os.listdir('.') if re.match(r'^[\\d-]{10}_[\\d:]{8}$', x))
+if backups:
+    print backups[-1]
+EOF`
+
+# Duplicate the most recent backup unless this is the first backup
+if [ -n "$last_backup" ]; then
+    echo "Copying $last_backup to $new_backup..."
+    s3qlcp "$last_backup" "$new_backup"
+
+    # Make the last backup immutable
+    # (in case the previous backup was interrupted prematurely)
+    s3qllock "$last_backup"
+fi
+
+# ..and update the copy
+echo "rsyncing $HOME to $new_backup..."
+rsync -aHAXx --delete-during --delete-excluded --partial -v \
+    --exclude-from <(~/bin/backup_exclude) \
+    "$HOME/" "./$new_backup/"
+
+# Make the new backup immutable
+echo "locking $new_backup..."
+s3qllock "$new_backup"
+
+# Compute the backup size
+echo "computing $new_backup size..."
+du -sh "$new_backup" | cut -f 1 > ~/log/backup_size

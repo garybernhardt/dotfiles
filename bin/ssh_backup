@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+set -e -u -o pipefail
+
+# Make sure that we got a backup name
+NEW_NAME="$1"
+if [[ -z "$NEW_NAME" ]]; then
+    echo "aborting: no backup name specified" 1>&2
+    exit 1
+fi
+echo "Backup name: $NEW_NAME"
+
+# Make sure that the reverse-encrypted encfs is mounted
+ENCRYPTED_FS="/mnt/backup_reverse"
+if ! mountpoint -q "$ENCRYPTED_FS"; then
+    echo "aborting: $ENCRYPTED_FS isn't mounted" 1>&2
+    exit 1
+fi
+echo "Reverse-encrypted FS is mounted"
+
+HOST=$(cat ~/.secret/ssh_backup_host)
+TARGET_ROOT="/mnt/backup/backups"
+NEW="$TARGET_ROOT/new"
+TARGET="$TARGET_ROOT/$NEW_NAME"
+
+# Find the previous backup
+PREVIOUS=$(ssh $HOST "ls $TARGET_ROOT" | grep -v '^new$' | grep -v 'lost+found' | sort | tail -1)
+echo "Previous backup seems to be $PREVIOUS"
+
+# Delete any incomplete backup we find
+cmd="
+set -e
+if [ -e $NEW ]; then
+  echo 'Deleting incomplete backup' $NEW
+  rm -rf $NEW
+else
+  echo 'No incomplete backup found'
+fi
+"
+ssh $HOST "$cmd"
+
+# Sync, using the previous backup as the link-dest so we don't transfer files
+# unnecessarily
+echo "Syncing"
+function sync() {
+    local excludes
+    excludes=$(~/bin/backup_exclude | encfsctl encode --extpass='cat ~/.secret/ssh_backup_pass' ~)
+    rsync -aHAXx --info=NONE,NAME1 --stats --delete-during --delete-excluded \
+      --exclude-from <(echo "$excludes") \
+      --link-dest "$TARGET_ROOT/$PREVIOUS" \
+      "/mnt/backup_reverse/" \
+      "$HOST:$NEW/"
+}
+
+function decode_rsync_output() {
+    # Remove the output line for the root path since it's not encrypted
+    grep -v '^\./$' |
+    # There's no way to stop rsync's "created directory" messages, so remove
+    # them here
+    grep -v '^created directory ' |
+    # Only synced paths should remain; decrypt them
+    encfsctl decode --extpass='cat ~/.secret/ssh_backup_pass' ~
+}
+
+sync | decode_rsync_output
+
+echo "Copying encfs config to backup"
+scp ~/.encfs6.xml "$HOST:$NEW"
+
+# Give the new backup its real name
+ssh $HOST "mv $NEW $TARGET"
+echo "New backup was moved to $TARGET"

@@ -1,0 +1,3 @@
+#!/bin/bash
+shopt -s globstar
+eval "cd ~ && ls -d $(cat ~/etc/backup_exclude | xargs)" | sed 's/^/\//'
