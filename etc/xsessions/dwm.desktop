@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=DWM
+Comment=DWM
+Exec=/home/grb/bin/startdwm
+Type=Application
