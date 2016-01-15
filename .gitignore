@@ -69,6 +69,7 @@
 /.npm
 /.offlineimap
 /.pip
+/.pki
 /.psql_history
 /.pypirc
 /.python-eggs
@@ -79,6 +80,8 @@
 /.rubies
 /.rubinius_last_error
 /.rvm
+/.s3ql
+/.secret
 /.sh_history
 /.sqlite_history
 /.ssh
@@ -134,6 +137,7 @@
 /misc.sparsebundle
 /notes
 /papers
+/planning
 /proj
 /reference
 /screencasts
