@@ -1,0 +1,3 @@
+#!/bin/bash
+vmtoolsd -n vmusr&
+exec dwm
