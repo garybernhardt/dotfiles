@@ -482,6 +482,9 @@ command! RemoveFancyCharacters :call RemoveFancyCharacters()
 function! SelectaCommand(choice_command, selecta_args, vim_command)
   try
     let selection = system(a:choice_command . " | selecta " . a:selecta_args)
+    " Escape spaces in the file name. That ensures that it's a single argument
+    " when concatenated with vim_command and run with exec.
+    let selection = substitute(selection, ' ', '\\ ', "g")
   catch /Vim:Interrupt/
     " Swallow the ^C so that the redraw below happens; otherwise there will be
     " leftovers from selecta on the screen
