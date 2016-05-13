@@ -495,19 +495,19 @@ function! SelectaCommand(choice_command, selecta_args, vim_command)
   exec a:vim_command . " " . selection
 endfunction
 
-function! SelectaFile(path)
-  call SelectaCommand("find " . a:path . "/* -type f", "", ":e")
+function! SelectaFile(path, glob)
+  call SelectaCommand("find " . a:path . "/* -type f -and -iname '" . a:glob . "' -and -not -iname '*.pyc'", "", ":e")
 endfunction
 
-nnoremap <leader>f :call SelectaFile(".")<cr>
-nnoremap <leader>gv :call SelectaFile("app/views")<cr>
-nnoremap <leader>gc :call SelectaFile("app/controllers")<cr>
-nnoremap <leader>gm :call SelectaFile("app/models")<cr>
-nnoremap <leader>gh :call SelectaFile("app/helpers")<cr>
-nnoremap <leader>gl :call SelectaFile("lib")<cr>
-nnoremap <leader>gp :call SelectaFile("public")<cr>
-nnoremap <leader>gs :call SelectaFile("public/stylesheets")<cr>
-nnoremap <leader>gf :call SelectaFile("features")<cr>
+nnoremap <leader>f :call SelectaFile(".", "*")<cr>
+nnoremap <leader>gv :call SelectaFile("app/views", "*")<cr>
+nnoremap <leader>gc :call SelectaFile("app/controllers", "*")<cr>
+nnoremap <leader>gm :call SelectaFile("app/models", "*")<cr>
+nnoremap <leader>gh :call SelectaFile("app/helpers", "*")<cr>
+nnoremap <leader>gl :call SelectaFile("lib", "*")<cr>
+nnoremap <leader>gp :call SelectaFile("public", "*")<cr>
+nnoremap <leader>gs :call SelectaFile("public/stylesheets", "*.sass")<cr>
+nnoremap <leader>gf :call SelectaFile("features", "*")<cr>
 
 "Fuzzy select
 function! SelectaIdentifier()
