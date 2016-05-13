@@ -62,7 +62,6 @@ function das() {
     . ~/Documents/filing/business/destroy\ all\ software\ llc/braintree.sh
     . ~/Documents/filing/business/destroy\ all\ software\ llc/cloudfront.sh
 }
-alias v="view -"
 function m() {
     if [[ "$1" == "das" ]]; then
         mutt -F ~/.mutt/das.muttrc
