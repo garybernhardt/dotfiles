@@ -1,8 +1,10 @@
 " This is Gary Bernhardt's .vimrc file
 " vim:set ts=2 sts=2 sw=2 expandtab:
 
+" remove all existing autocmds
 autocmd!
 
+" initialize @tpope, whence all vim plugins come
 call pathogen#incubate()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
