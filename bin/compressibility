@@ -6,10 +6,13 @@
 import sys
 import zlib
 import bz2
+import os.path
+import subprocess
 
 
 def main():
-    data = file_data()
+    paths = sys.argv[1:]
+    data = read_all_data(paths)
     size = len(data)
     print 'file size', size
     gzip_size = len(zlib.compress(data))
@@ -18,11 +21,20 @@ def main():
     print 'bz2 size %i (%i%%)' % (bz2_size, percent(bz2_size, size))
 
 
-def file_data():
-    files = map(open, sys.argv[1:])
-    if not files:
-        files = [sys.stdin]
-    return ''.join(f.read() for f in files)
+def read_all_data(paths):
+    path_data = map(read_path, paths)
+    if not path_data:
+        path_data = [sys.stdin.read()]
+    return ''.join(path_data)
+
+
+def read_path(path):
+    # If the path is a directory, tar it up; otherwise, just read it
+    if os.path.isdir(path):
+        sys.stderr.write("Automatically tarring contents of " + path + "\n")
+        return subprocess.check_output(["tar", "-c", "-f", "-", path])
+    else:
+        return open(path, "r").read()
 
 
 def percent(part, whole):
