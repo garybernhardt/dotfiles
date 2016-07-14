@@ -3,7 +3,7 @@
 # By Gary Bernhardt.
 # Dotfiles at: https://github.com/garybernhardt/dotfiles
 #
-# Usage examples:
+# Example invocations:
 #
 # $ compressibility .vimrc
 # file size 18888
@@ -32,11 +32,11 @@ def main():
     paths = sys.argv[1:]
     data = read_all_data(paths)
     size = len(data)
-    print 'file size', size
+    print 'file size', format(size, ",d")
     gzip_size = len(zlib.compress(data))
-    print 'gzip size %i (%i%%)' % (gzip_size, percent(gzip_size, size))
+    print 'gzip size %s (%d%%)' % (format(gzip_size, ",d"), percent(gzip_size, size))
     bz2_size = len(bz2.compress(data))
-    print 'bz2 size %i (%i%%)' % (bz2_size, percent(bz2_size, size))
+    print 'bz2 size %s (%d%%)' % (format(bz2_size, ",d"), percent(bz2_size, size))
 
 
 def read_all_data(paths):
