@@ -6,20 +6,20 @@
 # Example invocations:
 #
 # $ compressibility .vimrc
-# file size 18888
-# gzip size 6250 (33%)
-# bz2 size 6182 (32%)
+# file size 18,888
+# gzip size 6,250 (33%)
+# bz2 size 6,182 (32%)
 #
 # $ compressibility bin
 # Automatically tarring contents of bin
-# file size 993280
-# gzip size 307261 (30%)
-# bz2 size 310495 (31%)
+# file size 993,280
+# gzip size 307,261 (30%)
+# bz2 size 310,495 (31%)
 #
 # $ cat .vimrc | compressibility
-# file size 18888
-# gzip size 6250 (33%)
-# bz2 size 6182 (32%)
+# file size 18,888
+# gzip size 6,250 (33%)
+# bz2 size 6,182 (32%)
 
 import sys
 import zlib
