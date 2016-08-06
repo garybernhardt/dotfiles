@@ -30,6 +30,7 @@ set ignorecase smartcase
 set cursorline
 set cmdheight=1
 set switchbuf=useopen
+" Always show tab bar at the top
 set showtabline=2
 set winwidth=79
 " This makes RVM work inside Vim. I have no idea why.
