@@ -5,7 +5,7 @@ let g:colors_name = "grb256"
 
 hi pythonSpaceError ctermbg=red guibg=red
 
-hi Comment ctermfg=gray
+hi Comment ctermfg=lightgrey
 
 hi StatusLine ctermbg=darkgrey ctermfg=white
 hi StatusLineNC ctermbg=black ctermfg=lightgrey
