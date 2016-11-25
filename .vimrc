@@ -332,8 +332,11 @@ function! RunTestFile(...)
         let command_suffix = ""
     endif
 
-    " Run the tests for the previously-marked file.
+    " Are we in a test file?
     let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|test_.*\.py\|_test.py\)$') != -1
+
+    " Run the tests for the previously-marked file (or the current file if
+    " it's a test).
     if in_test_file
         call SetTestFile(command_suffix)
     elseif !exists("t:grb_test_file")
