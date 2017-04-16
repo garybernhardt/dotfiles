@@ -12,6 +12,8 @@
 
 set -e
 
+E_BADARGS=85
+
 if [[ $1 == -v ]]; then
     verbose=1
     shift
