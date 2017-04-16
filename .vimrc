@@ -193,7 +193,10 @@ function! RenameFile()
     let old_name = expand('%')
     let new_name = input('New file name: ', expand('%'), 'file')
     if new_name != '' && new_name != old_name
+        let old_alt = expand('#')
         exec ':saveas ' . new_name
+        let @# = old_alt
+        exec ':bd ' . bufnr(old_name)
         exec ':silent !rm ' . old_name
         redraw!
     endif
