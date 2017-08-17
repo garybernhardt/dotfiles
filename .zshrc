@@ -150,3 +150,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 # OPAM configuration
 . /Users/grb/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/gem_home/gem_home.sh
