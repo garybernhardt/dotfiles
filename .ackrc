@@ -12,3 +12,4 @@
 --type-set=RDOC=rdoc
 --type-set=slim=slim
 
+--ignore-dir=.gem
