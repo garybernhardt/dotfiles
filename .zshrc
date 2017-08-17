@@ -108,6 +108,14 @@ function p() {
     fi
 }
 
+# Edit a note
+function n() {
+    local note=$(find ~/notes | selecta)
+    if [[ -n "$note" ]]; then
+        (cd ~/notes && vi "$note")
+    fi
+}
+
 # By default, ^S freezes terminal output and ^Q resumes it. Disable that so
 # that those keys can be used for other things.
 unsetopt flowcontrol
