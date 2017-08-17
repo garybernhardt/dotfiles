@@ -59,7 +59,6 @@ function m() {
         ~/proj/thelongpoll/thelongpoll/thelongpoll client -F ~/.mutt/$1.muttrc
     fi
 }
-alias c="cd"
 
 # Activate the closest virtualenv by looking in parent directories.
 activate_virtualenv() {
