@@ -325,8 +325,6 @@ endfunction
 call MapCR()
 nnoremap <leader>T :call RunNearestTest()<cr>
 nnoremap <leader>a :call RunTests('')<cr>
-nnoremap <leader>c :w\|:!script/features<cr>
-nnoremap <leader>w :w\|:!script/features --profile wip<cr>
 
 function! RunTestFile(...)
     if a:0
@@ -336,7 +334,7 @@ function! RunTestFile(...)
     endif
 
     " Are we in a test file?
-    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|test_.*\.py\|_test.py\)$') != -1
+    let in_test_file = match(expand("%"), '\(_spec.rb\|test_.*\.py\|_test.py\)$') != -1
 
     " Run the tests for the previously-marked file (or the current file if
     " it's a test).
@@ -363,32 +361,28 @@ function! RunTests(filename)
     if expand("%") != ""
       :w
     end
-    if match(a:filename, '\.feature$') != -1
-        exec ":!script/features " . a:filename
-    else
-        " First choice: project-specific test script
-        if filereadable("script/test")
-            exec ":!script/test " . a:filename
-        " Fall back to the .test-commands pipe if available, assuming someone
-        " is reading the other side and running the commands
-        elseif filewritable(".test-commands")
-          let cmd = 'rspec --color --format progress --require "~/lib/vim_rspec_formatter" --format VimFormatter --out tmp/quickfix'
-          exec ":!echo " . cmd . " " . a:filename . " > .test-commands"
+    " First choice: project-specific test script
+    if filereadable("script/test")
+        exec ":!script/test " . a:filename
+    " Fall back to the .test-commands pipe if available, assuming someone
+    " is reading the other side and running the commands
+    elseif filewritable(".test-commands")
+      let cmd = 'rspec --color --format progress --require "~/lib/vim_rspec_formatter" --format VimFormatter --out tmp/quickfix'
+      exec ":!echo " . cmd . " " . a:filename . " > .test-commands"
 
-          " Write an empty string to block until the command completes
-          sleep 100m " milliseconds
-          :!echo > .test-commands
-          redraw!
-        " Fall back to a blocking test run with Bundler
-        elseif filereadable("Gemfile")
-            exec ":!bundle exec rspec --color " . a:filename
-        " If we see python-looking tests, assume they should be run with Nose
-        elseif strlen(glob("test/**/*.py") . glob("tests/**/*.py"))
-            exec "!nosetests " . a:filename
-        " Fall back to a normal blocking test run
-        else
-            exec ":!rspec --color " . a:filename
-        end
+      " Write an empty string to block until the command completes
+      sleep 100m " milliseconds
+      :!echo > .test-commands
+      redraw!
+    " Fall back to a blocking test run with Bundler
+    elseif filereadable("Gemfile")
+        exec ":!bundle exec rspec --color " . a:filename
+    " If we see python-looking tests, assume they should be run with Nose
+    elseif strlen(glob("test/**/*.py") . glob("tests/**/*.py"))
+        exec "!nosetests " . a:filename
+    " Fall back to a normal blocking test run
+    else
+        exec ":!rspec --color " . a:filename
     end
 endfunction
 
