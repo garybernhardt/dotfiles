@@ -517,8 +517,7 @@ nnoremap <leader>gm :call SelectaFile("app/models", "*")<cr>
 nnoremap <leader>gh :call SelectaFile("app/helpers", "*")<cr>
 nnoremap <leader>gl :call SelectaFile("lib", "*")<cr>
 nnoremap <leader>gp :call SelectaFile("public", "*")<cr>
-nnoremap <leader>gs :call SelectaFile("public/stylesheets", "*.sass")<cr>
-nnoremap <leader>gf :call SelectaFile("features", "*")<cr>
+nnoremap <leader>gs :call SelectaFile("app/assets/stylesheets", "*.sass")<cr>
 
 "Fuzzy select
 function! SelectaIdentifier()
