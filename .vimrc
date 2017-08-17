@@ -361,8 +361,11 @@ function! RunTests(filename)
     if expand("%") != ""
       :w
     end
-    " First choice: project-specific test script
-    if filereadable("script/test")
+    " The file is executable; assume we should run
+    if executable(a:filename)
+      exec ":!./" . a:filename
+    " Project-specific test script
+    elseif filereadable("script/test")
         exec ":!script/test " . a:filename
     " Fall back to the .test-commands pipe if available, assuming someone
     " is reading the other side and running the commands
