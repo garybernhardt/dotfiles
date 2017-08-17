@@ -378,14 +378,15 @@ function! RunTests(filename)
       :!echo > .test-commands
       redraw!
     " Fall back to a blocking test run with Bundler
-    elseif filereadable("Gemfile")
-        exec ":!bundle exec rspec --color " . a:filename
+    elseif filereadable("bin/rspec")
+      exec ":!bin/rspec --color " . a:filename
+    elseif filereadable("Gemfile") && strlen(glob("spec/**/*.rb"))
+      exec ":!bundle exec rspec --color " . a:filename
+    elseif filereadable("Gemfile") && strlen(glob("test/**/*.rb"))
+      exec ":!bin/rails test " . a:filename
     " If we see python-looking tests, assume they should be run with Nose
     elseif strlen(glob("test/**/*.py") . glob("tests/**/*.py"))
-        exec "!nosetests " . a:filename
-    " Fall back to a normal blocking test run
-    else
-        exec ":!rspec --color " . a:filename
+      exec "!nosetests " . a:filename
     end
 endfunction
 
