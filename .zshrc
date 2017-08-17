@@ -145,9 +145,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 #PATH=$PATH:$HOME/.rvm/bin
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-#export PATH="$HOME/.rbenv/bin:$PATH"
-#eval "$(rbenv init -)"
-
 #source /usr/local/share/chruby/chruby.sh
 #source /usr/local/share/chruby/auto.sh
 
