@@ -117,7 +117,10 @@
 /design
 /desktop_temp
 /doc
+/emu
 /gmail-archive.sparsebundle
+/learning
+/mbox
 /media
 /misc.sparsebundle
 /notes
@@ -125,8 +128,10 @@
 /proj
 /reference
 /screencasts
+/secrets
 /share/man
 /src
 /talks
 /var
 /work
+/writing
