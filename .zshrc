@@ -48,7 +48,9 @@ function das() {
     pwd
     . ~/Documents/filing/business/destroy\ all\ software\ llc/s3.sh
     . ~/Documents/filing/business/destroy\ all\ software\ llc/braintree.sh
+    . ~/Documents/filing/business/destroy\ all\ software\ llc/stripe_test_credentials.sh
     . ~/Documents/filing/business/destroy\ all\ software\ llc/cloudfront.sh
+    . <(rubies activate ruby-2.3.1 .)
 }
 function m() {
     if [[ "$1" == "das" ]]; then
