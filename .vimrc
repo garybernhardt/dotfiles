@@ -124,6 +124,9 @@ augroup vimrcEx
 
   " javascript
   autocmd! FileType javascript set sw=2 sts=2 expandtab autoindent smartindent nocindent
+
+  " Expand tabs in Go. Was gofmt raised in a barn?!
+  autocmd! FileType go set sw=4 sts=4 expandtab | retab
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
