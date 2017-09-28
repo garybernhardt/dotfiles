@@ -26,12 +26,13 @@ LOG_SUBJECT="%s"
 LOG_FORMAT="$LOG_HASH}$LOG_RELATIVE_TIME}$LOG_AUTHOR}$LOG_REFS $LOG_SUBJECT"
 
 BRANCH_PREFIX="%(HEAD)"
-BRANCH_NAME="%(color:yellow)%(refname:short)%(color:reset)"
+BRANCH_REF="%(color:red)%(color:bold)%(refname:short)%(color:reset)"
+BRANCH_HASH="%(color:yellow)%(objectname:short)%(color:reset)"
 BRANCH_DATE="%(color:green)(%(committerdate:relative))%(color:reset)"
 BRANCH_AUTHOR="%(color:blue)%(color:bold)<%(authorname)>%(color:reset)"
 BRANCH_CONTENTS="%(contents:subject)"
 
-BRANCH_FORMAT="$BRANCH_PREFIX}$BRANCH_NAME}$BRANCH_DATE}$BRANCH_AUTHOR}$BRANCH_CONTENTS"
+BRANCH_FORMAT="$BRANCH_PREFIX}$BRANCH_REF}$BRANCH_HASH}$BRANCH_DATE}$BRANCH_AUTHOR}$BRANCH_CONTENTS"
 
 ANSI_BLACK='\033[30m'
 ANSI_BLACK_BOLD='\033[0;30;1m'
@@ -62,11 +63,11 @@ pretty_git_log() {
 }
 
 pretty_git_branch() {
-    git for-each-ref refs/heads/ --format=${BRANCH_FORMAT} $* | pretty_git_format
+    git branch -v --format=${BRANCH_FORMAT} $* | pretty_git_format
 }
 
 pretty_git_branch_sorted() {
-    git for-each-ref --sort=-committerdate refs/heads/ --format=${BRANCH_FORMAT} $* | pretty_git_format
+    git branch -v --format=${BRANCH_FORMAT} --sort=-committerdate $* | pretty_git_format
 }
 
 pretty_git_format() {
