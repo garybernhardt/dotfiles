@@ -5,9 +5,15 @@
 #
 #   $ git diff 'master~10..master' | gn
 #   293 lines of diff
-#   185 lines added
-#   19 lines removed
-#   +166 lines net change
+#   185 lines (+200, -15)
+#   650 words (+10, -660)
+#
+# or:
+#
+#   $ gn my-awesome-patch.diff
+#   293 lines of diff
+#   185 lines (+200, -15)
+#   650 words (+10, -660)
 
 import sys, os, re, fileinput
 
