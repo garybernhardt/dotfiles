@@ -186,11 +186,9 @@ inoremap <expr> <tab> InsertTabWrapper()
 inoremap <s-tab> <c-n>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" OPEN FILES IN DIRECTORY OF CURRENT FILE
+" SHORTCUT TO REFERENCE CURRENT FILE'S PATH IN COMMAND LINE MODE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 cnoremap <expr> %% expand('%:h').'/'
-map <leader>e :edit %%
-map <leader>v :view %%
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RENAME CURRENT FILE
@@ -509,18 +507,20 @@ function! SelectaCommand(choice_command, selecta_args, vim_command)
   exec a:vim_command . " " . selection
 endfunction
 
-function! SelectaFile(path, glob)
-  call SelectaCommand("find " . a:path . "/* -type f -and -not -path '*/node_modules/*' -and -not -path '*/_build/*' -and -iname '" . a:glob . "' -and -not -iname '*.pyc' -and -not -ipath '*/tmp/*'", "", ":e")
+function! SelectaFile(path, glob, command)
+  call SelectaCommand("find " . a:path . "/* -type f -and -not -path '*/node_modules/*' -and -not -path '*/_build/*' -and -iname '" . a:glob . "' -and -not -iname '*.pyc' -and -not -ipath '*/tmp/*'", "", a:command)
 endfunction
 
-nnoremap <leader>f :call SelectaFile(".", "*")<cr>
-nnoremap <leader>gv :call SelectaFile("app/views", "*")<cr>
-nnoremap <leader>gc :call SelectaFile("app/controllers", "*")<cr>
-nnoremap <leader>gm :call SelectaFile("app/models", "*")<cr>
-nnoremap <leader>gh :call SelectaFile("app/helpers", "*")<cr>
-nnoremap <leader>gl :call SelectaFile("lib", "*")<cr>
-nnoremap <leader>gp :call SelectaFile("public", "*")<cr>
-nnoremap <leader>gs :call SelectaFile("app/assets/stylesheets", "*.sass")<cr>
+nnoremap <leader>f :call SelectaFile(".", "*", ":edit")<cr>
+nnoremap <leader>gv :call SelectaFile("app/views", "*", ":edit")<cr>
+nnoremap <leader>gc :call SelectaFile("app/controllers", "*", ":edit")<cr>
+nnoremap <leader>gm :call SelectaFile("app/models", "*", ":edit")<cr>
+nnoremap <leader>gh :call SelectaFile("app/helpers", "*", ":edit")<cr>
+nnoremap <leader>gl :call SelectaFile("lib", "*", ":edit")<cr>
+nnoremap <leader>gp :call SelectaFile("public", "*", ":edit")<cr>
+nnoremap <leader>gs :call SelectaFile("app/assets/stylesheets", "*.sass", ":edit")<cr>
+nnoremap <leader>e :call SelectaFile(expand('%:h'), "*", ":edit")<cr>
+nnoremap <leader>v :call SelectaFile(expand('%:h'), "*", ":view")<cr>
 
 "Fuzzy select
 function! SelectaIdentifier()
