@@ -1,0 +1,46 @@
+#!/usr/bin/env zsh
+
+# Whither [my disk space]?
+#
+# Run this to find out where your disk space is going. Pass the paths that
+# you're curious about as arguments. It will tell you:
+#
+#   * The total size of each path (rounded up to the nearest megabyte).
+#   * How many files exist in each path. You want to minimize this to speed up
+#     backups (e.g., if you have 100 projects, each with a 200,000-file
+#     node_modules directory, then your backups will be terribly slow.)
+#
+# The list will be sorted in increasing order of total size, so you can simply
+# look at the bottom of the output to see the largest files/directories.
+#
+# For example:
+#
+#   $ whither ~/*
+#   a       b       c
+#   Size    Files   Name
+#   1M      2       lib
+#   1M      39      bin
+#   3M      747     notes
+#   610M    62124   src
+#   5659M   126892  proj
+#   306976M 49      Downloads
+#
+# Remember: expansion of globs (*, ?, {}, etc.) is done by the shell, before
+# commands are invoked, so this command can use them for free (like all
+# commands!)
+#
+#   $ whither ~/{src,proj}/*
+#   Size    Files   Name
+#   1M      53      /Users/grb/proj/thelongpoll
+#   187M    19893   /Users/grb/src/ruby-2.4.1
+#   187M    19943   /Users/grb/src/ruby-2.4.0
+#   200M    22284   /Users/grb/src/ruby-2.3.1
+#   278M    19715   /Users/grb/proj/das
+#   2237M   15253   /Users/grb/proj/japanese
+
+set -e -o pipefail
+
+echo "Size\tFiles\tName"
+ls -d $* | while read p; do
+    echo "$(du -sm "$p" | field 1)M\t$(find "$p" | wc -l | xargs echo)\t$p"
+done | sort -n
