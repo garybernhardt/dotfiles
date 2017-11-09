@@ -47,11 +47,12 @@ function cdf() { cd *$1*/ } # stolen from @topfunky
 function das() {
     cd ~/proj/das
     pwd
-    . ~/Documents/filing/business/destroy\ all\ software\ llc/s3.sh
-    . ~/Documents/filing/business/destroy\ all\ software\ llc/braintree.sh
-    . ~/Documents/filing/business/destroy\ all\ software\ llc/stripe_test_credentials.sh
-    . ~/Documents/filing/business/destroy\ all\ software\ llc/cloudfront.sh
-    . <(rubies activate ruby-2.3.1 .)
+    . ~/secrets/das/s3.sh
+    . ~/secrets/das/braintree.sh
+    . ~/secrets/das/stripe_test_credentials.sh
+    . ~/secrets/das/cloudfront.sh
+    chruby ruby 2.3.1
+    gem_home .
 }
 function m() {
     if [[ "$1" == "das" ]]; then
