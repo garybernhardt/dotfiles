@@ -51,8 +51,6 @@ function das() {
     . ~/secrets/das/braintree.sh
     . ~/secrets/das/stripe_test_credentials.sh
     . ~/secrets/das/cloudfront.sh
-    chruby ruby 2.3.1
-    gem_home .
 }
 function m() {
     if [[ "$1" == "das" ]]; then
