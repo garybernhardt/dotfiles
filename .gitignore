@@ -112,6 +112,7 @@
 /bin/rvm-prompt
 /bin/rvm-shell
 /bin/rvmsudo
+/bin/youtubedown
 /blog
 /books
 /design
@@ -122,9 +123,11 @@
 /learning
 /mbox
 /media
+/misc
 /misc.sparsebundle
 /notes
 /papers
+/photos
 /proj
 /reference
 /screencasts
