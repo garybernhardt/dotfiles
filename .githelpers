@@ -59,7 +59,7 @@ show_git_head() {
 }
 
 pretty_git_log() {
-    git log --graph --pretty="tformat:${LOG_FORMAT}" $* | pretty_git_format
+    git log --graph --color=always --pretty="tformat:${LOG_FORMAT}" $* | pretty_git_format
 }
 
 pretty_git_branch() {
