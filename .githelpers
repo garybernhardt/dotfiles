@@ -63,7 +63,7 @@ pretty_git_log() {
 }
 
 pretty_git_branch() {
-    git branch -v --format=${BRANCH_FORMAT} $* | pretty_git_format
+    git branch -v --color=always --format=${BRANCH_FORMAT} $* | pretty_git_format
 }
 
 pretty_git_branch_sorted() {
