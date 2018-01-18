@@ -42,7 +42,7 @@ export WORDCHARS='*?[]~&;!$%^<>'
 export ACK_COLOR_MATCH='red'
 
 # Aliases
-function mcd() { mkdir -p $1 && cd $1 }
+function mkcd() { mkdir -p $1 && cd $1 }
 function cdf() { cd *$1*/ } # stolen from @topfunky
 function das() {
     cd ~/proj/das
