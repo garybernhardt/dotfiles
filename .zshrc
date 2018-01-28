@@ -6,7 +6,7 @@ prompt grb
 
 # Initialize completion
 autoload -U compinit
-compinit
+compinit -D
 
 # Add paths
 export PATH=/usr/local/sbin:/usr/local/bin:${PATH}
