@@ -120,7 +120,7 @@ augroup vimrcEx
   autocmd! BufNewFile,BufRead *.md setlocal ft=
 
   " indent slim two spaces, not four
-  autocmd! FileType *.slim set sw=2 sts=2 et
+  autocmd! FileType slim set sw=2 sts=2 et
 
   " javascript
   autocmd! FileType javascript set sw=2 sts=2 expandtab autoindent smartindent nocindent
