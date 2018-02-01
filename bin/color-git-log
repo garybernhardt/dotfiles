@@ -1,0 +1,71 @@
+#!/usr/bin/env ruby --disable-gems
+
+ANSI_BLACK="\033[0;30m"
+ANSI_BLACK_BOLD="\033[0;30;1m"
+ANSI_RED="\033[0;31m"
+ANSI_RED_BOLD="\033[0;31;1m"
+ANSI_GREEN="\033[0;32m"
+ANSI_GREEN_BOLD="\033[0;32;1m"
+ANSI_YELLOW="\033[0;33m"
+ANSI_YELLOW_BOLD="\033[0;33;1m"
+ANSI_BLUE="\033[0;34m"
+ANSI_BLUE_BOLD="\033[0;34;1m"
+ANSI_MAGENTA="\033[0;35m"
+ANSI_MAGENTA_BOLD="\033[0;35;1m"
+ANSI_CYAN="\033[0;36m"
+ANSI_CYAN_BOLD="\033[0;36;1m"
+ANSI_WHITE="\033[0;37m"
+ANSI_WHITE_BOLD="\033[0;37;1m"
+ANSI_RESET="\033[0m"
+
+# Example of the git log format we're colorizing:
+#
+# * bec1093    (4 months)   <Gary Bernhardt>              add gn script example for running on a file
+# *   08c5419  (4 months)   <Gary Bernhardt>              Merge branch 'pretty-branch-list'
+# |\
+# | * 107d71a  (4 months)   <Leyan Lo>                    Add branch hash, and style more true to pretty git log.
+# | * 2f9ea37  (4 months)   <Leyan Lo>                    Add pretty_git_branch and pretty_git_branch_sorted
+# |/
+# * db85c40    (4 months)   <Gary Bernhardt>              symlink ~/bin/vi to /usr/local/bin/vim
+
+def colorize_line(line)
+    re = %r{
+        \A                          # Beginning of string (not just end of line)
+        (?<graph>[*\\|/ ]+)         # Graph drawing characters
+        (?:                         # Sometimes there are only graph drawing characters,
+                                    # so the rest is optional.
+            (?<hash>[0-9a-z]+\s*)   # Commit hash
+            (?<time>\([^\)]+\)\s*)  # Relative time of commit
+            (?<name><[^>]+>\s*)     # Committer name
+            (?<refs>\([^\)]+\)\s*)? # Refs, e.g. (origin/master, origin/HEAD)
+            (?<message>.*)          # Commit message
+            \z                      # End of string (not just end of line)
+        )?                          # End of large optional block
+    }x
+    graph, hash, time, name, refs, message = re.match(line).captures
+    [
+        ANSI_RESET, graph,
+        ANSI_YELLOW, hash,
+        ANSI_GREEN, time,
+        ANSI_BLUE, name,
+        ANSI_RED_BOLD, refs,
+
+        # Turn merge commits red so they stand out
+        message =~ /^Merge / ? ANSI_RED : ANSI_RESET,
+        message,
+
+        ANSI_RESET,
+    ].join('')
+end
+
+colorized = $stdin.readlines.map(&:strip).map do |line|
+    colorize_line(line)
+end.join("\n")
+
+begin
+    $stdout.write colorized
+rescue Errno::EPIPE
+    # We don't want to raise a Ruby exception if the reader goes away
+    # (e.g., the user kills the `less` that we're piped into).
+    exit 1
+end

@@ -34,32 +34,13 @@ BRANCH_CONTENTS="%(contents:subject)"
 
 BRANCH_FORMAT="$BRANCH_PREFIX}$BRANCH_REF}$BRANCH_HASH}$BRANCH_DATE}$BRANCH_AUTHOR}$BRANCH_CONTENTS"
 
-ANSI_BLACK='\033[30m'
-ANSI_BLACK_BOLD='\033[0;30;1m'
-ANSI_RED='\033[31m'
-ANSI_RED_BOLD='\033[0;31;1m'
-ANSI_GREEN='\033[32m'
-ANSI_GREEN_BOLD='\033[0;32;1m'
-ANSI_YELLOW='\033[33m'
-ANSI_YELLOW_BOLD='\033[0;33;1m'
-ANSI_BLUE='\033[34m'
-ANSI_BLUE_BOLD='\033[0;34;1m'
-ANSI_MAGENTA='\033[35m'
-ANSI_MAGENTA_BOLD='\033[0;35;1m'
-ANSI_CYAN='\033[36m'
-ANSI_CYAN_BOLD='\033[0;36;1m'
-ANSI_WHITE='\033[37m'
-ANSI_WHITE_BOLD='\033[0;37;1m'
-ANSI_RESET='\033[0m'
-
-
 show_git_head() {
     pretty_git_log -1
     git show -p --pretty="tformat:"
 }
 
 pretty_git_log() {
-    git log --graph --color=always --pretty="tformat:${LOG_FORMAT}" $* | pretty_git_format
+    git log --graph --color=never --pretty="tformat:${LOG_FORMAT}" $* | pretty_git_format | color-git-log | git_page_maybe
 }
 
 pretty_git_branch() {
@@ -76,9 +57,10 @@ pretty_git_format() {
     # Replace (2 years, 5 months) with (2 years)
     sed -Ee 's/(^[^<]*), [[:digit:]]+ .*months?\)/\1)/' |
     # Line columns up based on } delimiter
-    column -s '}' -t |
-    # Color merge commits specially
-    sed -Ee "s/(Merge (branch|remote-tracking branch|pull request) .*$)/$(printf $ANSI_RED)\1$(printf $ANSI_RESET)/" |
+    column -s '}' -t
+}
+
+git_page_maybe() {
     # Page only if we're asked to.
     if [ -n "$GIT_NO_PAGER" ]; then
         cat
@@ -87,4 +69,3 @@ pretty_git_format() {
         less --quit-if-one-screen --no-init --RAW-CONTROL-CHARS --chop-long-lines
     fi
 }
-
