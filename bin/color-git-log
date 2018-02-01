@@ -63,7 +63,7 @@ colorized = $stdin.readlines.map(&:strip).map do |line|
 end.join("\n")
 
 begin
-    $stdout.write colorized
+    $stdout.write colorized + "\n"
 rescue Errno::EPIPE
     # We don't want to raise a Ruby exception if the reader goes away
     # (e.g., the user kills the `less` that we're piped into).
