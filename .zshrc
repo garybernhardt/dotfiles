@@ -127,6 +127,10 @@ function insert-selecta-path-in-command-line() {
     echo
     # Find the path; abort if the user doesn't select anything.
     selected_path=$(find * -type f -or -type d | selecta) || return
+    # Escape the selected path, since we're inserting it into a command line.
+    # E.g., spaces would cause it to be multiple arguments instead of a single
+    # path argument.
+    selected_path=$(printf '%q' "$selected_path")
     # Append the selection to the current command buffer.
     eval 'LBUFFER="$LBUFFER$selected_path "'
     # Redraw the prompt since Selecta has drawn several new lines of text.
