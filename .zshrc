@@ -24,6 +24,11 @@ export HISTSIZE=100000
 export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
 
+# Stop wget from creating ~/.wget-hsts file. I don't care about HSTS (HTTP
+# Strict Transport Security) for wget; it's not as if I'm logging into my bank
+# with it.
+alias wget='wget --no-hsts'
+
 # Use vim as the editor
 export EDITOR=vi
 # GNU Screen sets -o vi if EDITOR=vi, so we have to force it back.
