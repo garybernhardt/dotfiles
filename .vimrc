@@ -309,6 +309,32 @@ nnoremap <leader>. :call OpenTestAlternate()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUNNING TESTS
+"
+" Test running here is contextual in two different ways:
+"
+" 1. It will guess at how to run the tests. E.g., if there's a Gemfile
+"    present, it will `bundle exec rspec` so the gems are respected.
+"
+" 2. It remembers which tests have been run. E.g., if I'm editing user_spec.rb
+"    and hit enter, it will run rspec on user_spec.rb. If I then navigate to a
+"    non-test file, like routes.rb, and hit return again, it will re-run
+"    user_spec.rb. It will continue using user_spec.rb as my 'default' test
+"    until I hit enter in some other test file, at which point that test file
+"    is run immediately and becomes the default. This is complex to describe
+"    fully, but simple to use in practice: always hit enter to run tests. It
+"    will run either the test file you're in or the last test file you hit
+"    enter in.
+"
+" 3. Sometimes you want to run just one test. For that, there's <leader>T,
+"    which passes the current line number to the test runner. RSpec knows what
+"    to do with this (it will run the first test it finds at or below the
+"    given line number). It probably won't work with other test runners.
+"    'Focusing' on a single test in this way will be remembered if you hit
+"    enter from non-test files, as described above.
+"
+" 4. Sometimes you don't want contextual test running. In that case, there's
+"    <leader>a, which runs everything.
+"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! MapCR()
   nnoremap <cr> :call RunTestFile()<cr>
