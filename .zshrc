@@ -49,14 +49,6 @@ export ACK_COLOR_MATCH='red'
 # Aliases
 function mkcd() { mkdir -p $1 && cd $1 }
 function cdf() { cd *$1*/ } # stolen from @topfunky
-function das() {
-    cd ~/proj/das
-    pwd
-    . ~/secrets/das/s3.sh
-    . ~/secrets/das/braintree.sh
-    . ~/secrets/das/stripe_test_credentials.sh
-    . ~/secrets/das/cloudfront.sh
-}
 function m() {
     if [[ "$1" == "das" ]]; then
         mutt -F ~/.mutt/das.muttrc
