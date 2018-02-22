@@ -110,6 +110,15 @@ function p() {
     proj=$(ls ~/proj | selecta)
     if [[ -n "$proj" ]]; then
         cd ~/proj/$proj
+        if [[ -e "Gemfile" ]]; then
+            local ruby_version
+            ruby_version=$(ruby -ne $'print $1 if $_ =~ /ruby \'([0-9.]+)\'/' Gemfile)
+            chruby "$ruby_version"
+            gem_home .
+        fi
+        if [[ -d ~/secrets/$proj ]]; then
+            . ~/secrets/$proj/secrets.sh
+        fi
     fi
 }
 
