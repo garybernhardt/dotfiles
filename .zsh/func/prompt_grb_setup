@@ -127,7 +127,6 @@ prompt_grb_setup() {
     attcode[no-conceal]=28
   
     local -A pc
-    pc[divider]='black'
     pc[default]='default'
     pc[date]='cyan'
     pc[time]='Blue'
@@ -162,7 +161,7 @@ prompt_grb_setup() {
 
 	p_line="$pc[line]%y$pc[reset]"
 
-    PROMPT="$pc[divider]\$(repeat \$COLUMNS printf '-')$pc[reset]"
+    PROMPT="$pc[reset]"
 	if [ $verbose ]; then
 		PROMPT+="$pc[host]%m$pc[reset]"
 	fi
