@@ -163,26 +163,12 @@ prompt_grb_setup() {
 	p_line="$pc[line]%y$pc[reset]"
 
     PROMPT="$pc[divider]\$(repeat \$COLUMNS printf '-')$pc[reset]"
-    PROMPT+=
 	if [ $verbose ]; then
 		PROMPT+="$pc[host]%m$pc[reset]"
 	fi
-	#PROMPT+="$pc[path]%(2~.%~.%/)$pc[reset]"
-	#PROMPT+="\$(prompt_wunjo_scm_status)"
-	#PROMPT+="%(?.. $pc[rc]exited %1v$pc[reset])"
-#    PROMPT+="
-#"
-	#PROMPT+="($pc[hist]%h$pc[reset])"
 	PROMPT+=":$pc[shortpath]%1~$pc[reset]"
     PROMPT+="($pc[scm_branch]\$(prompt_wunjo_scm_branch)$pc[reset])"
 	PROMPT+=" $pc[#]\$$pc[reset] "
-
-    #RPROMPT=
-    #if [ $verbose ]; then
-    #	RPROMPT+="$p_date "
-    #fi
-    #RPROMPT+="$pc[user]%n$pc[reset]"
-    #RPROMPT+=" $p_line"
 
 	export PROMPT RPROMPT
 	precmd_functions+='prompt_wunjo_precmd'
