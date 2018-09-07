@@ -383,10 +383,10 @@ function! RunTests(filename)
       exec ":!./" . a:filename
     " Project-specific test script
     elseif filereadable("bin/test")
-        exec ":!bin/test " . a:filename
+      exec ":!bin/test " . a:filename
     " Rspec binstub
     elseif filereadable("bin/rspec")
-        exec ":!bin/rspec " . a:filename
+      exec ":!bin/rspec " . a:filename
     " Fall back to the .test-commands pipe if available, assuming someone
     " is reading the other side and running the commands
     elseif filewritable(".test-commands")
@@ -550,4 +550,3 @@ function! SelectaIdentifier()
   call SelectaCommand("find * -type f", "-s " . @z, ":e")
 endfunction
 nnoremap <c-g> :call SelectaIdentifier()<cr>
-
