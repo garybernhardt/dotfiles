@@ -18,5 +18,4 @@
 # (These are all standard arguments to `git log`.)
 
 set -e
-git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort -n | awk  'BEGIN {print "count\tfile"} {printf $1 "\t" } {for(i=2;i<=NF;++i)printf $i} {print ""}'
-
+git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort -n | awk  'BEGIN{print"count\tfile"}{print$1"\t"substr($0,index($0,$2))}'
