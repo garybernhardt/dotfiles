@@ -98,7 +98,7 @@ function p() {
         cd ~/proj/$proj
         if [[ -e "Gemfile" ]]; then
             local ruby_version
-            ruby_version=$(ruby -ne $'print $1 if $_ =~ /ruby \'([0-9.]+)\'/' Gemfile)
+            ruby_version=$(ruby -ne $'print $1 if $_ =~ /ruby [\'"]([0-9.]+)[\'"]/' Gemfile)
             chruby "$ruby_version"
             gem_home .
         fi
