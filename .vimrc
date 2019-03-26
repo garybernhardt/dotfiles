@@ -84,6 +84,8 @@ set autoread
 set re=1
 " Stop SQL language files from doing unholy things to the C-c key
 let g:omni_sql_no_default_maps = 1
+" True color mode! (Requires a fancy modern terminal, but iTerm works.)
+:set termguicolors
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
