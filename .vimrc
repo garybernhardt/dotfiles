@@ -84,8 +84,19 @@ set autoread
 set re=1
 " Stop SQL language files from doing unholy things to the C-c key
 let g:omni_sql_no_default_maps = 1
+" Diffs are shown side-by-side not above/below
+set diffopt=vertical
+" Always show the sign column
+set signcolumn=no
 " True color mode! (Requires a fancy modern terminal, but iTerm works.)
 :set termguicolors
+" Write swap files to disk and trigger CursorHold event faster (default is
+" after 4000 ms of inactivity)
+:set updatetime=1000
+" Completion options.
+"   menu: use a popup menu
+"   preview: show more info in menu
+:set completeopt=menu,preview
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
@@ -157,7 +168,8 @@ nnoremap <c-l> <c-w>l
 " Insert a hash rocket with <c-l>
 imap <c-l> <space>=><space>
 " Can't be bothered to understand ESC vs <c-c> in insert mode
-imap <c-c> <esc>
+inoremap <c-c> <esc>
+" <leader><leader> is more convenient than <c-^>
 nnoremap <leader><leader> <c-^>
 " Align selected lines
 vnoremap <leader>ib :!align<cr>
