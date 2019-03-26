@@ -166,19 +166,49 @@ augroup vimrcEx
 
   " Expand tabs in Go. Was gofmt raised in a barn?!
   autocmd! FileType go set sw=4 sts=4 expandtab | retab
+
+  " Two-space indents in TypeScript
+  autocmd! FileType typescript set sw=2 sts=2 expandtab
+  " Automatically write after inactivity in TypeScript
+  autocmd FileType typescript autocmd CursorHold <buffer> :silent :wa
+
+  " Somehow, loading TypeScript .tsx files sometimes invokes the XML file
+  " type, which messes up the indentation. Force XML indentation to 2 so at
+  " least it doesn't change TypeScript indentation at random.
+  autocmd! FileType xml set sw=2 sts=2 expandtab
+
+  " Two-space indents in json
+  autocmd! FileType json set sw=2 sts=2 expandtab
+
+  " Hitting K in a Ruby file opens rdoc, which completely breaks the terminal
+  " to the point of having to kill vim and do `reset`. Unmap it entirely.
+  nnoremap K <Nop>
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :set t_Co=256 " 256 colors
-:set background=dark
-:color grb256
+:color grb24bit
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VIM-ALE CONFIG
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_linters = {'typescript': ['tsserver']}
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_delay = 0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tsuquyomi
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim-ale handles TypeScript quickfix, so tell Tsuquyomi not to do it.
+let g:tsuquyomi_disable_quickfix = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
@@ -197,6 +227,20 @@ inoremap <c-c> <esc>
 nnoremap <leader><leader> <c-^>
 " Align selected lines
 vnoremap <leader>ib :!align<cr>
+" Close all other splits
+nnoremap <leader>o :only<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" LOCATION LIST MAPPINGS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap g1 :silent! :silent! :ll 1\|:normal zz<cr>
+nnoremap gj :silent! :ll\|:silent! :lnext\|:normal zz<cr>
+nnoremap gk :silent! :ll\|:silent! :lprev\|:normal zz<cr>
+" This mapping will kill all ALE-related processes (including tsserver). It's
+" necessary when those processes get confused. E.g., tsserver will sometimes
+" show type errors that don't actually exist. I don't know exactly why that
+" happens yet, but I think that it's related to renaming files.
+nnoremap g0 :ALEStopAllLSPs<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
@@ -264,7 +308,6 @@ function! ExtractVariable()
     " Paste the original selected text to be the variable value
     normal! $p
 endfunction
-vnoremap <leader>rv :call ExtractVariable()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " INLINE VARIABLE (SKETCHY)
@@ -291,7 +334,13 @@ function! InlineVariable()
     :let @a = l:tmp_a
     :let @b = l:tmp_b
 endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Refactoring mappings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vnoremap <leader>rv :call ExtractVariable()<cr>
 nnoremap <leader>ri :call InlineVariable()<cr>
+nnoremap <leader>rn :TsuRenameSymbol<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MAPS TO JUMP TO SPECIFIC COMMAND-T TARGETS AND FILES
@@ -389,7 +438,7 @@ function! RunTestFile(...)
     endif
 
     " Are we in a test file?
-    let in_test_file = match(expand("%"), '\(_spec.rb\|_test.rb\|test_.*\.py\|_test.py\)$') != -1
+    let in_test_file = match(expand("%"), '\(_spec.rb\|_test.rb\|test_.*\.py\|_test.py\|.test.ts\|.test.ts\)$') != -1
 
     " Run the tests for the previously-marked file (or the current file if
     " it's a test).
@@ -565,7 +614,7 @@ function! SelectaCommand(choice_command, selecta_args, vim_command)
 endfunction
 
 function! SelectaFile(path, glob, command)
-  call SelectaCommand("find " . a:path . "/* -type f -and -not -path '*/node_modules/*' -and -not -path '*/_build/*' -and -iname '" . a:glob . "' -and -not -iname '*.pyc' -and -not -ipath '*/tmp/*' -and -not -iname '*.png' -and -not -iname '*.jpg' -and -not -iname '*.eps' -and -not -iname '*.pdf' -and -not -iname '*.svg' -and -not -iname '*.ttf'", "", a:command)
+  call SelectaCommand("find " . a:path . "/* -type f -and -not -path '*/node_modules/*' -and -not -path '*/_build/*' -and -not -path '*/build/*' -and -iname '" . a:glob . "' -and -not -iname '*.pyc' -and -not -ipath '*/tmp/*' -and -not -iname '*.png' -and -not -iname '*.jpg' -and -not -iname '*.eps' -and -not -iname '*.pdf' -and -not -iname '*.svg' -and -not -iname '*.ttf'", "", a:command)
 endfunction
 
 nnoremap <leader>f :call SelectaFile(".", "*", ":edit")<cr>
@@ -578,6 +627,12 @@ nnoremap <leader>gp :call SelectaFile("public", "*", ":edit")<cr>
 nnoremap <leader>gs :call SelectaFile("app/assets/stylesheets", "*.sass", ":edit")<cr>
 nnoremap <leader>e :call SelectaFile(expand('%:h'), "*", ":edit")<cr>
 nnoremap <leader>v :call SelectaFile(expand('%:h'), "*", ":view")<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Typescript Mappings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>d :TsuDefinition<cr>
+nnoremap <leader>D :TsuTypeDefinition<cr>
 
 "Fuzzy select
 function! SelectaIdentifier()
