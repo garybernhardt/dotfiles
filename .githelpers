@@ -40,7 +40,7 @@ show_git_head() {
 }
 
 pretty_git_log() {
-    git log --graph --pretty="tformat:${LOG_FORMAT}" $* | pretty_git_format | git_page_maybe
+    git log --graph --pretty="tformat:${LOG_FORMAT}" --no-show-signature $* | pretty_git_format | git_page_maybe
 }
 
 pretty_git_branch() {
