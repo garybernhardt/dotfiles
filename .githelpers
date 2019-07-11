@@ -48,7 +48,7 @@ pretty_git_branch() {
 }
 
 pretty_git_branch_sorted() {
-    git branch -v --format=${BRANCH_FORMAT} --sort=-committerdate $* | pretty_git_format
+    git branch -v --color=always --format=${BRANCH_FORMAT} --sort=-committerdate $* | pretty_git_format
 }
 
 pretty_git_format() {
