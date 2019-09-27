@@ -103,7 +103,7 @@ set signcolumn=no
 :set termguicolors
 " Write swap files to disk and trigger CursorHold event faster (default is
 " after 4000 ms of inactivity)
-:set updatetime=1000
+:set updatetime=200
 " Completion options.
 "   menu: use a popup menu
 "   preview: show more info in menu
