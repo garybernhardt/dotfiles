@@ -593,8 +593,7 @@ endfunction
 
 nnoremap <leader>q :call ToggleQuickfix()<cr>
 nnoremap <leader>Q :cc<cr>
-nnoremap <leader>j :cnext<cr>
-nnoremap <leader>k :cprev<cr>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RemoveFancyCharacters COMMAND
