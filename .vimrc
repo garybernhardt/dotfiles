@@ -4,8 +4,19 @@
 " remove all existing autocmds
 autocmd!
 
-" initialize @tpope, whence all vim plugins come
-call pathogen#incubate()
+" initialize plugins
+call plug#begin('~/.vim/plugged')
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'peitalin/vim-jsx-typescript'
+Plug 'Quramy/tsuquyomi'
+Plug 'w0rp/ale'
+Plug 'zivyangll/git-blame.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'vim-ruby/vim-ruby'
+Plug 'slim-template/vim-slim'
+Plug 'ianks/vim-tsx'
+call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
