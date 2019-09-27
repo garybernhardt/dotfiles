@@ -192,6 +192,11 @@ augroup vimrcEx
   " Hitting K in a Ruby file opens rdoc, which completely breaks the terminal
   " to the point of having to kill vim and do `reset`. Unmap it entirely.
   nnoremap K <Nop>
+
+  " Compute syntax highlighting from beginning of file. (By default, vim only
+  " looks 200 lines back, which can make it highlight code incorrectly in some
+  " long files.)
+  autocmd BufEnter * :syntax sync fromstart
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
