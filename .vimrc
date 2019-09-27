@@ -667,3 +667,11 @@ nnoremap <c-g> :call SelectaIdentifier()<cr>
 " Show the vim highlight groups for whatever's under the cursor. This is only
 " useful for debugging vim color schemes.
 nnoremap <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") ."> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+function! GenerateStepID()
+  :r!bin/generate-step-id
+  :normal k
+  :normal J
+  :normal x
+endfunction
+nnoremap <leader>s :call GenerateStepID()<cr>
