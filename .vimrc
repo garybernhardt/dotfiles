@@ -215,10 +215,21 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM-ALE CONFIG
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ale_linters = {'typescript': ['tsserver']}
+let g:ale_linters = {'typescript': ['tsserver'], 'typescript.tsx': ['tsserver']}
+let g:ale_fixers = {'typescript': ['prettier'], 'typescript.tsx': ['prettier']}
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_delay = 0
+let g:ale_set_quickfix = 0
+let g:ale_set_loclist = 0
+nnoremap gj :ALENextWrap<cr>
+nnoremap gk :ALEPreviousWrap<cr>
+nnoremap g1 :ALEFirst<cr>
+" This mapping will kill all ALE-related processes (including tsserver). It's
+" necessary when those processes get confused. E.g., tsserver will sometimes
+" show type errors that don't actually exist. I don't know exactly why that
+" happens yet, but I think that it's related to renaming files.
+nnoremap g0 :ALEStopAllLSPs<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tsuquyomi
@@ -245,18 +256,6 @@ nnoremap <leader><leader> <c-^>
 vnoremap <leader>ib :!align<cr>
 " Close all other splits
 nnoremap <leader>o :only<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" LOCATION LIST MAPPINGS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap g1 :silent! :silent! :ll 1\|:normal zz<cr>
-nnoremap gj :silent! :ll\|:silent! :lnext\|:normal zz<cr>
-nnoremap gk :silent! :ll\|:silent! :lprev\|:normal zz<cr>
-" This mapping will kill all ALE-related processes (including tsserver). It's
-" necessary when those processes get confused. E.g., tsserver will sometimes
-" show type errors that don't actually exist. I don't know exactly why that
-" happens yet, but I think that it's related to renaming files.
-nnoremap g0 :ALEStopAllLSPs<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
