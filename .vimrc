@@ -6,16 +6,24 @@ autocmd!
 
 " initialize plugins
 call plug#begin('~/.vim/plugged')
-Plug 'leafgarland/typescript-vim'
-Plug 'HerringtonDarkholme/yats.vim'
-" Plug 'peitalin/vim-jsx-typescript'
-Plug 'Quramy/tsuquyomi'
-Plug 'w0rp/ale'
-Plug 'zivyangll/git-blame.vim'
-Plug 'pangloss/vim-javascript'
 Plug 'vim-ruby/vim-ruby'
 Plug 'slim-template/vim-slim'
-Plug 'ianks/vim-tsx'
+" Plug 'zivyangll/git-blame.vim'
+
+" JavaScript
+Plug 'pangloss/vim-javascript'
+" Plug 'MaxMEllon/vim-jsx-pretty'
+
+" TypeScript highlighting/indent
+Plug 'leafgarland/typescript-vim'
+" Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'peitalin/vim-jsx-typescript'
+" Plug 'ianks/vim-tsx'
+
+" TypeScript semantic support
+Plug 'Quramy/tsuquyomi'
+Plug 'w0rp/ale'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
