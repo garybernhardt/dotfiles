@@ -180,8 +180,6 @@ augroup vimrcEx
 
   " Two-space indents in TypeScript
   autocmd! FileType typescript set sw=2 sts=2 expandtab
-  " Automatically write after inactivity in TypeScript
-  autocmd FileType typescript autocmd CursorHold <buffer> :silent :wa
 
   " Somehow, loading TypeScript .tsx files sometimes invokes the XML file
   " type, which messes up the indentation. Force XML indentation to 2 so at
