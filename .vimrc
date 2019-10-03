@@ -11,8 +11,8 @@ Plug 'slim-template/vim-slim'
 " Plug 'zivyangll/git-blame.vim'
 
 " JavaScript
-Plug 'pangloss/vim-javascript'
-" Plug 'MaxMEllon/vim-jsx-pretty'
+" Plug 'pangloss/vim-javascript'
+Plug 'MaxMEllon/vim-jsx-pretty'
 
 " TypeScript highlighting/indent
 Plug 'leafgarland/typescript-vim'
