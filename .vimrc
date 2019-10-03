@@ -186,14 +186,6 @@ augroup vimrcEx
   " Expand tabs in Go. Was gofmt raised in a barn?!
   autocmd! FileType go set sw=4 sts=4 expandtab | retab
 
-  " Two-space indents in TypeScript
-  autocmd! FileType typescript set sw=2 sts=2 expandtab
-
-  " Somehow, loading TypeScript .tsx files sometimes invokes the XML file
-  " type, which messes up the indentation. Force XML indentation to 2 so at
-  " least it doesn't change TypeScript indentation at random.
-  autocmd! FileType xml set sw=2 sts=2 expandtab
-
   " Two-space indents in json
   autocmd! FileType json set sw=2 sts=2 expandtab
 
@@ -205,8 +197,6 @@ augroup vimrcEx
   " looks 200 lines back, which can make it highlight code incorrectly in some
   " long files.)
   autocmd BufEnter * :syntax sync fromstart
-
-  autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
