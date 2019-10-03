@@ -213,8 +213,8 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM-ALE CONFIG
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ale_linters = {'typescript': ['tsserver'], 'typescript.tsx': ['tsserver']}
-let g:ale_fixers = {'typescript': ['prettier'], 'typescript.tsx': ['prettier']}
+let g:ale_linters = {'javascript': [], 'typescript': ['tsserver'], 'typescript.tsx': ['tsserver']}
+let g:ale_fixers = {'javascript': [], 'typescript': ['prettier'], 'typescript.tsx': ['prettier']}
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_delay = 0
