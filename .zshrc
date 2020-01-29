@@ -11,7 +11,7 @@ compinit -D
 # Add paths
 export PATH=/usr/local/sbin:/usr/local/bin:${PATH}
 export PATH="$HOME/bin:$PATH"
-export PATH="./node_modules/.bin:$PATH"
+#export PATH="./node_modules/.bin:$PATH"
 
 # Colorize terminal
 alias ls='ls -G'
