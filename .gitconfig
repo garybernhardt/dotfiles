@@ -1,9 +1,23 @@
 [user]
     name = Gary Bernhardt
     email = gary.bernhardt@gmail.com
+[core]
+    pager = diff-so-fancy | less --tabs=4 -RFX
 [diff]
 [color]
     ui = auto
+[color "diff-highlight"]
+	  oldNormal = red
+	  oldHighlight = red "#500000"
+	  newNormal = green
+	  newHighlight = green "#003000"
+[color "diff"]
+	  meta = 11
+	  frag = magenta bold
+	  commit = yellow bold
+	  old = red
+	  new = green
+	  whitespace = "#ffff00" reverse
 [alias]
     st = status
     ci = commit --verbose
@@ -47,3 +61,6 @@
 
 [merge]
     tool = vimdiff
+[diff-so-fancy]
+    stripLeadingSymbols = false
+    markEmptyLines = false
