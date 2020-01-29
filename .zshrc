@@ -146,3 +146,5 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/gem_home/gem_home.sh
+
+export PATH="/usr/local/opt/node@12/bin:$PATH"
