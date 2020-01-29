@@ -58,7 +58,9 @@
     la = !git l --all
     b = "!. ~/.githelpers && pretty_git_branch"
     bs = "!. ~/.githelpers && pretty_git_branch_sorted"
-
+    ski = !git stash --keep-index
+    cp = cherry-pick
+    pf = push --force-with-lease
 [merge]
     tool = vimdiff
 [diff-so-fancy]
