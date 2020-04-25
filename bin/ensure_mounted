@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e -o pipefail
+
+if mount | grep "on $1\b" > /dev/null; then
+    exit 0
+else
+    exit 1
+fi

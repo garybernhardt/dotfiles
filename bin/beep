@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+say 'beep, beep, beep'
