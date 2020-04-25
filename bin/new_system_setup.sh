@@ -3,7 +3,8 @@
 set -e
 brew install reattach-to-user-namespace --with-wrap-pbcopy-and-pbpaste
 
-brew install git zsh vim ruby-install tmux wget fswatch ag postgresql lame python3 pngquant phantomjs heroku ghc multimarkdown graphviz offlineimap tree lua colordiff hub chruby jpeg selecta par2
+brew install git zsh vim ruby-install tmux wget fswatch ag postgresql lame python3 pngquant phantomjs heroku ghc multimarkdown graphviz offlineimap tree lua colordiff hub chruby jpeg selecta par2 tokei diff-so-fancy dust tig fd
+brew cask install skim
 brew install --HEAD https://raw.github.com/postmodern/gem_home/master/homebrew/gem_home.rb
 brew install imagemagick --with-ghostscript
 brew install ffmpeg --with-fdk-aac --with-x265
