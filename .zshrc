@@ -126,7 +126,7 @@ function insert-selecta-path-in-command-line() {
     # Print a newline or we'll clobber the old prompt.
     echo
     # Find the path; abort if the user doesn't select anything.
-    selected_path=$(find * -type f -or -type d | egrep -v '\bnode_modules\b' | selecta) || return
+    selected_path=$(fd -t f . | selecta) || return
     # Escape the selected path, since we're inserting it into a command line.
     # E.g., spaces would cause it to be multiple arguments instead of a single
     # path argument.
