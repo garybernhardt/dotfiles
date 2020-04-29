@@ -7,6 +7,7 @@ brew install git zsh vim ruby-install tmux wget fswatch ag postgresql lame pytho
 brew install --HEAD https://raw.github.com/postmodern/gem_home/master/homebrew/gem_home.rb
 brew install imagemagick
 brew install ffmpeg
+brew tap heroku/brew && brew install heroku
 
 # Don't animate windows opening. This is different from applications opening.
 # This applies when, for example, you have a running instance of Chrome or
