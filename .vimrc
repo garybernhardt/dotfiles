@@ -197,6 +197,11 @@ augroup vimrcEx
   " looks 200 lines back, which can make it highlight code incorrectly in some
   " long files.)
   autocmd BufEnter * :syntax sync fromstart
+
+  " Vim 8.2 adds built-in JSX support which seems broken. Setting these
+  " filetypes lets the installed plugins deal with JSX/TSX instead.
+  autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
+  autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
