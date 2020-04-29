@@ -109,7 +109,7 @@ function p() {
 }
 
 # Edit a note
-function n() {
+function note() {
     local note=$(find ~/notes/* | selecta)
     if [[ -n "$note" ]]; then
         (cd ~/notes && vi "$note")
