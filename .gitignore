@@ -58,6 +58,7 @@
 /.mutt/certificates
 /.mysql_history
 /.netrc
+/.node_repl_history
 /.npm
 /.offlineimap
 /.pip
@@ -82,6 +83,7 @@
 /.vim-fuf-data
 /.vim-tmp
 /.vim/.netrwhist
+/.vim/plugged/
 /.vimfuzzyfinder
 /.viminfo
 /.vimprojects
@@ -92,6 +94,7 @@
 /.wireshark
 /.wireshark-etc
 /.zcompdump
+/.zsh_history
 /Applications
 /Desktop
 /Documents
