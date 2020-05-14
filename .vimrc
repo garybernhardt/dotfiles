@@ -678,4 +678,16 @@ function! GenerateStepID()
   :normal J
   :normal x
 endfunction
+function! ReplaceStepID()
+  normal diw
+  execute "normal! i\n\<esc>"
+  normal k
+  :r!bin/generate-step-id
+  normal k
+  normal gJ
+  normal J
+  " Delete the space after the previous J
+  normal x
+endfunction
 nnoremap <leader>s :call GenerateStepID()<cr>
+nnoremap <leader>S :call ReplaceStepID()<cr>
