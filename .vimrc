@@ -683,15 +683,26 @@ function! GenerateStepID()
   :normal x
 endfunction
 function! ReplaceStepID()
+  " Delete the existing ID.
   normal diw
-  execute "normal! i\n\<esc>"
+  " Move the cursor to the # that marked the ID.
+  normal 0f#
+  " Insert a newline, separating the part of the original line before the #
+  " from the part after.
+  execute "normal! a\n\<esc>"
+  " Remove all whitespace before this line (the second one, containing what
+  " was after the #).
+  left
+  " Move back up to the first half of the original line
   normal k
+  " Generate a new step ID below this line
   :r!bin/generate-step-id
+  " Move back up to the first half of the original line again
   normal k
+  " Join with the new step ID
   normal gJ
-  normal J
-  " Delete the space after the previous J
-  normal x
+  " Join with whatever was after the original step ID
+  normal gJ
 endfunction
 nnoremap <leader>s :call GenerateStepID()<cr>
 nnoremap <leader>S :call ReplaceStepID()<cr>
