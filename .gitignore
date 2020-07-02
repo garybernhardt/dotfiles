@@ -90,6 +90,7 @@
 /.vimrc.backup
 /.vimrc.old
 /.viper
+/.wget-hsts
 /.wine
 /.wireshark
 /.wireshark-etc
