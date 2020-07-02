@@ -3,11 +3,13 @@
 set -e
 brew install reattach-to-user-namespace
 
-brew install git zsh vim ruby-install tmux wget fswatch ag postgresql lame python3 pngquant ghc multimarkdown graphviz offlineimap tree lua colordiff hub chruby jpeg selecta par2 tokei diff-so-fancy dust tig fd nvm
+brew install git zsh vim ruby-install tmux wget fswatch ag postgresql lame python3 pngquant ghc multimarkdown graphviz offlineimap tree lua colordiff hub chruby jpeg selecta par2 tokei diff-so-fancy dust tig fd nvm htop md5sha1sum coreutils pstree rsync
 brew install --HEAD https://raw.github.com/postmodern/gem_home/master/homebrew/gem_home.rb
 brew install imagemagick
 brew install ffmpeg
 brew tap heroku/brew && brew install heroku
+
+pip3.8 install rotate-backups
 
 # Don't animate windows opening. This is different from applications opening.
 # This applies when, for example, you have a running instance of Chrome or
