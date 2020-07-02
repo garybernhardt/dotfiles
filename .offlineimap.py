@@ -10,7 +10,7 @@ def get_keychain_password(key):
     return ""
 
 def get_imap_password():
-    return get_keychain_password("fastmail-email")
+    return get_keychain_password("fastmail-password")
 
 def get_imap_email():
     return get_keychain_password("fastmail-username") + "@fastmail.fm"

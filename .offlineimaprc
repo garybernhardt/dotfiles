@@ -7,7 +7,6 @@ maxsyncaccounts = 3
 [Account Fastmail]
 localrepository  = Local
 remoterepository = Remote
-status_backend = sqlite
 
 [Repository Local]
 localfolders = ~/Downloads/Mail
