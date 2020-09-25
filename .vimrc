@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-ruby/vim-ruby'
 Plug 'slim-template/vim-slim'
 " Plug 'zivyangll/git-blame.vim'
+Plug 'romainl/vim-cool'
 
 " JavaScript
 " Plug 'pangloss/vim-javascript'
