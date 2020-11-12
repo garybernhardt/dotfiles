@@ -632,25 +632,42 @@ command! RemoveFancyCharacters :call RemoveFancyCharacters()
 " command. See usage below.
 function! SelectaCommand(choice_command, selecta_args, vim_command)
   try
-    let selection = system(a:choice_command . " | selecta " . a:selecta_args)
-    " Escape spaces in the file name. That ensures that it's a single argument
-    " when concatenated with vim_command and run with exec.
-    let selection = substitute(selection, ' ', '\\ ', "g")
+    exec a:vim_command . " " . SelectaOutput(a:choice_command, a:selecta_args)
   catch /Vim:Interrupt/
     " Swallow the ^C so that the redraw below happens; otherwise there will be
     " leftovers from selecta on the screen
     redraw!
     return
   endtry
+endfunction
+
+function! SelectaOutput(choice_command, selecta_args)
+  let selection = system(a:choice_command . " | selecta " . a:selecta_args)
+  " Escape spaces in the file name. That ensures that it's a single argument
+  " when concatenated with vim_command and run with exec.
+  let selection = substitute(selection, ' ', '\\ ', "g")
   redraw!
-  exec a:vim_command . " " . selection
+  return selection
 endfunction
 
 function! SelectaFile(path, glob, command)
   call SelectaCommand("fd -t f . " . a:path, "", a:command)
 endfunction
 
+function! SelectaFileContents()
+  try
+    let selection = SelectaOutput("ls src/**/*.ts* | while read fn; do nl -b a \"$fn\" | while read line; do echo \"$fn:$line\"; done; done", "| cut -d \"	\" -f 1")
+  catch /Vim:Interrupt/
+    " Swallow the ^C so that the redraw below happens; otherwise there will be
+    " leftovers from selecta on the screen
+    redraw!
+    return
+  endtry
+  exec substitute(selection, "^\\([^:]\\+\\):\\([0-9]\\+\\).*$", ":e +\\2 \\1", "")
+endfunction
+
 nnoremap <leader>f :call SelectaFile(".", "*", ":edit")<cr>
+nnoremap <leader>F :call SelectaFileContents()<cr>
 nnoremap <leader>gv :call SelectaFile("app/views", "*", ":edit")<cr>
 nnoremap <leader>gc :call SelectaFile("app/controllers", "*", ":edit")<cr>
 nnoremap <leader>gm :call SelectaFile("app/models", "*", ":edit")<cr>
