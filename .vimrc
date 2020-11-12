@@ -681,6 +681,7 @@ nnoremap <c-g> :call SelectaIdentifier()<cr>
 " useful for debugging vim color schemes.
 nnoremap <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") ."> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
+" These two functions are specific to Execute Program. You don't need them.
 function! GenerateStepID()
   :r!bin/generate-step-id
   :normal k
