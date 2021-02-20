@@ -208,10 +208,6 @@ augroup vimrcEx
   " filetypes lets the installed plugins deal with JSX/TSX instead.
   autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
   autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
-
-  " Execute Program courses are plaintext. Sometimes vim thinks they're 'conf'
-  " files without this.
-  autocmd bufnewfile,bufread *.course setlocal filetype=text tw=10000
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
