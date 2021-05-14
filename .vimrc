@@ -647,9 +647,9 @@ function! SelectaFile(path, glob, command)
   call SelectaCommand("fd -t f . " . a:path, "", a:command)
 endfunction
 
-function! SelectaFileContents()
+function! SelectaFileContents(ext)
   try
-    let selection = SelectaOutput("ls src/**/*.ts* | while read fn; do nl -b a \"$fn\" | while read line; do echo \"$fn:$line\"; done; done", "| cut -d \"	\" -f 1")
+    let selection = SelectaOutput("ls **/*." . a:ext . "* | while read fn; do nl -b a \"$fn\" | while read line; do echo \"$fn:$line\"; done; done", "| cut -d \"	\" -f 1")
   catch /Vim:Interrupt/
     " Swallow the ^C so that the redraw below happens; otherwise there will be
     " leftovers from selecta on the screen
@@ -660,7 +660,9 @@ function! SelectaFileContents()
 endfunction
 
 nnoremap <leader>f :call SelectaFile(".", "*", ":edit")<cr>
-nnoremap <leader>F :call SelectaFileContents()<cr>
+nnoremap <leader>js :call SelectaFileContents("js")<cr>
+nnoremap <leader>rb :call SelectaFileContents("rb")<cr>
+nnoremap <leader>ts :call SelectaFileContents("ts")<cr>
 nnoremap <leader>gv :call SelectaFile("app/views", "*", ":edit")<cr>
 nnoremap <leader>gc :call SelectaFile("app/controllers", "*", ":edit")<cr>
 nnoremap <leader>gm :call SelectaFile("app/models", "*", ":edit")<cr>
