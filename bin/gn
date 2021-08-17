@@ -1,19 +1,19 @@
 #!/usr/bin/python
 
 #
-# Print a diff summary like:
+# Print a summary of a piped diff like:
 #
-#   $ git diff 'master~10..master' | gn
-#   293 lines of diff
-#   185 lines (+200, -15)
-#   650 words (+10, -660)
+#   $ git diff main | gn
+#   49 lines of diff
+#   +11 lines (+18, -7)
+#   +77 words (+110, -33)
 #
-# or:
+# or with a diff/patch file:
 #
 #   $ gn my-awesome-patch.diff
-#   293 lines of diff
-#   185 lines (+200, -15)
-#   650 words (+10, -660)
+#   49 lines of diff
+#   +11 lines (+18, -7)
+#   +77 words (+110, -33)
 
 import sys, os, re, fileinput
 
