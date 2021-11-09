@@ -7,7 +7,7 @@ brew install reattach-to-user-namespace
 # sometimes fail, and this makes bisecting a bit easeier.
 brew install git zsh vim ruby-install tmux wget fswatch ag postgresql lame
 brew install python3 pngquant ghc multimarkdown graphviz offlineimap tree lua
-brew install colordiff hub chruby jpeg selecta par2 tokei diff-so-fancy dust
+brew install colordiff hub chruby jpeg selecta par2 tokei dust
 brew install tig fd nvm htop coreutils pstree rsync n
 
 brew install imagemagick
