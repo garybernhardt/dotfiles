@@ -9,6 +9,9 @@ hi Comment ctermfg=lightgrey
 
 hi StatusLine ctermbg=darkgrey ctermfg=white
 hi StatusLineNC ctermbg=black ctermfg=lightgrey
+hi TabLine ctermfg=lightgray ctermbg=NONE
+hi TabLineFill ctermbg=NONE ctermfg=NONE cterm=NONE
+hi TabLineSel ctermfg=white ctermbg=NONE cterm=bold
 hi VertSplit ctermbg=black ctermfg=lightgrey
 hi LineNr ctermfg=darkgray
 hi CursorLine       guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE       ctermbg=234    cterm=NONE
