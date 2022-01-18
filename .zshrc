@@ -148,3 +148,14 @@ source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/gem_home/gem_home.sh
 
 export PATH="/usr/local/opt/node@12/bin:$PATH"
+
+# Autocompletion for custom git aliases that are implemented as shell commands
+# (starting with `!` in the git alias). Whatever code handles git-zsh
+# autocompletion calls functions named by a convention: to do completion for
+# `git foo`, it calls `_git-foo`.
+_git-r() {
+  _git-branch
+}
+_git-l() {
+  _git-branch
+}
