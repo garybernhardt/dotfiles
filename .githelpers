@@ -18,12 +18,13 @@
 # break this.
 
 LOG_HASH="%C(always,yellow)%h%C(always,reset)"
-LOG_RELATIVE_TIME="%C(always,green)(%ar)%C(always,reset)"
+LOG_ABSOLUTE_DATE="%C(always,green)(%ar)%C(always,reset)"
+LOG_RELATIVE_TIME="%C(always,green)%as%C(always,reset)"
 LOG_AUTHOR="%C(always,blue)<%an>%C(always,reset)"
 LOG_SUBJECT="%s"
 LOG_REFS="%C(always,red)%d%C(always,reset)"
 
-LOG_FORMAT="$LOG_HASH}$LOG_RELATIVE_TIME}$LOG_AUTHOR}$LOG_REFS $LOG_SUBJECT"
+LOG_FORMAT="$LOG_HASH}$LOG_RELATIVE_TIME}$LOG_ABSOLUTE_DATE}$LOG_AUTHOR}$LOG_REFS $LOG_SUBJECT"
 
 BRANCH_PREFIX="%(HEAD)"
 BRANCH_REF="%(color:red)%(color:bold)%(refname:short)%(color:reset)"
