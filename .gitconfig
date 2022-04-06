@@ -1,8 +1,6 @@
 [user]
     name = Gary Bernhardt
     email = gary.bernhardt@gmail.com
-[core]
-    pager = diff-so-fancy | less --tabs=4 -RFX
 [diff]
 [color]
     ui = auto
@@ -63,6 +61,3 @@
     pf = push --force-with-lease
 [merge]
     tool = vimdiff
-[diff-so-fancy]
-    stripLeadingSymbols = false
-    markEmptyLines = false
