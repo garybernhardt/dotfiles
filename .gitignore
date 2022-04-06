@@ -60,6 +60,7 @@
 /.netrc
 /.node_repl_history
 /.npm
+/.npmrc
 /.offlineimap
 /.pip
 /.psql_history
@@ -76,6 +77,7 @@
 /.sqlite_history
 /.ssh
 /.ssl
+/.tailwindcss
 /.thelongpoll
 /.toot
 /.tox
@@ -96,6 +98,7 @@
 /.wine
 /.wireshark
 /.wireshark-etc
+/.yarnrc
 /.zcompdump
 /.zsh_history
 /Applications
