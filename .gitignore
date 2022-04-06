@@ -83,6 +83,8 @@
 /.vim-fuf-data
 /.vim-tmp
 /.vim/.netrwhist
+/.vim/autoload/plug.vim.old
+/.vim/plugged-backup
 /.vim/plugged/
 /.vimfuzzyfinder
 /.viminfo
