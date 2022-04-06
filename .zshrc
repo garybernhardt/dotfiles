@@ -141,13 +141,13 @@ zle -N insert-selecta-path-in-command-line
 # Bind the key to the newly created widget
 bindkey "^S" "insert-selecta-path-in-command-line"
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-source /usr/local/share/chruby/chruby.sh
+source /opt/homebrew/share/chruby/chruby.sh
 source /usr/local/share/gem_home/gem_home.sh
 
+export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/usr/local/opt/node@12/bin:$PATH"
+export PATH="/usr/local/opt/postgresql@13/bin:$PATH"
+export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
 
 # Autocompletion for custom git aliases that are implemented as shell commands
 # (starting with `!` in the git alias). Whatever code handles git-zsh
