@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 #
 # Print a summary of a piped diff like:
@@ -39,11 +39,11 @@ if __name__ == '__main__':
     diff_lines = list(fileinput.input())
     added_lines, removed_lines = get_lines(diff_lines)
     added_words, removed_words = get_words(added_lines, removed_lines)
-    print '%i lines of diff' % len(diff_lines)
-    print '%+i lines (+%i, -%i)' % (len(added_lines) - len(removed_lines),
+    print('%i lines of diff' % len(diff_lines))
+    print('%+i lines (+%i, -%i)' % (len(added_lines) - len(removed_lines),
                                     len(added_lines),
-                                    len(removed_lines))
-    print '%+i words (+%i, -%i)' % (len(added_words) - len(removed_words),
+                                    len(removed_lines)))
+    print('%+i words (+%i, -%i)' % (len(added_words) - len(removed_words),
                                     len(added_words),
-                                    len(removed_words))
+                                    len(removed_words)))
 
