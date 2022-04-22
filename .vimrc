@@ -6,7 +6,6 @@ autocmd!
 
 " initialize plugins
 call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-sleuth'
 Plug 'vim-ruby/vim-ruby'
 Plug 'slim-template/vim-slim'
 " Plug 'zivyangll/git-blame.vim'
