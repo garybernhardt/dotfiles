@@ -64,6 +64,7 @@
 /.offlineimap
 /.pip
 /.psql_history
+/.pyenv
 /.pypirc
 /.python-eggs
 /.python_history
